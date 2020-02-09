@@ -12,6 +12,7 @@ using Oeuvre.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Oeuvre.Models;
 
 namespace Oeuvre
 {
@@ -32,6 +33,11 @@ namespace Oeuvre
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddDbContext<dbo_OeuvreContext>(options =>
+           options.UseSqlServer(
+               Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
