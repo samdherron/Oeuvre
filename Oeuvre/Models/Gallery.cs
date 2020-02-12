@@ -18,7 +18,6 @@ namespace Oeuvre.Models
         public string Province { get; set; }
         public string GalleryAuthId { get; set; }
 
-        public virtual GalleryAuth GalleryAuth { get; set; }
         public virtual ICollection<Image> Image { get; set; }
     }
 }
