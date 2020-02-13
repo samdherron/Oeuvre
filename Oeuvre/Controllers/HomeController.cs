@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Oeuvre.Models;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace Oeuvre.Controllers
 {
@@ -15,6 +17,12 @@ namespace Oeuvre.Controllers
 
         public HomeController(ILogger<HomeController> logger)
         {
+            Account account = new Account(
+                "oeuvre",
+                "591857667739764",
+                "tVwlzrfSYIFs8gxwIKnMW_OfRd0");
+
+            Cloudinary cloudinary = new Cloudinary(account);
             _logger = logger;
         }
 
