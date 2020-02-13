@@ -11,6 +11,7 @@ namespace Oeuvre.Models
         public string ThemeId { get; set; }
         public string Description { get; set; }
         public string ImgLocation { get; set; }
+        public string Artist { get; set; }
 
         public virtual Gallery Gallery { get; set; }
         public virtual Theme Theme { get; set; }

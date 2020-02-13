@@ -182,6 +182,10 @@ namespace Oeuvre.Models
                     .HasMaxLength(10)
                     .IsFixedLength();
 
+                entity.Property(e => e.Artist)
+                    .HasColumnName("artist")
+                    .IsUnicode(false);
+
                 entity.Property(e => e.DateUploaded)
                     .HasColumnName("Date_Uploaded")
                     .HasColumnType("datetime");
