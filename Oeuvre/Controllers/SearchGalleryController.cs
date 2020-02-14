@@ -91,11 +91,26 @@ namespace Oeuvre.Controllers
                 if (ModelState.IsValid)
                 {
 
+                    //var artPieces = (from img in _context.Image
+                    //                 join tl in _context.ThemeLookup on img.ImgId equals tl.ImgId
+                    //                 join ith in _context.ImgThemes on tl.ThemeLookupId equals ith.ThemeLookupId
+                    //                 join th in _context.Theme on ith.ThemeId equals th.ThemeId
+                    //                 where th.ThemeName == sTh
+                    //                 select new
+                    //                 {
+                    //                     img.Artist
+                    //                     ,
+                    //                     img.Description
+                    //                     ,
+                    //                     img.ImgLocation
+
+                    //                 }).ToList();
+
                     var artPieces = (from img in _context.Image
                                      join tl in _context.ThemeLookup on img.ImgId equals tl.ImgId
                                      join ith in _context.ImgThemes on tl.ThemeLookupId equals ith.ThemeLookupId
                                      join th in _context.Theme on ith.ThemeId equals th.ThemeId
-                                     where th.ThemeName == sTh
+                                     where th.ThemeName.Contains(sTh)
                                      select new
                                      {
                                          img.Artist
@@ -105,7 +120,6 @@ namespace Oeuvre.Controllers
                                          img.ImgLocation
 
                                      }).ToList();
-
 
                     List<Image> imageList = new List<Image>();
 
@@ -191,6 +205,8 @@ namespace Oeuvre.Controllers
                                      img.ImgLocation
 
                                  }).ToList();
+
+
 
 
               
