@@ -11,7 +11,7 @@
 @{ if (ViewData["error"] != null && ViewData["error"] != "")
     {
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Please Choose a Theme Type!
+            Please Choose either a Theme Type or put something in the search bar!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -31,6 +31,8 @@
             <option value="2">Age</option>
             <option value="3">Artist</option>
             <option value="4">Art Type</option>
+            <option value="5">Genre</option>
+            <option value="6">Other</option>
         </select>
         <button asp-controller="SearchGallery" asp-action="getList" class="btn btn-primary btn-sm mx-sm-3 mb-2">Search</button>
     </div>
@@ -71,5 +73,17 @@
 
         </div>
     }
+
+    if (ViewData["Count"] != null && ViewData["Count"] != "")
+    {
+        <div class="alert alert-info  alert-dismissible fade show" role="alert">
+            No Art Found!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+
 
 }

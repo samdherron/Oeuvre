@@ -31,28 +31,31 @@ namespace Oeuvre.Controllers
             string sTh= searchTheme;
             int sTy = Int32.Parse(searchType);
 
-            if(sTy == 0)
+            if(sTy == 0 && (sTh == null || sTh == ""))
             {
-                ViewData["error"] = "You have to pick a valid Theme Type!";
+                ViewData["error"] = "You have to pick either Theme Type or put something in the search param!";
             }
 
-
-            else
+            else if(sTh == "" || sTh == null)
             {
                 if (ModelState.IsValid)
                 {
 
                     var artPieces = (from img in _context.Image
-                             join th in _context.Theme on img.ThemeId equals th.ThemeId
-                             join tt in _context.ThemeType on th.ThemeTypeId equals tt.ThemeTypeId
-                             where th.ThemeName == sTh
-                             select new 
-                             {
-                                 img.Artist
-                                 ,img.Description
-                                 ,img.ImgLocation
+                                     join tl in _context.ThemeLookup on img.ImgId equals tl.ImgId
+                                     join ith in _context.ImgThemes on tl.ThemeLookupId equals ith.ThemeLookupId
+                                     join th in _context.Theme on ith.ThemeId equals th.ThemeId
+                                     join tt in _context.ThemeType on th.ThemeTypeId equals tt.ThemeTypeId
+                                     where tt.ThemeTypeId == searchType
+                                     select new
+                                     {
+                                         img.Artist
+                                         ,
+                                         img.Description
+                                         ,
+                                         img.ImgLocation
 
-                             }).ToList();
+                                     }).Distinct().ToList();
 
 
                     List<Image> imageList = new List<Image>();
@@ -70,6 +73,62 @@ namespace Oeuvre.Controllers
                         //Console.WriteLine("THIS IS THE IMG LOCATION " + imgLocation + "FOR ART PIECE" + (i + 1));
                     }
 
+
+                    if(artPieces.Count == 0)
+                    {
+                        ViewData["Count"] = "No Art Found";
+                        ViewData["Input"] = sTh;
+                    }
+
+                    ViewData["Pieces"] = imageList;
+
+                }
+            }
+
+
+            else
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var artPieces = (from img in _context.Image
+                                     join tl in _context.ThemeLookup on img.ImgId equals tl.ImgId
+                                     join ith in _context.ImgThemes on tl.ThemeLookupId equals ith.ThemeLookupId
+                                     join th in _context.Theme on ith.ThemeId equals th.ThemeId
+                                     where th.ThemeName == sTh
+                                     select new
+                                     {
+                                         img.Artist
+                                         ,
+                                         img.Description
+                                         ,
+                                         img.ImgLocation
+
+                                     }).ToList();
+
+
+                    List<Image> imageList = new List<Image>();
+
+                    for (var i = 0; i < artPieces.Count; i++)
+                    {
+                        Image newImg = new Image();
+
+                        newImg.ImgLocation = artPieces[i].ImgLocation;
+                        newImg.Description = artPieces[i].Description;
+                        newImg.Artist = artPieces[i].Artist;
+
+                        imageList.Add(newImg);
+                        //string imgLocation = artPieces[i].ImgLocation;
+                        //Console.WriteLine("THIS IS THE IMG LOCATION " + imgLocation + "FOR ART PIECE" + (i + 1));
+                    }
+
+
+
+                    if (artPieces.Count == 0)
+                    {
+                        ViewData["Count"] = "No Art Found";
+                        ViewData["Input"] = sTh;
+                    }
 
                     ViewData["Pieces"] = imageList;
 
@@ -116,15 +175,6 @@ namespace Oeuvre.Controllers
 
         public ViewResult getQuickSearchList()
         {
-            //string sTh = searchTheme;
-            //int sTy = Int32.Parse(searchType);
-
-            //if (sTy == 0)
-            //{
-            //    ViewData["error"] = "You have to pick a valid Theme Type!";
-            //}
-
-
           
             if (ModelState.IsValid)
             {
