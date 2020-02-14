@@ -24,7 +24,9 @@ namespace Oeuvre.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Gallery> Gallery { get; set; }
         public virtual DbSet<Image> Image { get; set; }
+        public virtual DbSet<ImgThemes> ImgThemes { get; set; }
         public virtual DbSet<Theme> Theme { get; set; }
+        public virtual DbSet<ThemeLookup> ThemeLookup { get; set; }
         public virtual DbSet<ThemeType> ThemeType { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -182,6 +184,8 @@ namespace Oeuvre.Models
                     .HasMaxLength(10)
                     .IsFixedLength();
 
+                entity.Property(e => e.Artist).IsUnicode(false);
+
                 entity.Property(e => e.DateUploaded)
                     .HasColumnName("Date_Uploaded")
                     .HasColumnType("datetime");
@@ -197,6 +201,8 @@ namespace Oeuvre.Models
                     .IsFixedLength();
 
                 entity.Property(e => e.ImgLocation).HasColumnName("Img_Location");
+
+                entity.Property(e => e.Name).IsUnicode(false);
 
                 entity.Property(e => e.ThemeId)
                     .IsRequired()
@@ -215,6 +221,28 @@ namespace Oeuvre.Models
                     .HasForeignKey(d => d.ThemeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Image_Theme");
+            });
+
+            modelBuilder.Entity<ImgThemes>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.ThemeId)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.HasOne(d => d.Theme)
+                    .WithMany(p => p.ImgThemes)
+                    .HasForeignKey(d => d.ThemeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ImgThemes_Theme");
+
+                entity.HasOne(d => d.ThemeLookup)
+                    .WithMany(p => p.ImgThemes)
+                    .HasForeignKey(d => d.ThemeLookupId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ImgThemes_ThemeLookup");
             });
 
             modelBuilder.Entity<Theme>(entity =>
@@ -240,6 +268,22 @@ namespace Oeuvre.Models
                     .HasForeignKey(d => d.ThemeTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Theme_ThemeType");
+            });
+
+            modelBuilder.Entity<ThemeLookup>(entity =>
+            {
+                entity.Property(e => e.ThemeLookupId).HasColumnName("ThemeLookupID");
+
+                entity.Property(e => e.ImgId)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.HasOne(d => d.Img)
+                    .WithMany(p => p.ThemeLookup)
+                    .HasForeignKey(d => d.ImgId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ThemeLookup_Image");
             });
 
             modelBuilder.Entity<ThemeType>(entity =>

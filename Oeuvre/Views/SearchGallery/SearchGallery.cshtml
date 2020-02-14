@@ -1,0 +1,89 @@
+﻿
+@model SearchGalleryModel
+@{
+    ViewData["Title"] = "Collections";
+}
+<h1>@ViewData["Title"]</h1>
+
+@*<a class="nav-link text-dark" asp-area="" asp-controller="SearchGallery" asp-action="getList">Home</a>*@
+
+
+@{ if (ViewData["error"] != null && ViewData["error"] != "")
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Please Choose either a Theme Type or put something in the search bar!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+}
+
+<form class="">
+    <label for="searchTheme">Search</label>
+
+    <button class="btn btn-outline-info btn-sm mx-sm-3 mb-2" asp-controller="SearchGallery" asp-action="getQuickSearchList">Quick Search</button>
+    <div class="form-group form-inline mb-2">
+        <input type="text" class="form-control form-control-sm mb-2" name="searchTheme">
+        <select class="form-control form-control-sm mx-sm-3 mb-2" name="searchType">
+            <option value="0">Theme Type</option>
+            <option value="1">Color</option>
+            <option value="2">Age</option>
+            <option value="3">Artist</option>
+            <option value="4">Art Type</option>
+            <option value="5">Genre</option>
+            <option value="6">Other</option>
+        </select>
+        <button asp-controller="SearchGallery" asp-action="getList" class="btn btn-primary btn-sm mx-sm-3 mb-2">Search</button>
+    </div>
+
+    <div>
+        <small id="searchHelp" class="form-text text-muted">Choose a Theme Type and then search for a theme or for quick results press the quicksearch button</small>
+    </div>
+
+
+</form>
+
+
+@{
+    if (ViewData["Pieces"] != null && ViewData["Pieces"] != "")
+    {
+        var Pieces = ViewData["Pieces"] as List<Image>;
+
+
+        @*<div class="panel-body col-xs-8 col-sm-6 col-lg-8">*@
+        <div class="card-columns" style="margin-top: 15px">
+
+
+            @foreach (Image img in Pieces)
+            {
+
+                <div class="card">
+
+                    <img src=@img.ImgLocation class="card-img-top" alt="Responsive image">
+                    <div class="card-body">
+                        <h5 class="card-title">@img.Artist</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+    }
+
+    if (ViewData["Count"] != null && ViewData["Count"] != "")
+    {
+        <div class="alert alert-info  alert-dismissible fade show" role="alert">
+            No Art Found!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+
+
+}
