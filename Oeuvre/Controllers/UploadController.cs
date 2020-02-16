@@ -48,7 +48,7 @@ namespace Oeuvre.Controllers
         /// </summary>
         /// <param name="image">The image the user chose before submitting the form.</param>
         [HttpPost]
-        public async Task<IActionResult> UploadImageToLocal(IFormFile image)
+        public async Task<IActionResult> UploadImageToLocal(IFormFile image, string[] formData)
         {
 
             //Check for empty object
@@ -77,7 +77,7 @@ namespace Oeuvre.Controllers
                 }
 
 
-                await CloudUpload_LocalDelete(updatedFileName);
+                await CloudUpload_LocalDelete(updatedFileName, formData);
 
             }
 
@@ -89,7 +89,7 @@ namespace Oeuvre.Controllers
         /// <summary>
         /// This method will upload the image to the Cloudinary repository and then delete it from local storage.
         /// </summary>
-        public async Task<IActionResult> CloudUpload_LocalDelete(string fileName)
+        public async Task<IActionResult> CloudUpload_LocalDelete(string fileName, string[] formData)
         {
             string filePath = @"wwwroot\Images" + fileName;
 
@@ -100,17 +100,18 @@ namespace Oeuvre.Controllers
 
             var uploadResult = _cloudinary.Upload(uploadParams);
 
-            await SaveInfo_ToDatabase(uploadResult);
+            await SaveInfo_ToDatabase(uploadResult, formData);
 
             System.IO.File.Delete(filePath);
 
             return Ok();
         }
 
-        public async Task<IActionResult> SaveInfo_ToDatabase(ImageUploadResult uploadResult)
+        public async Task<IActionResult> SaveInfo_ToDatabase(ImageUploadResult uploadResult, string[] formData)
         {
 
-
+            Image newImage = new Image();
+            
 
             return Ok();
         }

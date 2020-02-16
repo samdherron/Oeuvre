@@ -31,23 +31,52 @@
 
         <br />
 
+        <!-- Create a seperate row for the labels so they're not duplicated when adding new rows -->
         <div class="row">
             <div class="col-md-6">
                 <label for="imageThemes">Theme Type:</label>
-                <br />
-                <select class="form-control">
-                    <option>Colour</option>
-                    <option>Mood</option>
-                </select>
             </div>
-
             <div class="col-md-6">
                 <label for="imageThemes">Theme:</label>
-                <br />
-                <input class="form-control" type="text" placeholder="Red" />
             </div>
         </div>
 
+        <br />
+
+        <div class="dynamicThemes">
+            <!-- This div entire div will be duplicated when clicking the addition sign below-->
+            <div id="dynamicThemesInitial" class="dynamicThemeMember" style="margin-bottom: 2%;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <select class="form-control">
+                            <option>Colour</option>
+                            <option>Age</option>
+                            <option>Artist</option>
+                            <option>Art Type</option>
+                            <option>Genre</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" placeholder="Red" />
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <!-- End of duplication -->
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="~/Icons/plusIcon2.png" height="24" width="24" onclick="addRow(this)" role="button" />
+                <img src="~/Icons/xIcon.png" height="24" width="24" style="margin-left: 0.5em;" onclick="deleteRow(this)" role="button" />
+            </div>
+
+        </div>
+
+        <br />
         <br />
 
         <div class="row">
@@ -88,6 +117,38 @@
         </div>
     </form>
 </div>
+
+
+<script type="text/javascript">
+
+    //The initial theme is not counted, just the dynamic theme inputs
+    var themeCounter = 0;
+
+    //Adds a new theme input row by cloning the parent node and generating a new ID
+    function addRow() {
+        var numberThemes = document.querySelectorAll('.dynamicThemeMember').length;
+        console.log(numberThemes);
+        let newThemeClone = document.querySelector('#dynamicThemesInitial').cloneNode(true);
+        newThemeClone.setAttribute('id', 'dynamicTheme' + numberThemes);
+        document.querySelector('.dynamicThemes').appendChild(newThemeClone);
+        themeCounter += 1;
+    }
+
+    /*Deletes a new theme input row by getting the theme count and deleting the
+      corresponding node from the parent */
+    function deleteRow() {
+        var numberThemes = document.querySelectorAll('.dynamicThemeMember').length;
+        console.log(numberThemes);
+
+        if (themeCounter > 0) {
+            var elementID = "dynamicTheme" + (themeCounter);
+            var topElement = document.getElementById(elementID);
+            topElement.parentNode.removeChild(topElement);
+            themeCounter -= 1;
+        }
+    }
+
+</script>
 
 <script type="text/javascript">
     /* Script will update the filename on the page upon selecting an image */
