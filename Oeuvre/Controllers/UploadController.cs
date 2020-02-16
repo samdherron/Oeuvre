@@ -100,7 +100,17 @@ namespace Oeuvre.Controllers
 
             var uploadResult = _cloudinary.Upload(uploadParams);
 
+            await SaveInfo_ToDatabase(uploadResult);
+
             System.IO.File.Delete(filePath);
+
+            return Ok();
+        }
+
+        public async Task<IActionResult> SaveInfo_ToDatabase(ImageUploadResult uploadResult)
+        {
+
+
 
             return Ok();
         }
