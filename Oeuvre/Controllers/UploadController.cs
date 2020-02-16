@@ -91,6 +91,9 @@ namespace Oeuvre.Controllers
 
             var uploadResult = _cloudinary.Upload(uploadParams);
 
+                System.IO.File.Delete(filePath);
+            
+
             return Ok();
         }
 
