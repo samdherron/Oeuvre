@@ -33,6 +33,7 @@
             <option value="4">Art Type</option>
             <option value="5">Genre</option>
             <option value="6">Other</option>
+            <option value="7">Gallery</option>
         </select>
         <button asp-controller="SearchGallery" asp-action="getList" class="btn btn-primary btn-sm mx-sm-3 mb-2">Search</button>
     </div>
@@ -58,15 +59,18 @@
             @foreach (Image img in Pieces)
             {
 
-                <div class="card">
+                 
 
-                    <img src=@img.ImgLocation class="card-img-top" alt="Responsive image">
+                <div class="card" >
+                     
+                    <img  src=@img.ImgLocation class="card-img-top" alt="Responsive image">
                     <div class="card-body">
                         <h5 class="card-title">@img.Artist</h5>
+                        <h6 class="card-text">@img.Name</h6>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a class="btn btn-primary btn-sm" asp-controller="SearchGallery" asp-action="testImgId" asp-route-id="@img.ImgId" value="@img.ImgId">More Info</a>
                     </div>
-
+                 
                 </div>
 
             }
