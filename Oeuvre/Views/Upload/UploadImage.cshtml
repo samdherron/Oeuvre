@@ -54,7 +54,7 @@
             <div class="col-xl-12">
                 <label for="imageDescription">Description:</label>
                 <br />
-                <textarea style="height 150%;" class="form-control" id="formInput"></textarea>
+                <textarea class="form-control" id="formInput"></textarea>
             </div>
         </div>
 
@@ -62,9 +62,10 @@
 
         <div class="row">
             <div class="col-xl-12" style="text-align: center;">
-                <label for="imagePreview">Preview:</label>
+                <label id="previewHeader" style="display: none;" for="imagePreview">Preview:</label>
                 <br />
-                <img id="imagePreview" style="height: 80%; width: 80%;" />
+                <img id="imagePreview" style="height: 80%; width: 80%; max-height: 850px;
+                                       max-width: 700px; display: none; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);" />
             </div>
         </div>
 
@@ -89,6 +90,7 @@
 </div>
 
 <script type="text/javascript">
+    /* Script will update the filename on the page upon selecting an image */
     $(document).ready(function () {
         $("#imageUpload").on("change", function () {
             var fileName = $(this).val().split("\\").pop();
@@ -98,8 +100,13 @@
 </script>
 
 <script>
+    /* Script will refresh image src with selected file, then display
+       the image and the header */
     var previewImage = function (event) {
         var image = document.getElementById('imagePreview');
+        var previewText = document.getElementById('previewHeader');
+        previewText.style.display = "initial";
+        image.style.display = "initial";
         image.src = URL.createObjectURL(event.target.files[0]);
     };
 </script>
