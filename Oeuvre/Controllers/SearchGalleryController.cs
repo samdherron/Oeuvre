@@ -30,12 +30,55 @@ namespace Oeuvre.Controllers
 
         public ViewResult getList(string searchTheme, string searchType)
         {
-            string sTh= searchTheme;
+            userSearch = new SearchGallery();
+
+            string sTh= userSearch.removeSqlInjectionParams(searchTheme);
+
             int sTy = Int32.Parse(searchType);
+
 
             if(sTy == 0 && (sTh == null || sTh == ""))
             {
                 ViewData["error"] = "You have to pick either Theme Type or put something in the search param!";
+            }
+            else if(sTy == 7 && sTh != "")
+            {
+                if (ModelState.IsValid)
+                {
+
+                    userSearch = new SearchGallery();
+
+                    List<Image> imageList = userSearch.getGalleryItemsUsingGallery(_context, sTh);
+
+                    if (imageList.Count == 0)
+                    {
+                        ViewData["Count"] = "No Art Found";
+                        ViewData["Input"] = sTh;
+                    }
+
+
+                    ViewData["Pieces"] = imageList;
+
+                }
+            }
+            else if(sTy == 3 && sTh != ""){
+                if (ModelState.IsValid)
+                {
+
+                    userSearch = new SearchGallery();
+
+                    List<Image> imageList = userSearch.getGalleryItemsUsingArtist(_context, sTh);
+
+                    if (imageList.Count == 0)
+                    {
+                        ViewData["Count"] = "No Art Found";
+                        ViewData["Input"] = sTh;
+                    }
+
+
+                    ViewData["Pieces"] = imageList;
+
+                }
             }
 
             else if(sTh == "" || sTh == null)
@@ -103,6 +146,14 @@ namespace Oeuvre.Controllers
 
             return View("SearchGallery");
 
+
+        }
+
+        public ViewResult testImgId(int id)
+        {
+
+            Console.WriteLine("THE ART ID IS " + id);
+            return View("SearchGallery");
 
         }
     }

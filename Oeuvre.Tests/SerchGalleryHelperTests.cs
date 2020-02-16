@@ -209,5 +209,82 @@ namespace Oeuvre.Tests
         }
 
 
+        [Test]
+        public void Check_getGalleryItemsUsingArtist_Return1Item()
+        {
+
+            //Arrange
+            SearchGallery userSearch = new SearchGallery();
+
+            //Act
+            var imageList = userSearch.getGalleryItemsUsingArtist(_dbContext, "1");
+
+            //Assert
+            Assert.AreEqual(1, imageList.Count);
+
+        }
+
+        [Test]
+        public void Check_getGalleryItemsUsingArtist_Return0Items()
+        {
+
+            //Arrange
+            SearchGallery userSearch = new SearchGallery();
+
+            //Act
+            var imageList = userSearch.getGalleryItemsUsingArtist(_dbContext, "5");
+
+            //Assert
+            Assert.AreEqual(0, imageList.Count);
+
+        }
+
+
+        [Test]
+        public void Check_getGalleryItemsUsingGallery_Return1Item()
+        {
+
+            //Arrange
+            SearchGallery userSearch = new SearchGallery();
+
+            //Act
+            var imageList = userSearch.getGalleryItemsUsingGallery(_dbContext, "Test");
+
+            //Assert
+            Assert.AreEqual(2, imageList.Count);
+
+        }
+
+        [Test]
+        public void Check_getGalleryItemsUsingGallery_Return0Items()
+        {
+
+            //Arrange
+            SearchGallery userSearch = new SearchGallery();
+
+            //Act
+            var imageList = userSearch.getGalleryItemsUsingGallery(_dbContext, "2");
+
+            //Assert
+            Assert.AreEqual(0, imageList.Count);
+
+        }
+
+        [Test]
+        public void Check_removeSqlInjectionParams_ReturnCleansedThemeTrue()
+        {
+
+            //Arrange
+            SearchGallery userSearch = new SearchGallery();
+
+            //Act
+            string cleansedTheme = userSearch.removeSqlInjectionParams("SELECT * FROM gallery WHERE galleryid = 0");
+
+            //Assert
+            Assert.AreEqual("  from gallery where galleryid = 0", cleansedTheme);
+
+        }
+
+
     }
 }

@@ -11,6 +11,9 @@ namespace Oeuvre.Models
         public SearchModel Search { get; set; }
 
         public string userInput { get; set; }
+
+
+
         public class SearchModel { public string UserInput { get; set; } }
 
     }
