@@ -16,75 +16,76 @@
 <div class="container">
     <form method="post" asp-controller="Upload" asp-action="UploadImageToLocal" enctype="multipart/form-data">
         <div class="row">
-            <div class="form-group">
-                <div class="col-sm-3">
-                    <label for="imageName">Image Name:</label>
-                    <br />
-                    <input type="text" />
-                </div>
+            <div class="col-lg-6">
+                <label for="imageName">Image Name:</label>
+                <br />
+                <input class="form-control" id="formInput" type="text" />
             </div>
 
-            <div class="form-group">
-                <div class="col-sm-3">
-                    <label for="imageDescription">Description:</label>
-                    <br />
-                    <input type="text" />
-                </div>
+            <div class="col-md-6">
+                <label for="imageArtist">Artist Name:</label>
+                <br />
+                <input class="form-control" type="text" />
             </div>
-
         </div>
+
+        <br />
 
         <div class="row">
-
-            <div class="form-group">
-                <div class="col-sm-3">
-                    <label for="imageThemes">Theme Type:</label>
-                    <br />
-                    <select>
-                        <option>Test</option>
-                        <option>Test 2</option>
-                    </select>
-                </div>
+            <div class="col-md-6">
+                <label for="imageThemes">Theme Type:</label>
+                <br />
+                <select class="form-control">
+                    <option>Colour</option>
+                    <option>Mood</option>
+                </select>
             </div>
 
-            <div class="form-group">
-                <div class="col-sm-3">
-                    <label for="imageThemes">Theme Type:</label>
-                    <br />
-                    <select>
-                        <option>Test</option>
-                        <option>Test 2</option>
-                    </select>
-                </div>
+            <div class="col-md-6">
+                <label for="imageThemes">Theme:</label>
+                <br />
+                <input class="form-control" type="text" placeholder="Red" />
             </div>
-
         </div>
+
+        <br />
 
         <div class="row">
-            <div class="form-group">
-                <div class="col-lg-8">
-                    <label for="imageArtist">Artist Name:</label>
-                    <br />
-                    <input type="text" />
-                </div>
+            <div class="col-xl-12">
+                <label for="imageDescription">Description:</label>
+                <br />
+                <textarea style="height 150%;" class="form-control" id="formInput"></textarea>
             </div>
         </div>
 
+        <br />
+
         <div class="row">
-            <div class="form-group">
-                <div class="col-sm-3">
-                    <label id="imageLabel" for="file">Image:</label>
-                    <input id="imageUpload" type="file" name="image"
-                           accept="image/png, image/jpeg">
-                </div>
+            <div class="col-xl-12" style="text-align: center;">
+                <label for="imagePreview">Preview:</label>
+                <br />
+                <img id="imagePreview" style="height: 80%; width: 80%;" />
             </div>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
+
+        <br />
+
+        <div class="row">
+            <div class="col-sm-3">
+                <label id="imageLabel" for="file">Image:</label>
+                <input id="imageUpload" type="file" name="image"
+                       accept="image/png, image/jpeg" onchange="previewImage(event)">
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="submit" value="Upload" class="btn btn-primary" />
+            </div>
         </div>
     </form>
-
-    <img src="@ViewData["ImageLocation"]" width="700" height="400" />
 </div>
 
 <script type="text/javascript">
@@ -96,10 +97,17 @@
     });
 </script>
 
+<script>
+    var previewImage = function (event) {
+        var image = document.getElementById('imagePreview');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/UploadImages.css" />
+    <link rel="stylesheet" href="~/css/UploadImage.css" />
 }

@@ -41,46 +41,55 @@ namespace Oeuvre.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// This method grabs the image from the front end
+        /// and temporarily saves it locally in the wwwroot folder.
+        /// </summary>
+        /// <param name="image">The image the user chose before submitting the form.</param>
         [HttpPost]
         public async Task<IActionResult> UploadImageToLocal(IFormFile image)
         {
+
+            //Check for empty object
             if (image != null && image.Length > 0)
             {
                 var filePath = @"\Images";
-                var uploadPath = _envir.WebRootPath + filePath;
+                var imageDirectory = _envir.WebRootPath + filePath;
+                var uniqueID = Guid.NewGuid().ToString();
+                var updatedFileName = Path.GetFileName(uniqueID + "." + image.FileName.Split(".")[1].ToLower());
 
-                if (!Directory.Exists(uploadPath))
+                if (!Directory.Exists(imageDirectory))
                 {
-                    Directory.CreateDirectory(uploadPath);
+                    Directory.CreateDirectory(imageDirectory);
                 }
 
-                var newUniqueID = Guid.NewGuid().ToString();
-                var updatedFileName = Path.GetFileName(newUniqueID + "." + image.FileName.Split(".")[1].ToLower());
-
-                string fullNewPath = uploadPath + updatedFileName;
+                string newImagePath = imageDirectory + updatedFileName;
 
                 filePath = filePath + @"\";
+
                 var imagePath = @".." + Path.Combine(filePath, updatedFileName);
 
-                using (var myFileStream = new FileStream(fullNewPath, FileMode.Create))
+                //Temporarily saves the image locally within the project folder
+                using (var myFileStream = new FileStream(newImagePath, FileMode.Create))
                 {
                     await image.CopyToAsync(myFileStream);
                 }
 
-                ViewData["ImageLocation"] = "Image" + imagePath;
 
-                CloudUpload_LocalDelete(updatedFileName);
+                await CloudUpload_LocalDelete(updatedFileName);
 
             }
-
-
 
             return View("UploadImage");
 
         }
 
 
-        public IActionResult CloudUpload_LocalDelete(string fileName)
+        /// <summary>
+        /// This method will upload the image to the Cloudinary repository and then delete it from local storage.
+        /// </summary>
+        public async Task<IActionResult> CloudUpload_LocalDelete(string fileName)
         {
             string filePath = @"wwwroot\Images" + fileName;
 
@@ -91,20 +100,10 @@ namespace Oeuvre.Controllers
 
             var uploadResult = _cloudinary.Upload(uploadParams);
 
-                System.IO.File.Delete(filePath);
-            
+            System.IO.File.Delete(filePath);
 
             return Ok();
         }
-
-        //    var uploadParams = new ImageUploadParams()
-        //{
-        //    File = new FileDescription(@"C:\Users\samdh\Pictures\New folder\Anti-Grav-Single.jpg")
-        //};
-
-        //var uploadResult = _cloudinary.Upload(uploadParams);
-
-        //return View();
 
     }
 }
