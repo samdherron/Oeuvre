@@ -14,18 +14,28 @@
 
 <hr />
 <div class="container">
-    <form method="post" asp-controller="Upload" asp-action="UploadImageToLocal" enctype="multipart/form-data">
+    <form method="post" asp-controller="Upload" asp-action="SaveImage_GetData" enctype="multipart/form-data">
         <div class="row">
             <div class="col-lg-6">
                 <label for="imageName">Image Name:</label>
                 <br />
-                <input class="form-control" id="formInput" type="text" />
+                <input name="imageNameInput" class="form-control" id="formInput" type="text" />
             </div>
 
             <div class="col-md-6">
                 <label for="imageArtist">Artist Name:</label>
                 <br />
-                <input class="form-control" type="text" />
+                <input name="artistNameInput" class="form-control" type="text" />
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-xl-12">
+                <label for="imageDescription">Description:</label>
+                <br />
+                <textarea name="imageDescriptionInput" class="form-control" id="formInput"></textarea>
             </div>
         </div>
 
@@ -48,7 +58,7 @@
             <div id="dynamicThemesInitial" class="dynamicThemeMember" style="margin-bottom: 2%;">
                 <div class="row">
                     <div class="col-md-6">
-                        <select class="form-control">
+                        <select name="initialThemeCategory" class="form-control">
                             <option>Colour</option>
                             <option>Age</option>
                             <option>Artist</option>
@@ -59,7 +69,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <input class="form-control" type="text" placeholder="Red" />
+                        <input name="initialThemeValue" class="form-control" type="text" placeholder="Red" />
                     </div>
                     <br />
                 </div>
@@ -77,16 +87,6 @@
         </div>
 
         <br />
-        <br />
-
-        <div class="row">
-            <div class="col-xl-12">
-                <label for="imageDescription">Description:</label>
-                <br />
-                <textarea class="form-control" id="formInput"></textarea>
-            </div>
-        </div>
-
         <br />
 
         <div class="row">

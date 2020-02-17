@@ -10,6 +10,10 @@ using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Oeuvre.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Oeuvre.Services;
 
 namespace Oeuvre.Controllers
 {
@@ -18,24 +22,20 @@ namespace Oeuvre.Controllers
 
         private readonly ILogger<UploadController> _logger;
         private dbo_OeuvreContext _context;
-        Account _account;
-        Cloudinary _cloudinary;
         IWebHostEnvironment _envir;
+        private readonly UserManager<IdentityUser> _users;
+        UploadService uploadService;
 
-        public UploadController(dbo_OeuvreContext context, ILogger<UploadController> logger, IWebHostEnvironment environment)
+        public UploadController(dbo_OeuvreContext context, ILogger<UploadController> logger, IWebHostEnvironment environment, UserManager<IdentityUser> userManager)
         {
-            _account = new Account(
-                "oeuvre",
-                "591857667739764",
-                "tVwlzrfSYIFs8gxwIKnMW_OfRd0");
-
-            _cloudinary = new Cloudinary(_account);
-
             _logger = logger;
             _context = context;
             _envir = environment;
+            _users = userManager;
+            uploadService = new UploadService();
         }
 
+        //Default action of returning a view
         public IActionResult UploadImage()
         {
             return View();
@@ -43,17 +43,26 @@ namespace Oeuvre.Controllers
 
 
         /// <summary>
-        /// This method grabs the image from the front end
-        /// and temporarily saves it locally in the wwwroot folder.
+        /// This method grabs the image from the front end,
+        /// temporarily saves it locally in the wwwroot folder and gets the form information.
         /// </summary>
         /// <param name="image">The image the user chose before submitting the form.</param>
+        /// <param name="form">The form the user entered data into associated with the image.</param>
         [HttpPost]
-        public async Task<IActionResult> UploadImageToLocal(IFormFile image, string[] formData)
+        [Authorize]
+        public async Task<IActionResult> SaveImage_GetData(IFormFile image, IFormCollection form)
         {
+            var currentUser = await _users.GetUserAsync(HttpContext.User);
+            string currentUserID = currentUser.Id;
+
+            List<FormThemeModel> themeList = new List<FormThemeModel>();
+            FormDataModel enteredForm = new FormDataModel();
 
             //Check for empty object
             if (image != null && image.Length > 0)
             {
+
+                //Setting up variables and directory to save locally
                 var filePath = @"\Images";
                 var imageDirectory = _envir.WebRootPath + filePath;
                 var uniqueID = Guid.NewGuid().ToString();
@@ -77,9 +86,42 @@ namespace Oeuvre.Controllers
                 }
 
 
-                await CloudUpload_LocalDelete(updatedFileName, formData);
+                //Begin form data processing
+                try
+                {
+                    enteredForm.ImageName = form.ElementAt(0).Value.ToString();
+                    enteredForm.ArtistName = form.ElementAt(1).Value.ToString();
+                    enteredForm.ImageDescription = form.ElementAt(2).Value.ToString();
+
+                    //Splits all of the theme types and theme values into two seperate string arrays
+                    string[] themeTypeSplit = Request.Form.ElementAt(3).Value.ToString().Split(',');
+                    string[] themeValueSplit = Request.Form.ElementAt(4).Value.ToString().Split(',');
+                    int numberThemes = themeTypeSplit.Length;
+
+                    //Generates a List of FormThemeModel objects
+                    //Each list entry will have a FormThemeModel with a ThemeType and a ThemeValue
+                    for (int i = 0; i < numberThemes; i++)
+                    {
+                        FormThemeModel themes = new FormThemeModel();
+                        themes.ThemeType = themeTypeSplit[i];
+                        themes.ThemeValue = themeValueSplit[i];
+                        themeList.Add(themes);
+                    }
+
+                    enteredForm.Themes = themeList;
+
+                }
+                catch
+                {
+
+                }
+
+                //Next controller method to upload and save to DB
+                await ProcessImage(updatedFileName, image, enteredForm, form, currentUserID);
 
             }
+
+
 
             return View("UploadImage");
 
@@ -89,29 +131,10 @@ namespace Oeuvre.Controllers
         /// <summary>
         /// This method will upload the image to the Cloudinary repository and then delete it from local storage.
         /// </summary>
-        public async Task<IActionResult> CloudUpload_LocalDelete(string fileName, string[] formData)
-        {
-            string filePath = @"wwwroot\Images" + fileName;
-
-            var uploadParams = new ImageUploadParams()
-            {
-                File = new FileDescription(filePath)
-            };
-
-            var uploadResult = _cloudinary.Upload(uploadParams);
-
-            await SaveInfo_ToDatabase(uploadResult, formData);
-
-            System.IO.File.Delete(filePath);
-
-            return Ok();
-        }
-
-        public async Task<IActionResult> SaveInfo_ToDatabase(ImageUploadResult uploadResult, string[] formData)
+        public async Task<IActionResult> ProcessImage(string fileName, IFormFile image, FormDataModel formData, IFormCollection form, string galleryID)
         {
 
-            Image newImage = new Image();
-            
+            await uploadService.UploadCloud_DeleteLocal(fileName, formData, galleryID);
 
             return Ok();
         }
