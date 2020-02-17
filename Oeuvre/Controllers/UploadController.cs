@@ -53,7 +53,9 @@ namespace Oeuvre.Controllers
         public async Task<IActionResult> SaveImage_GetData(IFormFile image, IFormCollection form)
         {
             var currentUser = await _users.GetUserAsync(HttpContext.User);
-            string currentUserID = currentUser.Id;
+            string currentAuthID = currentUser.Id;
+            var currentGallery = _context.Gallery.Single(g => g.AuthUserId == currentAuthID);
+            string currentGalleryID = currentGallery.GalleryId.Trim();
 
             List<FormThemeModel> themeList = new List<FormThemeModel>();
             FormDataModel enteredForm = new FormDataModel();
@@ -117,7 +119,7 @@ namespace Oeuvre.Controllers
                 }
 
                 //Next controller method to upload and save to DB
-                await ProcessImage(updatedFileName, image, enteredForm, form, currentUserID);
+                await ProcessImage(updatedFileName, image, enteredForm, form, currentGalleryID);
 
             }
 
