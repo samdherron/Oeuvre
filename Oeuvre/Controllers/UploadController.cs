@@ -32,7 +32,7 @@ namespace Oeuvre.Controllers
             _context = context;
             _envir = environment;
             _users = userManager;
-            uploadService = new UploadService();
+            uploadService = new UploadService(_context);
         }
 
         //Default action of returning a view
