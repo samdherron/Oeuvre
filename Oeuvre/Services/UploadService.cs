@@ -31,6 +31,17 @@ namespace Oeuvre.Services
             _context = context;
         }
 
+        public enum themeTypeValues
+        {
+            Colour = 1,
+            Age = 2,
+            Artist = 3,
+            ArtType = 4,
+            Genre = 5,
+            Other = 6,
+            Gallery = 7
+        }
+
         public async Task<IActionResult> UploadCloud_DeleteLocal(string fileName, FormDataModel enteredForm, string currentGalleryID)
         {
 
@@ -85,9 +96,19 @@ namespace Oeuvre.Services
             newDatabaseEntry.ThemeId = "1";
             
 
+            //Save new entry to Image table
             _context.Image.Add(newDatabaseEntry);
             await _context.SaveChangesAsync();
 
+            //Save new entry to ThemeLookup table
+            ThemeLookup newThemeLookupEntry = new ThemeLookup();
+            newThemeLookupEntry.ImgId = newDatabaseEntry.ImgId;
+
+            _context.ThemeLookup.Add(newThemeLookupEntry);
+            await _context.SaveChangesAsync();
+
+            //Returns newly created theme lookup ID from table
+            var themeLookupID = newThemeLookupEntry.ThemeLookupId;
 
 
             for (int i = 0; i < enteredForm.Themes.Count; i++)
@@ -99,27 +120,80 @@ namespace Oeuvre.Services
                 if ((!string.IsNullOrEmpty(currentType)) && (!string.IsNullOrEmpty(currentValue)))
                 {
 
-                         var typeExists = (from theme in _context.ThemeType
+                    int ThemeTypeID = (int)((themeTypeValues)Enum.Parse(typeof(themeTypeValues), currentType));
+
+                    var valueExists = (from theme in _context.Theme
                                           
-                                          where theme.ThemeTypeName.Contains(currentType)
+                                          where theme.ThemeName.Contains(currentValue) && theme.ThemeTypeId == ThemeTypeID.ToString()
                                           select new
                                           {
-                                              theme.ThemeTypeName
+                                              theme.ThemeName,
+                                              theme.ThemeId
 
-                                          }).ToString();
+                                          }).ToList();
 
                     //Check if the call returned with a valid type match
-                    if (typeExists != null)
+                    if (valueExists.Count > 0)
                     {
-                       
+                        string oldThemeValue = valueExists.ElementAt(0).ThemeId.Trim();
+                        await saveImgTheme(oldThemeValue, themeLookupID);
 
-                        Console.WriteLine("theme type exists");
+                    }
+
+                    //If no match, add to theme table &
+                    else
+                    {
+                        Theme newThemeEntry = new Theme();
+
+                        number = (from a in _context.Theme
+                                      orderby a.ThemeId + 0
+                                      select a.ThemeId).ToList();
+
+                        numberList = number.Select(s => int.Parse(s)).ToList();
+
+                        highestNumber = numberList.Max() + 1;
+
+                        newThemeEntry.ThemeId = highestNumber.ToString();
+                        newThemeEntry.ThemeTypeId = ThemeTypeID.ToString();
+                        newThemeEntry.ThemeName = currentValue;
+
+                        _context.Theme.Add(newThemeEntry);
+                        await _context.SaveChangesAsync();
+
+
+                        string newThemeValue = newThemeEntry.ThemeId;
+                        await saveImgTheme(newThemeValue, themeLookupID);
+
                     }
                 }
 
             }
 
             return null;
+        }
+
+
+        public async Task<bool> saveImgTheme(string ThemeId, int themeLookupID)
+        {
+            bool retVal = true;
+
+            try
+            {
+                ImgThemes newImgTheme = new ImgThemes();
+                newImgTheme.ThemeId = ThemeId;
+                newImgTheme.ThemeLookupId = themeLookupID;
+
+                _context.ImgThemes.Add(newImgTheme);
+                await _context.SaveChangesAsync();
+
+            }
+            catch
+            {
+                retVal = false;
+
+            }
+
+            return retVal;
         }
 
     }
