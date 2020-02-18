@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Oeuvre.Models.Gallery>
+
+@{
+    ViewData["Title"] = "ArtList";
+}
+
+<h1>ArtList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GalleryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Province)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GalleryAuthId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GalleryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Province)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GalleryAuthId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GalleryId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GalleryId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.GalleryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
