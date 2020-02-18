@@ -19,13 +19,13 @@
             <div class="col-lg-6">
                 <label for="imageName">Image Name:</label>
                 <br />
-                <input name="imageNameInput" class="form-control" id="formInput" type="text" />
+                <input name="imageNameInput" class="form-control" id="formInput" type="text" required />
             </div>
 
             <div class="col-md-6">
                 <label for="imageArtist">Artist Name:</label>
                 <br />
-                <input name="artistNameInput" class="form-control" type="text" />
+                <input name="artistNameInput" class="form-control" type="text" required />
             </div>
         </div>
 
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <input name="initialThemeValue" class="form-control" type="text" placeholder="Red" />
+                        <input name="initialThemeValue" class="form-control" type="text" required />
                     </div>
                     <br />
                 </div>
@@ -104,7 +104,7 @@
             <div class="col-sm-3">
                 <label id="imageLabel" for="file">Image:</label>
                 <input id="imageUpload" type="file" name="image"
-                       accept="image/png, image/jpeg" onchange="previewImage(event)">
+                       accept="image/png, image/jpeg" onchange="previewImage(event)" required>
             </div>
         </div>
 
