@@ -16,15 +16,17 @@ namespace Oeuvre.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private dbo_OeuvreContext _context;
+        Account _account;
+        Cloudinary _cloudinary;
 
         public HomeController(ILogger<HomeController> logger, dbo_OeuvreContext context)
         {
-            Account account = new Account(
+            _account = new Account(
                 "oeuvre",
                 "591857667739764",
                 "tVwlzrfSYIFs8gxwIKnMW_OfRd0");
 
-            Cloudinary cloudinary = new Cloudinary(account);
+            _cloudinary = new Cloudinary(_account);
             _logger = logger;
             _context = context;
         }
@@ -67,7 +69,7 @@ namespace Oeuvre.Controllers
         //    else
         //        return View();
 
-            
+
         //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
