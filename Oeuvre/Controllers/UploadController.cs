@@ -41,7 +41,6 @@ namespace Oeuvre.Controllers
             return View();
         }
 
-
         /// <summary>
         /// This method grabs the image from the front end,
         /// temporarily saves it locally in the wwwroot folder and gets the form information.
