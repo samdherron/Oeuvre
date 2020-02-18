@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Oeuvre.Models;
-
+//Test to see if I know what I am doing with Github
 namespace Oeuvre.Controllers
 {
     public class GalleriesController : Controller
@@ -60,17 +60,20 @@ namespace Oeuvre.Controllers
             for (int i = 0; i < images.Count; i++)
             {
                 Image tempImage = new Image();
-                tempImage.ImgLocation = images.ElementAt(0).ImgLocation;
+                tempImage.ImgLocation = images.ElementAt(i).ImgLocation;
                 myList.Add(tempImage);
             }
 
             GalleryDisplay galleryImages = new GalleryDisplay();
-            // galleryImages.GalleryName = galleryName;
-            // galleryImages.Address = address;
+            galleryImages.GalleryName = gallery.GalleryName;
+            galleryImages.Address = gallery.Address;
+            galleryImages.Province = gallery.Province;
+            galleryImages.PostalCode = gallery.PostalCode;
+            galleryImages.City = gallery.City;
             galleryImages.Images = myList;
 
-
-            return View(gallery);
+            
+            return View(galleryImages);
         }
 
         // GET: Galleries/Create
