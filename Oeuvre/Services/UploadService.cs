@@ -170,11 +170,34 @@ namespace Oeuvre.Services
             return null;
         }
 
+        public async Task<bool> saveImgTheme(string ThemeId, int themeLookupID)
+        {
+            bool retVal = true;
 
-      /*
-       * Will add unit tests when more functionality is added.
-       * For now we are unable to test the Upload functionality since it runs through the full orchestration.
-       */
+            try
+            {
+                ImgThemes newImgTheme = new ImgThemes();
+                newImgTheme.ThemeId = ThemeId;
+                newImgTheme.ThemeLookupId = themeLookupID;
+
+                _context.ImgThemes.Add(newImgTheme);
+                await _context.SaveChangesAsync();
+
+            }
+            catch
+            {
+                retVal = false;
+
+            }
+
+            return retVal;
+        }
+
+
+        /*
+         * Will add unit tests when more functionality is added.
+         * For now we are unable to test the Upload functionality since it runs through the full orchestration.
+         */
 
     }
 }
