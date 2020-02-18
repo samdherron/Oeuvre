@@ -21,11 +21,10 @@ namespace Oeuvre.Controllers
         // GET: Galleries
         public async Task<IActionResult> Index()
         {
-            return View("ArtList");
+            return View(await _context.Gallery.ToListAsync());
         }
 
-        
-        [HttpPost]
+        // GET: Galleries/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -39,10 +38,9 @@ namespace Oeuvre.Controllers
             {
                 return NotFound();
             }
-
             List<Image> myList = new List<Image>();
-            
-    
+
+
 
             var images = (from image in _context.Image
                           where image.GalleryId.Contains(id)
@@ -66,10 +64,10 @@ namespace Oeuvre.Controllers
                 myList.Add(tempImage);
             }
 
-              GalleryDisplay galleryImages = new GalleryDisplay();
-           // galleryImages.GalleryName = galleryName;
-           // galleryImages.Address = address;
-           // galleryImages.Images = images;
+            GalleryDisplay galleryImages = new GalleryDisplay();
+            // galleryImages.GalleryName = galleryName;
+            // galleryImages.Address = address;
+            galleryImages.Images = myList;
 
 
             return View(gallery);
