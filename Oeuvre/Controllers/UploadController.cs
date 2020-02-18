@@ -135,7 +135,11 @@ namespace Oeuvre.Controllers
         public async Task<IActionResult> ProcessImage(string fileName, IFormFile image, FormDataModel formData, IFormCollection form, string galleryID)
         {
 
-            await uploadService.UploadCloud_DeleteLocal(fileName, formData, galleryID);
+            //Uploads to cloud and gets the uploaded imageURL
+            string imageURL = uploadService.UploadCloud_DeleteLocal(fileName);
+
+            //Saves all image & theme information into database
+            await uploadService.SaveDatabase(formData, galleryID, imageURL);
 
             return Ok();
         }

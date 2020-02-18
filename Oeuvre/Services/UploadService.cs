@@ -42,7 +42,7 @@ namespace Oeuvre.Services
             Gallery = 7
         }
 
-        public async Task<IActionResult> UploadCloud_DeleteLocal(string fileName, FormDataModel enteredForm, string currentGalleryID)
+        public string UploadCloud_DeleteLocal(string fileName)
         {
 
             //Setup upload requirements
@@ -62,10 +62,8 @@ namespace Oeuvre.Services
             //Deletes file from local project folder
             File.Delete(filePath);
 
-            //Saves all image & theme information into database
-            await SaveDatabase(enteredForm, currentGalleryID, imageURL);
+            return imageURL;
 
-            return null;
         }
 
         public async Task<IActionResult> SaveDatabase(FormDataModel enteredForm, string galleryID, string imageURL)
