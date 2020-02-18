@@ -66,7 +66,6 @@ namespace Oeuvre.Tests
                 City = "Test",
                 PostalCode = "Test",
                 Province = "Test",
-                GalleryAuthId = "1"
             };
 
             _dbContext.Gallery.Add(_gl);

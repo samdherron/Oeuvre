@@ -149,15 +149,11 @@ namespace Oeuvre.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
+                entity.Property(e => e.AuthUserId).HasMaxLength(450);
+
                 entity.Property(e => e.City)
                     .IsRequired()
                     .HasMaxLength(50);
-
-                entity.Property(e => e.GalleryAuthId)
-                    .IsRequired()
-                    .HasColumnName("Gallery_AuthID")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
 
                 entity.Property(e => e.GalleryName)
                     .IsRequired()
