@@ -1,13 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using Oeuvre.Models;
+using Oeuvre.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Oeuvre.Tests
 {
+
     class UploadServiceTests
     {
 
@@ -15,6 +20,9 @@ namespace Oeuvre.Tests
         public IConfiguration connectionString;
 
         private dbo_OeuvreContext _context;
+        IWebHostEnvironment _envir;
+        UploadService service;
+
 
         public UploadServiceTests()
         {
@@ -23,6 +31,7 @@ namespace Oeuvre.Tests
               .EnableSensitiveDataLogging()
               .Options;
             _context = new dbo_OeuvreContext(options);
+            service = new UploadService(_context);
         }
 
         [OneTimeSetUp]
@@ -128,22 +137,45 @@ namespace Oeuvre.Tests
 
             _context.SaveChanges();
 
+            
+
         }
 
 
         [Test]
-        public void GetUploadURI()
+        public void Check_SaveDatabase()
         {
+            FormDataModel testForm = new FormDataModel();
+
+            List<FormThemeModel> themes = new List<FormThemeModel>();
+            FormThemeModel themeEntry = new FormThemeModel();
+            themeEntry.ThemeType = "Colour";
+            themeEntry.ThemeValue = "Red";
+            themes.Add(themeEntry);
+
+            testForm.ArtistName = "TestName";
+            testForm.ImageName = "TestImage";
+            testForm.ImageDescription = "TestDescription";
+            testForm.Themes = themes;
 
             //Arrange
-            SearchGallery userSearch = new SearchGallery();
 
-            //Act
-            var imageList = userSearch.getGalleryItemsUsingQuickSearch(_dbContext);
+            string databaseSavedResult = asyncCallHelper(testForm).Result;
+            
 
             //Assert
-            Assert.AreEqual(2, imageList.Count);
+            Assert.AreEqual("True", databaseSavedResult);
 
+
+        }
+
+        public async Task<string> async_SaveDatabaseCall(FormDataModel testForm)
+        {
+            //Act
+            bool databaseSaved = await service.SaveDatabase(testForm, "2", "https://res.cloudinary.com/oeuvre/image/upload/v1582071344/bnhqgpmxc5fuztm88ajj.jpg");
+            string result = databaseSaved.ToString();
+
+            return result;
         }
 
     }
