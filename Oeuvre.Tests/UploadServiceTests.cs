@@ -160,7 +160,7 @@ namespace Oeuvre.Tests
 
             //Arrange
 
-            string databaseSavedResult = asyncCallHelper(testForm).Result;
+            string databaseSavedResult = async_SaveDatabaseCall(testForm).Result;
             
 
             //Assert
