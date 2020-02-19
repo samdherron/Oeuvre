@@ -63,29 +63,7 @@ namespace Oeuvre.Controllers
             if (image != null && image.Length > 0)
             {
 
-                //Setting up variables and directory to save locally
-                var filePath = @"\Images";
-                var imageDirectory = _envir.WebRootPath + filePath;
-                var uniqueID = Guid.NewGuid().ToString();
-                var updatedFileName = Path.GetFileName(uniqueID + "." + image.FileName.Split(".")[1].ToLower());
-
-                if (!Directory.Exists(imageDirectory))
-                {
-                    Directory.CreateDirectory(imageDirectory);
-                }
-
-                string newImagePath = imageDirectory + updatedFileName;
-
-                filePath = filePath + @"\";
-
-                var imagePath = @".." + Path.Combine(filePath, updatedFileName);
-
-                //Temporarily saves the image locally within the project folder
-                using (var myFileStream = new FileStream(newImagePath, FileMode.Create))
-                {
-                    await image.CopyToAsync(myFileStream);
-                }
-
+                string updatedFileName = await uploadService.SaveLocal(image, _envir);
 
                 //Begin form data processing
                 try
@@ -135,7 +113,11 @@ namespace Oeuvre.Controllers
         public async Task<IActionResult> ProcessImage(string fileName, IFormFile image, FormDataModel formData, IFormCollection form, string galleryID)
         {
 
-            await uploadService.UploadCloud_DeleteLocal(fileName, formData, galleryID);
+            //Uploads to cloud and gets the uploaded imageURL
+            string imageURL = uploadService.UploadCloud_DeleteLocal(fileName);
+
+            //Saves all image & theme information into database
+            await uploadService.SaveDatabase(formData, galleryID, imageURL);
 
             return Ok();
         }
