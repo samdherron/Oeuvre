@@ -17,6 +17,8 @@ namespace Oeuvre.Controllers
         private dbo_OeuvreContext _context;
         private SearchGallery userSearch;
 
+        private string themeNumber = "";
+
         public SearchGalleryController(dbo_OeuvreContext context)
         {
             _context = context;
@@ -28,11 +30,28 @@ namespace Oeuvre.Controllers
             return View();
         }
 
+        public void setThemeType(string id)
+        {
+            Console.WriteLine("The old Theme number is: " + themeNumber);
+            themeNumber = id;
+
+            Console.WriteLine("The new Theme number is: " + themeNumber);
+        }
+
         public ViewResult getList(string searchTheme, string searchType)
         {
             userSearch = new SearchGallery();
 
-            string sTh= userSearch.removeSqlInjectionParams(searchTheme);
+            string sTh;
+
+            if (searchTheme != null && searchTheme != "")
+            {
+                sTh = userSearch.removeSqlInjectionParams(searchTheme);
+            }
+            else
+            {
+                sTh = "";
+            }
 
             int sTy = Int32.Parse(searchType);
 

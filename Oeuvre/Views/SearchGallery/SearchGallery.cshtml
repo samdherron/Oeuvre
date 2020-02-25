@@ -2,6 +2,7 @@
 @model SearchGalleryModel
 @{
     ViewData["Title"] = "Collections";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h1>@ViewData["Title"]</h1>
 
@@ -37,44 +38,71 @@
         </select>
 
 
-
-
         <button asp-controller="SearchGallery" asp-action="getList" class="btn btn-primary btn-sm mx-sm-3 mb-2">Search</button>
     </div>
 
+
     <div class="scrolling-wrapper">
-        <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" style="border-width: 3px !important; text-align:center">
-            <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-            <span class="" style="line-height: 50px">Color</span>
-        </div>
-        <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" style="border-width: 3px !important; text-align:center;">
-            <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-            <span class="" style="line-height: 50px">Age</span>
-        </div>
-        <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" style="border-width: 3px !important; text-align:center">
+
+
+        <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" id="TT3" style="border-width: 3px !important; text-align:center">
             <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
             <span class="" style="line-height: 50px">Artist</span>
         </div>
-        <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" style="border-width: 3px !important; text-align:center">
-            <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-            <span class="" style="line-height: 50px">Art Type</span>
-        </div>
-        <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" style="border-width: 3px !important; text-align:center">
-            <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-            <span class="" style="line-height: 50px">Genre</span>
-        </div>
-        <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" style="border-width: 3px !important; text-align:center;">
-            <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-            <span class="" style="line-height: 50px">Other</span>
-        </div>
-        <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" style="border-width: 3px !important; text-align:center">
-            <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-            <span class="" style="line-height: 50px">Gallery</span>
-        </div>
-       
+
+
+        <a onclick="setButtonClicked(7)">
+            <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" id="TT7" style="border-width: 3px !important; text-align:center">
+                <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
+                <span class="" style="line-height: 50px">Gallery</span>
+            </div>
+        </a>
+
+        <a onclick="setButtonClicked(1)">
+            <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" id="TT1" style="border-width: 3px !important; text-align:center">
+
+                <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
+                <span class="" style="line-height: 50px">Color</span>
+
+            </div>
+        </a>
+
+
+        <a onclick="setButtonClicked(2)">
+            <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" id="TT2" style="border-width: 3px !important; text-align:center;">
+                <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
+                <span class="" style="line-height: 50px">Age</span>
+            </div>
+        </a>
+
+
+
+        <a onclick="setButtonClicked(4)">
+            <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" id="TT4" style="border-width: 3px !important; text-align:center">
+                <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
+                <span class="" style="line-height: 50px">Art Type</span>
+            </div>
+        </a>
+
+        <a onclick="setButtonClicked(5)">
+            <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" id="TT5" style="border-width: 3px !important; text-align:center">
+                <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
+                <span class="" style="line-height: 50px">Genre</span>
+            </div>
+        </a>
+
+        <a onclick="setButtonClicked(6)">
+            <div class="card col-sm-2 align-middle rounded-0 border border border-light bg-light text-dark my-auto" id="TT6" style="border-width: 3px !important; text-align:center;">
+                <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
+                <span class="" style="line-height: 50px">Other</span>
+            </div>
+        </a>
+
+
+
     </div>
 
-    
+
     <div>
         <small id="searchHelp" class="form-text text-muted">Choose a Theme Type and then search for a theme or for quick results press the quicksearch button</small>
     </div>
@@ -96,18 +124,18 @@
             @foreach (Image img in Pieces)
             {
 
-                 
 
-                <div class="card" >
-                     
-                    <img  src=@img.ImgLocation class="card-img-top" alt="Responsive image">
+
+                <div class="card">
+
+                    <img src=@img.ImgLocation class="card-img-top" alt="Responsive image">
                     <div class="card-body">
                         <h5 class="card-title">@img.Artist</h5>
                         <h6 class="card-text">@img.Name</h6>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a class="btn btn-primary btn-sm" asp-controller="SearchGallery" asp-action="testImgId" asp-route-id="@img.ImgId" value="@img.ImgId">More Info</a>
                     </div>
-                 
+
                 </div>
 
             }
@@ -127,4 +155,47 @@
 
 
 
+}
+
+
+<script type="text/javascript">
+
+    var oldButtonId = 0;
+    /* Script will update the filename on the page upon selecting an image */
+    function setButtonClicked(tt) {
+
+        var themeTypeName = "TT" + tt;
+
+        if (oldButtonId != "0") {
+
+            var oldThemeTypeName = "TT" + oldButtonId;
+
+            //$(oldThemeTypeName).css({ "background-color": "#f8f9fa !important", "color" : "black !important" });
+            //$(oldThemeTypeName).css("color", "black !important");
+
+
+        }
+
+
+
+        //$('#TT1').css('background-color', 'darkcyan');
+
+        document.getElementById(themeTypeName).style.backgroundColor = "darkcyan";
+        document.getElementById(themeTypeName).style.color = "white";
+
+
+
+        //$(themeTypeName).css({ "background-color": "darkcyan !important", "color":"white !important" });
+        // $(themeTypeName).css("color", "white !important");
+
+        oldButtonId = tt;
+
+        setThemeType(tt);
+
+    }
+
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
