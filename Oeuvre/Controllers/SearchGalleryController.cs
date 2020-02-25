@@ -38,6 +38,7 @@ namespace Oeuvre.Controllers
             Console.WriteLine("The new Theme number is: " + themeNumber);
         }
 
+
         public ViewResult getList(string searchTheme, string searchType)
         {
             userSearch = new SearchGallery();
