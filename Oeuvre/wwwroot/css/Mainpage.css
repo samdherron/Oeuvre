@@ -1,0 +1,43 @@
+﻿body {
+}
+
+.navbar {
+    padding: 0;
+}
+
+#mainNavbar {
+    background-color: #a12412;
+    width: 100%;
+}
+
+#mainNavbar a {
+    color: #FFF;
+}
+
+#navLi {
+    color: #FFF;
+    font-weight: 400;
+}
+
+#searchBarRow {
+    margin-top: 0;
+    height: 20%;
+    background-color: #eeedeb;
+}
+
+#innerRow {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    
+}
+
+#innerRow i {
+    position: absolute;
+    padding: 2%;
+}
+
+#innerRow input {
+    text-align:center;
+}
+
+

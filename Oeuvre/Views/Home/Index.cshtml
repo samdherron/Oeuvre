@@ -2,25 +2,31 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="text-center">
-        <h1 class="display-4">Team Ruby</h1>
-        <p>Oeuvre Phase 1 Development</a>.</p>
-        @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="getList">Home</a>
-
-        @{
-            if (ViewData["Galleries"] != null && ViewData["Galleries"] != "")
-            {
-                var galleries = ViewData["Galleries"] as List<Gallery>;
-
-                foreach (Gallery gallery in galleries)
-                {
-                    <h3>@gallery.GalleryName</h3>
-                }
-
-            }
-
-        }*@
 
 
+<div class="container">
 
-    </div>
+    <div class="row" id="searchBarRow">
+            <div class="col-sm-2" id="innerRow">
+                <a asp-controller="Home" asp-action="Index">Oeuvre Placeholder</a>
+            </div>
+            <div class="col-md-8" id="innerRow">
+                    <div class="right-inner-addon">
+                        <i class="fa fa-search icon"></i>
+                        <input type="search" class="form-control" placeholder="Search" />
+                    </div>
+                </div>
+
+            <div class="col-sm-4" id="innerRow">
+
+            </div>
+        </div>
+
+
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Mainpage.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+}
