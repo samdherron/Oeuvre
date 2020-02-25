@@ -17,6 +17,7 @@
 #navLi {
     color: #FFF;
     font-weight: 400;
+    margin-left: 5%;
 }
 
 #searchBarRow {
@@ -28,16 +29,29 @@
 #innerRow {
     margin-top: 1%;
     margin-bottom: 1%;
-    
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 #innerRow i {
     position: absolute;
-    padding: 2%;
+    padding: 1.5%;
 }
 
 #innerRow input {
     text-align:center;
+}
+
+#innerRow button {
+        color: #FFF;
+        background-color: #9b999a;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+.container {
+    padding-right: 0;
+    padding-left: 0;
 }
 
 

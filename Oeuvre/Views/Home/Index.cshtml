@@ -7,18 +7,21 @@
 <div class="container">
 
     <div class="row" id="searchBarRow">
-            <div class="col-sm-2" id="innerRow">
-                <a asp-controller="Home" asp-action="Index">Oeuvre Placeholder</a>
+            <div class="col-sm-2">
+                <a asp-controller="Home" asp-action="Index">
+                    <!-- Get correct prototype asset during Phase 2 -->
+                    <img src="~/Icons/Logo_2.png" height="67" width="128" alt="Oeuvre Art Collection"/>
+                </a>
             </div>
-            <div class="col-md-8" id="innerRow">
+            <div class="col-md-6" id="innerRow">
                     <div class="right-inner-addon">
                         <i class="fa fa-search icon"></i>
                         <input type="search" class="form-control" placeholder="Search" />
                     </div>
                 </div>
 
-            <div class="col-sm-4" id="innerRow">
-
+            <div class="col-sm-3" id="innerRow">
+                <button class="btn" >Add your gallery's work</button>
             </div>
         </div>
 
