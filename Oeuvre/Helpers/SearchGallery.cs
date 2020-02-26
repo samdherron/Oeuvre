@@ -12,18 +12,26 @@ namespace Oeuvre.Helpers
 
         public string removeSqlInjectionParams(string theme)
         {
-            theme = theme.ToLower();
 
-            string cleansedTheme;
+            try
+            {
+                theme = theme.ToLower();
 
-            theme = theme.Replace("select", "");
-            theme = theme.Replace("insert", "");
-            theme = theme.Replace("update", "");
-            theme = theme.Replace("delete", "");
-            theme = theme.Replace("*", "");
-            theme = theme.Replace("values", "");
+                string cleansedTheme;
 
-            cleansedTheme = theme;
+                theme = theme.Replace("select", "");
+                theme = theme.Replace("insert", "");
+                theme = theme.Replace("update", "");
+                theme = theme.Replace("delete", "");
+                theme = theme.Replace("*", "");
+                theme = theme.Replace("values", "");
+
+                cleansedTheme = theme;
+            }
+            catch (Exception e)
+            {
+
+            }
 
             return theme;
         }
