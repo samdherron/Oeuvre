@@ -4,32 +4,63 @@
 
 
 
-<div class="container">
+<div class="container-fluid">
 
     <div class="row" id="searchBarRow">
-            <div class="col-sm-2">
-                <a asp-controller="Home" asp-action="Index">
-                    <!-- Get correct prototype asset during Phase 2 -->
-                    <img src="~/Icons/Logo_2.png" height="67" width="128" alt="Oeuvre Art Collection"/>
-                </a>
+        <div class="col-sm-1 offset-1">
+            <a asp-controller="Home" asp-action="Index">
+                <!-- Get correct prototype asset during Phase 2 -->
+                <img src="~/Icons/Logo_2.png" class="img-fluid ml-auto" height="67" width="128" alt="Oeuvre Art Collection" />
+            </a>
+        </div>
+        <div class="col-md-7" id="innerRow">
+            <div class="right-inner-addon">
+                <i class="fa fa-search icon"></i>
+                <input type="search" class="form-control" placeholder="Search" />
             </div>
-            <div class="col-md-6" id="innerRow">
-                    <div class="right-inner-addon">
-                        <i class="fa fa-search icon"></i>
-                        <input type="search" class="form-control" placeholder="Search" />
-                    </div>
-                </div>
+        </div>
 
-            <div class="col-sm-3" id="innerRow">
-                <button class="btn" >Add your gallery's work</button>
+        <div class="col-sm-2" id="innerRow">
+            <button class="btn">Add your gallery's work</button>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+
+    <div class="row" id="discoverLocalArtSection">
+        <div class="col-md-2">
             </div>
+        <div class="col-md-8" id="discoverLocalArtColumn">
+            <div id="outerContainer">
+                <div class="container-fluid offset-1">
+                    <br />
+                    <h1 class="text-dark" id="headerDiscover">Discover</h1>
+                    <h1 class="text-dark">Local Art</h1>
+                    <br />
+                    <h3 class="text-left" id="subheaderDiscover">
+                        Showcasing the best local <br />
+                        galleries and museums
+                    </h3>
+                    <br />
+                    <button class="btn" id="findAGalleryButton">FIND A GALLERY</button>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+
+        </div>
         </div>
 
 
 </div>
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/Mainpage.css" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/Mainpage.css" />
+
 }

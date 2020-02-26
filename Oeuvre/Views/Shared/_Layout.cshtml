@@ -7,39 +7,37 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/Mainpage.css" />
-    @RenderSection("Styles", false);
+    @RenderSection("Styles", false)
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-0">
-            <div class="container" id="mainNavbar">
-                <!--
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Oeuvre</a>
-                    -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item" id="navLi">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Galleries" asp-action="Index">Galleries</a>
-                        </li>
-                        <li class="nav-item" id="navLi">
-                            <a class="nav-link text-light" asp-area="" asp-controller="SearchGallery" asp-action="SearchGallery">Collections</a>
-                        </li>
-                        <li class="nav-item" id="navLi">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Upload" asp-action="UploadImage">Upload</a>
-                        </li>
-                    </ul>
-
-
+            <div class="container-fluid" id="mainNavbar">
+                <div class="col-sm-1"></div>
+                <div class="col-lg-10 ml-md-auto">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item" id="navLiFirst">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Galleries" asp-action="Index">Galleries</a>
+                            </li>
+                            <li class="nav-item" id="navLi">
+                                <a class="nav-link text-light" asp-area="" asp-controller="SearchGallery" asp-action="SearchGallery">Collections</a>
+                            </li>
+                            <li class="nav-item" id="navLi">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Upload" asp-action="UploadImage">Upload</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

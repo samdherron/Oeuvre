@@ -7,7 +7,6 @@
 
 #mainNavbar {
     background-color: #a12412;
-    width: 100%;
 }
 
 #mainNavbar a {
@@ -17,8 +16,9 @@
 #navLi {
     color: #FFF;
     font-weight: 400;
-    margin-left: 5%;
 }
+
+
 
 #searchBarRow {
     margin-top: 0;
@@ -35,7 +35,7 @@
 
 #innerRow i {
     position: absolute;
-    padding: 1.5%;
+    padding: 1.2%;
 }
 
 #innerRow input {
@@ -49,9 +49,46 @@
         margin-right: auto;
     }
 
+header {
+    padding-top: 0;
+    margin-top: 0;
+}
+
 .container {
     padding-right: 0;
     padding-left: 0;
 }
+
+
+.rounded {
+    border-radius: 30px!important;
+}
+
+
+#discoverLocalArtColumn {
+    background-image: url("../Assets/Home/deanna-j-3GZlhROZIQg-unsplash.jpg");
+    background-position: center;
+    background-size:cover;
+    padding: 0;
+    margin: 0;
+}
+
+#findAGalleryButton {
+    background-color: rgba(161, 36, 18, 0.8);
+    border-radius: 20px;
+    margin-bottom: 5%;
+}
+
+#subheaderDiscover {
+    color: rgb(94, 94, 94);
+}
+
+#headerDiscover {
+}
+
+#outerContainer {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
 
 
