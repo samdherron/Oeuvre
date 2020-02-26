@@ -23,7 +23,7 @@
 <form class="">
     <label for="searchTheme">Search</label>
 
-    <button class="btn btn-outline-info btn-sm mx-sm-3 mb-2" asp-controller="SearchGallery" asp-action="getQuickSearchList">Quick Search</button>
+    <button class="btn btn-outline-danger btn-sm mx-sm-3 mb-2" asp-controller="SearchGallery" asp-action="getQuickSearchList">Quick Search</button>
     <div class="form-group form-inline mb-2" style="margin-bottom: 20px;">
            
         <div class="input-group" style="margin-bottom: 15px; width:100%">
@@ -145,14 +145,14 @@
 
 
 
-                <div class="card">
+                <div class="card artPieceCard">
 
                     <img src=@img.ImgLocation class="card-img-top" alt="Responsive image">
                     <div class="card-body">
                         <h5 class="card-title">@img.Artist</h5>
                         <h6 class="card-text">@img.Name</h6>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a class="btn btn-primary btn-sm" asp-controller="SearchGallery" asp-action="testImgId" asp-route-id="@img.ImgId" value="@img.ImgId">More Info</a>
+                        <a class="btn btn-secondary btn-sm" asp-controller="SearchGallery" asp-action="testImgId" asp-route-id="@img.ImgId" value="@img.ImgId">More Info</a>
                     </div>
 
                 </div>
@@ -197,7 +197,8 @@
             //$(oldThemeTypeName).css({ "background-color": "#f8f9fa", "color" : "black" });
             //$(oldThemeTypeName).css("color", "black !important");
              document.getElementById(oldThemeTypeName).style.backgroundColor = "#f8f9fa";
-             document.getElementById(oldThemeTypeName).style.color = "black";
+            document.getElementById(oldThemeTypeName).style.color = "black";
+            document.getElementById(oldThemeTypeName).style.opacity = "1";
 
 
         }
@@ -206,8 +207,9 @@
 
         //$('#TT1').css('background-color', 'darkcyan');
 
-        document.getElementById(themeTypeName).style.backgroundColor = "darkcyan";
+        document.getElementById(themeTypeName).style.backgroundColor = "rgba(161,36,18, 0.9)";
         document.getElementById(themeTypeName).style.color = "white";
+
 
         document.getElementById("selectType").value = tt;
 
