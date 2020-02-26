@@ -26,8 +26,8 @@
     <button class="btn btn-outline-info btn-sm mx-sm-3 mb-2" asp-controller="SearchGallery" asp-action="getQuickSearchList">Quick Search</button>
     <div class="form-group form-inline mb-2" style="margin-bottom: 20px;">
            
-        <div class="input-group">
-            <input type="text" class="form-control border-right-0" id="inlineFormInputGroup" name="searchTheme" placeholder="Username" style="border-radius: 0">
+        <div class="input-group" style="margin-bottom: 15px; width:100%">
+            <input type="text" class="form-control border-right-0" id="inlineFormInputGroup" name="searchTheme" placeholder="Theme / Artist/ Gallery Search" style="border-radius: 0">
             <span class="input-group-btn">
                 <button asp-controller="SearchGallery" asp-action="getList" class="btn border" style="background-color: #f8f9fa; border-radius: 0"><i class="fa fa-search"></i></button>
             </span>
@@ -56,7 +56,7 @@
         </select>
 
 
-        <div class="scrolling-wrapper" id="themeType">
+        <div class="scrolling-wrapper" id="themeType" style="width:100%">
 
             <a onclick="setButtonClicked(3)">
                 <div class="card themeTypeCard col-sm-4 align-middle rounded-0 border border border-light my-auto" id="TT3" style="border-width: 2px !important; text-align:center">
@@ -116,14 +116,14 @@
         </div>
 
 
-        <button asp-controller="SearchGallery" asp-action="getList" class="btn btn-primary btn-sm mx-sm-3 mb-2">Search</button>
+        @*<button asp-controller="SearchGallery" asp-action="getList" class="btn btn-primary btn-sm mx-sm-3 mb-2">Search</button>*@
     </div>
 
 
        
 
         <div>
-            <small id="searchHelp" class="form-text text-muted">Choose a Theme Type and then search for a theme or for quick results press the quicksearch button</small>
+            <small id="searchHelp" class="form-text text-muted">Use either the quick search button to get the most up to date art pieces or search by theme!</small>
         </div>
 
 
@@ -178,6 +178,7 @@
 
 
 <script type="text/javascript">
+
 
     var oldButtonId = 0;
     /* Script will update the filename on the page upon selecting an image */
