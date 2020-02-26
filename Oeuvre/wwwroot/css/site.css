@@ -1,16 +1,97 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+/*.testimonial-group-oeuvre > .row{
+    overflow-x: auto;
+    white-space: nowrap;
+}*/
+
+
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+/*.scrolling-wrapper::-webkit-scrollbar {
+    width: 0 !important
+}*/
+
+
+.artPieceCard {
+    display: inline-block;
+    transition: 0.3s;
+    background-color: #f8f9fa;
+}
+
+    .artPieceCard:focus {
+        background-color: rgba(161,36,18, 0.9) !important;
+        color: white !important;
+    }
+
+    .artPieceCard:hover {
+        background-color: rgba(161,36,18, 0.9) !important;
+        color: white !important;
+    }
+
+
+
+.themeTypeCard {
+    display: inline-block;
+    transition: 0.3s;
+    background-color: #f8f9fa;
+}
+
+    .themeTypeCard:focus {
+        background-color: rgba(161,36,18, 0.9) !important;
+        color: white !important;
+    }
+
+    .themeTypeCard:hover {
+        background-color: rgba(161,36,18, 0.9) !important;
+        color: white !important;
+    }
+
+
+.testimonial-group-oeuvre {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
-a {
+/*a {
   color: #0366d6;
-}
+}*/
 
 .btn-primary {
   color: #fff;
