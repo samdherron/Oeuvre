@@ -41,20 +41,20 @@ for details on configuring this project to bundle and minify static web assets. 
     width: 0 !important
 }*/
 
-.card {
+.themeTypeCard {
     display: inline-block;
     transition: 0.3s;
+    background-color: #f8f9fa;
 }
 
-.card:focus {
+.themeTypeCard:focus {
     background-color: darkcyan !important;
     color: white !important;
 }
 
-.card:hover{
-    background-color:darkcyan !important;
-    color:white !important;
-
+.themeTypeCard:hover {
+    background-color: darkcyan !important;
+    color: white !important;
 }
 
 

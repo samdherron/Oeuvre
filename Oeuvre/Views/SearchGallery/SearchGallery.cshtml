@@ -24,8 +24,26 @@
     <label for="searchTheme">Search</label>
 
     <button class="btn btn-outline-info btn-sm mx-sm-3 mb-2" asp-controller="SearchGallery" asp-action="getQuickSearchList">Quick Search</button>
-    <div class="form-group form-inline mb-2">
-        <input type="text" class="form-control form-control-sm mb-2" name="searchTheme">
+    <div class="form-group form-inline mb-2" style="margin-bottom: 20px;">
+           
+        <div class="input-group">
+            <input type="text" class="form-control border-right-0" id="inlineFormInputGroup" name="searchTheme" placeholder="Username" style="border-radius: 0">
+            <span class="input-group-btn">
+                <button asp-controller="SearchGallery" asp-action="getList" class="btn border" style="background-color: #f8f9fa; border-radius: 0"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+
+        
+        @*<div class="input-group mb-2">
+            <input type="text" class="form-control" id="inlineFormInputGroup" name="searchTheme" placeholder="Username">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <button asp-controller="SearchGallery" asp-action="getList" class="btn" ><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>*@
+
+        @*<input type="text" class="form-control form-control-sm mb-2" name="searchTheme">*@
         <select class="form-control form-control-sm mx-sm-3 mb-2" id="selectType" name="searchType" hidden>
             <option value="0">Theme Type</option>
             <option value="1">Color</option>
@@ -37,90 +55,26 @@
             <option value="7">Gallery</option>
         </select>
 
-        
-            <div class="scrolling-wrapper" id="themeType">
 
-                <a onclick="setButtonClicked(3)">
-                    <div class="card col-sm-2 align-middle rounded-0 border border border-light my-auto" id="TT3" style="border-width: 3px !important; text-align:center">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-                        <span class="" style="line-height: 50px">Artist</span>
-                    </div>
-                </a>
-
-
-                <a onclick="setButtonClicked(7)">
-                    <div class="card col-sm-2 align-middle rounded-0 border border border-light my-auto" id="TT7" style="border-width: 3px !important; text-align:center">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-                        <span class="" style="line-height: 50px">Gallery</span>
-                    </div>
-                </a>
-
-                <a onclick="setButtonClicked(1)">
-                    <div class="card col-sm-2 align-middle rounded-0 border border border-light  my-auto" id="TT1" style="border-width: 3px !important; text-align:center">
-
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-                        <span class="" style="line-height: 50px">Color</span>
-
-                    </div>
-                </a>
-
-
-                <a onclick="setButtonClicked(2)">
-                    <div class="card col-sm-2 align-middle rounded-0 border border border-light  my-auto" id="TT2" style="border-width: 3px !important; text-align:center;">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-                        <span class="" style="line-height: 50px">Age</span>
-                    </div>
-                </a>
-
-
-
-                <a onclick="setButtonClicked(4)">
-                    <div class="card col-sm-2 align-middle rounded-0 border border border-light  my-auto" id="TT4" style="border-width: 3px !important; text-align:center">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-                        <span class="" style="line-height: 50px">Art Type</span>
-                    </div>
-                </a>
-
-                <a onclick="setButtonClicked(5)">
-                    <div class="card col-sm-2 align-middle rounded-0 border border border-light  my-auto" id="TT5" style="border-width: 3px !important; text-align:center">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-                        <span class="" style="line-height: 50px">Genre</span>
-                    </div>
-                </a>
-
-                <a onclick="setButtonClicked(6)">
-                    <div class="card col-sm-2 align-middle rounded-0 border border border-light  my-auto" id="TT6" style="border-width: 3px !important; text-align:center;">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-                        <span class="" style="line-height: 50px">Other</span>
-                    </div>
-                </a>
-
-            </div>
-        
-
-            <button asp-controller="SearchGallery" asp-action="getList" class="btn btn-primary btn-sm mx-sm-3 mb-2">Search</button>
-        </div>
-
-
-        @*<div class="scrolling-wrapper" name="themeTypeIdSlider" id="themeType" value="0">
+        <div class="scrolling-wrapper" id="themeType">
 
             <a onclick="setButtonClicked(3)">
-                <div class="card col-sm-2 align-middle rounded-0 border border border-light my-auto" id="TT3" style="border-width: 3px !important; text-align:center">
-                    <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-                    <span class="" style="line-height: 50px">Artist</span>
+                <div class="card themeTypeCard col-sm-4 align-middle rounded-0 border border border-light my-auto" id="TT3" style="border-width: 2px !important; text-align:center">
+                    <img class="img-responsive" src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
+                    <span style="line-height: 50px">Artist</span>
                 </div>
             </a>
 
 
             <a onclick="setButtonClicked(7)">
-                <div class="card col-sm-2 align-middle rounded-0 border border border-light my-auto" id="TT7" style="border-width: 3px !important; text-align:center">
+                <div class="card themeTypeCard col-sm-4 align-middle rounded-0 border border border-light my-auto" id="TT7" style="border-width: 2px !important; text-align:center">
                     <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
                     <span class="" style="line-height: 50px">Gallery</span>
                 </div>
             </a>
 
             <a onclick="setButtonClicked(1)">
-                <div class="card col-sm-2 align-middle rounded-0 border border border-light  my-auto" id="TT1" style="border-width: 3px !important; text-align:center">
+                <div class="card themeTypeCard col-sm-4 align-middle rounded-0 border border border-light  my-auto" id="TT1" style="border-width: 2px !important; text-align:center">
 
                     <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
                     <span class="" style="line-height: 50px">Color</span>
@@ -130,38 +84,43 @@
 
 
             <a onclick="setButtonClicked(2)">
-                <div class="card col-sm-2 align-middle rounded-0 border border border-light  my-auto" id="TT2" style="border-width: 3px !important; text-align:center;">
+                <div class="card themeTypeCard col-sm-4 align-middle rounded-0 border border border-light  my-auto" id="TT2" style="border-width: 2px !important; text-align:center;">
                     <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
-                    <span class="" style="line-height: 50px">Age</span>
+                    <span style="line-height: 50px">Age</span>
                 </div>
             </a>
 
 
 
             <a onclick="setButtonClicked(4)">
-                <div class="card col-sm-2 align-middle rounded-0 border border border-light  my-auto" id="TT4" style="border-width: 3px !important; text-align:center">
+                <div class="card themeTypeCard col-sm-4 align-middle rounded-0 border border border-light  my-auto" id="TT4" style="border-width: 2px !important; text-align:center">
                     <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
                     <span class="" style="line-height: 50px">Art Type</span>
                 </div>
             </a>
 
             <a onclick="setButtonClicked(5)">
-                <div class="card col-sm-2 align-middle rounded-0 border border border-light  my-auto" id="TT5" style="border-width: 3px !important; text-align:center">
+                <div class="card themeTypeCard col-sm-4 align-middle rounded-0 border border border-light  my-auto" id="TT5" style="border-width: 2px !important; text-align:center">
                     <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
                     <span class="" style="line-height: 50px">Genre</span>
                 </div>
             </a>
 
             <a onclick="setButtonClicked(6)">
-                <div class="card col-sm-2 align-middle rounded-0 border border border-light  my-auto" id="TT6" style="border-width: 3px !important; text-align:center;">
+                <div class="card themeTypeCard col-sm-4 align-middle rounded-0 border border border-light  my-auto" id="TT6" style="border-width: 2px !important; text-align:center;">
                     <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:25px; margin-left: -17px" />
                     <span class="" style="line-height: 50px">Other</span>
                 </div>
             </a>
 
-        </div>*@
+        </div>
 
 
+        <button asp-controller="SearchGallery" asp-action="getList" class="btn btn-primary btn-sm mx-sm-3 mb-2">Search</button>
+    </div>
+
+
+       
 
         <div>
             <small id="searchHelp" class="form-text text-muted">Choose a Theme Type and then search for a theme or for quick results press the quicksearch button</small>
