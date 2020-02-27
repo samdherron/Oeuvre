@@ -7,37 +7,58 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/site.css" />
-    @RenderSection("Styles", false);
+    <link rel="stylesheet" href="~/css/Mainpage.css" />
+    @RenderSection("Styles", false)
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Oeuvre</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Galleries" asp-action="Index">Galleries</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SearchGallery" asp-action="SearchGallery">Collections</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Upload" asp-action="UploadImage">Upload</a>
-                        </li>
-                    </ul>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-0">
+            <div class="container-fluid" id="mainNavbar">
+                <div class="col-lg-11 ml-md-auto">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item" id="navLiFirst">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Galleries" asp-action="Index">Galleries</a>
+                            </li>
+                            <li class="nav-item" id="navLi">
+                                <a class="nav-link text-light" asp-area="" asp-controller="SearchGallery" asp-action="SearchGallery">Collections</a>
+                            </li>
+                            <li class="nav-item" id="navLi">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Upload" asp-action="UploadImage">Upload</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
+
+    <div class="container-fluid">
+        <div class="row" id="searchBarRow">
+            <div class="col-sm-1 offset-1">
+                <a asp-controller="Home" asp-action="Index">
+                    <!-- Get correct prototype asset during Phase 2 -->
+                    <img src="~/Icons/Logo_2.png" class="img-fluid ml-auto" height="67" width="128" alt="Oeuvre Art Collection" />
+                </a>
+            </div>
+            <div class="col-md-7" id="innerRow">
+                <div class="right-inner-addon">
+                    <i class="fa fa-search icon"></i>
+                    <input type="search" class="form-control" placeholder="Search" />
+                </div>
+            </div>
+
+            <div class="col-sm-2" id="innerRow">
+                <button class="btn">Add your gallery's work</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -56,5 +77,9 @@
             asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
     <script src="~/js/site.js"></script>
     @RenderSection("Scripts", required: false)
+
+    @section Styles {
+        <link rel="stylesheet" href="~/css/Mainpage.css" />
+    }
 </body>
 </html>
