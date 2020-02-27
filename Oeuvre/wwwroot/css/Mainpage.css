@@ -1,0 +1,168 @@
+﻿body {
+}
+
+.navbar {
+    padding: 0;
+}
+
+#mainNavbar {
+    background-color: #a12412;
+}
+
+#mainNavbar a {
+    color: #FFF;
+}
+
+#navLi {
+    color: #FFF;
+    font-weight: 400;
+}
+
+
+
+#searchBarRow {
+    margin-top: 0;
+    height: 20%;
+    background-color: #eeedeb;
+}
+
+#innerRow {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+#innerRow i {
+    position: absolute;
+    padding: 1.2%;
+}
+
+#innerRow input {
+    text-align:center;
+}
+
+#innerRow button {
+        color: #FFF;
+        background-color: #9b999a;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+header {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.container {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+
+.rounded {
+    border-radius: 30px!important;
+}
+
+
+#discoverLocalArtColumn {
+    background-image: url("../Assets/Home/deanna-j-3GZlhROZIQg-unsplash.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    border-radius: 20px;
+}
+
+#innerImageButton {
+    background-color: rgba(161, 36, 18, 0.8);
+    border-radius: 20px;
+    margin-bottom: 5%;
+}
+
+#innerImageButton:hover {
+    background-color: rgba(161, 36, 18, 1);
+}
+
+#includeGalleryColumn {
+    background-image: url("../Assets/Home/vincent-tantardini-hWlvhJAxkIw-unsplash.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    border-radius: 20px;
+}
+
+#subheaderDiscover {
+    color: rgb(94, 94, 94);
+}
+
+#outerContainer {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#exploreGalleryColumn {
+    background-image: url(../Assets/Home/pauline-loroy-AlLKJ292jOQ-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+}
+
+#exploreExhibitionColumn {
+    background-image: url(../Assets/Home/europeana-3DcrMnM-uMQ-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+}
+
+#exploreThemeColumn {
+    background-image: url(../Assets/Home/steve-johnson-5Oe8KFH5998-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+}
+
+#innerContainerExplore {
+    background-color: rgba(161, 36, 18, 0.6);
+    border-radius: 10px;
+}
+
+#exploreText {
+    text-align:center;
+    margin: auto;
+    color: #FFF;
+}
+
+.listImage {
+    width: 100%;
+    height: 60%;
+    margin: auto;
+    border-radius: 20px;
+}
+
+#galleryImageDescription {
+    color: #FFF;
+    opacity: 0.75;
+}
+
+.viewMoreLink {
+    font-size: 90%;
+    text-align: right;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ad4132;
+    -webkit-transition: text-shadow 1s;
+}
+
+.viewMoreLink:hover {
+        text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        text-decoration: none;
+        color: #ad4132;
+        -webkit-transition: text-shadow 1s;
+    }
