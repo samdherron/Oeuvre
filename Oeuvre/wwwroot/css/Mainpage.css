@@ -68,33 +68,74 @@ header {
 #discoverLocalArtColumn {
     background-image: url("../Assets/Home/deanna-j-3GZlhROZIQg-unsplash.jpg");
     background-position: center;
-    background-size:cover;
+    background-size: cover;
     padding: 0;
     margin: 0;
+    border-radius: 20px;
 }
 
-#findAGalleryButton {
+#innerImageButton {
     background-color: rgba(161, 36, 18, 0.8);
     border-radius: 20px;
     margin-bottom: 5%;
 }
 
-#findAGalleryButton:hover {
+#innerImageButton:hover {
     background-color: rgba(161, 36, 18, 1);
+}
+
+#includeGalleryColumn {
+    background-image: url("../Assets/Home/vincent-tantardini-hWlvhJAxkIw-unsplash.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    border-radius: 20px;
 }
 
 #subheaderDiscover {
     color: rgb(94, 94, 94);
 }
 
-#headerDiscover {
-}
-
 #outerContainer {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-#exploreSubheader {
-    background-image: url(../Assets/Home/deanna-j-3GZlhROZIQg-unsplash.jpg);
+#exploreGalleryColumn {
+    background-image: url(../Assets/Home/pauline-loroy-AlLKJ292jOQ-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+}
+
+#exploreExhibitionColumn {
+    background-image: url(../Assets/Home/europeana-3DcrMnM-uMQ-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+}
+
+#exploreThemeColumn {
+    background-image: url(../Assets/Home/steve-johnson-5Oe8KFH5998-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+}
+
+#innerContainerExplore {
+    background-color: rgba(161, 36, 18, 0.6);
+    border-radius: 10px;
+}
+
+#exploreText {
+    text-align:center;
+    margin: auto;
+    color: #FFF;
 }
 
