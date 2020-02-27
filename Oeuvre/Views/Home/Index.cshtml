@@ -4,118 +4,163 @@
 
 
 
-    <div class="container">
+<div class="container">
 
-        <br />
-        <br />
+    <br />
+    <br />
 
-        <div class="row" id="discoverLocalArtSection">
+    <div class="row" id="discoverLocalArtSection">
 
-            <div class="col-md-12" id="discoverLocalArtColumn">
-                <div id="outerContainer">
-                    <div class="container-fluid offset-1">
-                        <br />
-                        <h1 class="text-dark" id="headerDiscover">Discover</h1>
-                        <h1 class="text-dark">Local Art</h1>
-                        <br />
-                        <h3 class="text-left" id="subheaderDiscover">
-                            Showcasing the best local <br />
-                            galleries and museums
-                        </h3>
-                        <br />
-                        <button class="btn" id="innerImageButton">FIND A GALLERY</button>
-                        <br />
-                        <br />
-                    </div>
+        <div class="col-md-12" id="discoverLocalArtColumn">
+            <div id="outerContainer">
+                <div class="container-fluid offset-1">
+                    <br />
+                    <h1 class="text-dark" id="headerDiscover">Discover</h1>
+                    <h1 class="text-dark">Local Art</h1>
+                    <br />
+                    <h3 class="text-left" id="subheaderDiscover">
+                        Showcasing the best local <br />
+                        galleries and museums
+                    </h3>
+                    <br />
+                    <button class="btn" id="innerImageButton">FIND A GALLERY</button>
+                    <br />
+                    <br />
                 </div>
             </div>
         </div>
+    </div>
 
-        <br />
-        <br />
+    <br />
+    <br />
 
-        <div class="row">
+    <div class="row">
 
-            <div class="col-md-12" id="exploreGalleryColumn">
-                <div id="innerContainerExplore">
-                    <div class="container-fluid ml-auto">
-                        <br />
-                        <br />
-                        <h2 id="exploreText">Explore by gallery</h2>
-                        <br />
-                        <br />
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <br />
-        <br />
-
-        <div class="row">
-
-            <div class="col-md-12" id="exploreExhibitionColumn">
-                <div id="innerContainerExplore">
-                    <div class="container-fluid ml-auto">
-                        <br />
-                        <br />
-                        <h2 id="exploreText">Explore current exhibitions</h2>
-                        <br />
-                        <br />
-                    </div>
+        <div class="col-md-12" id="exploreGalleryColumn">
+            <div id="innerContainerExplore">
+                <div class="container-fluid ml-auto">
+                    <br />
+                    <br />
+                    <h2 id="exploreText">Explore by gallery</h2>
+                    <br />
+                    <br />
                 </div>
             </div>
         </div>
-
-        <br />
-        <br />
-
-        <div class="row">
-
-            <div class="col-md-12" id="exploreThemeColumn">
-                <div id="innerContainerExplore">
-                    <div class="container-fluid ml-auto">
-                        <br />
-                        <br />
-                        <h2 id="exploreText">Explore by themes</h2>
-                        <br />
-                        <br />
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <br />
-        <br />
-
-        <div class="row" id="includeGallerySection">
-
-            <div class="col-md-12" id="includeGalleryColumn">
-                <div id="outerContainer">
-                    <div class="container-fluid offset-1">
-                        <br />
-                        <h1 class="text-dark" id="headerDiscover">Include your</h1>
-                        <h1 class="text-dark">gallery's work</h1>
-                        <br />
-                        <h3 class="text-left" id="subheaderDiscover">
-                            Gain more visitors
-                        </h3>
-                        <br />
-                        <button class="btn" id="innerImageButton">ADD YOUR GALLERY</button>
-                        <br />
-                        <br />
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br />
-        <br />
 
     </div>
+
+
+    <br />
+    <br />
+
+    <a class="viewMoreLink" asp-controller="Galleries" asp-action="Index"><p>View More</p></a>
+    <br />
+    <br />
+
+    <div class="row mr-auto" id="exploreGalleryCards">
+
+        <!-- Update the srcs for the images, gallery names and descriptions shown from viewbag in controller -->
+        <div name="galleryImageOne" class="col-sm-3 ml-auto" id="galleryCardColumn">
+            <a asp-controller="Galleries" asp-action="Index">
+                <img class="listImage" src="~/Assets/Home/gustavo-centurion-O6fs4ablxw8-unsplash.jpg" alt="Discover Gallery List #1" />
+            </a>
+            <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
+            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
+        </div>
+
+
+        <div name="galleryImageTwo" class="col-sm-3 ml-auto" id="galleryCardColumn">
+            <a asp-controller="Galleries" asp-action="Index">
+                <img class="listImage" src="~/Assets/Home/europeana-SMWPYQhVRuY-unsplash.jpg" alt="Discover Gallery List #2" />
+            </a>
+            <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
+            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
+        </div>
+
+
+        <div name="galleryImageThree" class="col-sm-3 ml-auto mr-auto" id="galleryCardColumn">
+            <a asp-controller="Galleries" asp-action="Index">
+                <img class="listImage" src="~/Assets/Home/mr-tt-xb0wLfZH9Zo-unsplash.jpg" alt="Discover Gallery List #3" />
+            </a>
+            <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
+            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="row">
+
+        <div class="col-md-12 m-auto" id="exploreExhibitionColumn">
+            <div id="innerContainerExplore">
+                <div class="container-fluid ml-auto">
+                    <br />
+                    <br />
+                    <h2 id="exploreText">Explore current exhibitions</h2>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+
+    <div class="row">
+
+        <div class="col-md-12 m-auto" id="exploreThemeColumn">
+            <div id="innerContainerExplore">
+                <div class="container-fluid ml-auto">
+                    <br />
+                    <br />
+                    <h2 id="exploreText">Explore by themes</h2>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="row" id="includeGallerySection">
+
+        <div class="col-md-12 m-auto" id="includeGalleryColumn">
+            <div id="outerContainer">
+                <div class="container-fluid offset-1">
+                    <br />
+                    <h1 class="text-dark" id="headerDiscover">Include your</h1>
+                    <h1 class="text-dark">gallery's work</h1>
+                    <br />
+                    <h3 class="text-left" id="subheaderDiscover">
+                        Gain more visitors
+                    </h3>
+                    <br />
+                    <button class="btn" id="innerImageButton">ADD YOUR GALLERY</button>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+</div>
 
 @section Styles {
     <link rel="stylesheet"
