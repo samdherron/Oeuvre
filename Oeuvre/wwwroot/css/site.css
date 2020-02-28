@@ -82,6 +82,16 @@ for details on configuring this project to bundle and minify static web assets. 
     color: white !important;
 }*/
 
+/*.mapBtn {
+    transition: 0.3s;
+    background-color: white;
+}
+
+.mapBtn:hover {
+    background-color: #dc3545 !important;
+    color: black !important;
+}*/
+
 
 
 .themeTypeCard {

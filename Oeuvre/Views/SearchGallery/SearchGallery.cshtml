@@ -8,12 +8,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container">This button is to go to the maps page</div>
+
+<a class="nav-link text-light" asp-area="" asp-controller="VisitUs" asp-action="VisitUs">Google Maps</a>
+
 <div class="container" style="background-color: #838383; height:1px; margin-top: 45px; margin-bottom:20px"></div>
 
 <h1>@ViewData["Title"]</h1>
-
-
-@*<a class="nav-link text-dark" asp-area="" asp-controller="SearchGallery" asp-action="getList">Home</a>*@
 
 
 @{ if (ViewData["error"] != null && ViewData["error"] != "")
@@ -28,19 +29,9 @@
 }
 
 <form class="">
-    @*<button class="btn btn-outline-danger btn-sm  mb-2" asp-controller="SearchGallery" asp-action="getQuickSearchList">Quick Search</button>*@
+
     <div class="form-group form-inline mb-2" style="margin-bottom: 20px;">
 
-        @*<div class="input-group mb-2">
-                <input type="text" class="form-control" id="inlineFormInputGroup" name="searchTheme" placeholder="Username">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <button asp-controller="SearchGallery" asp-action="getList" class="btn" ><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-            </div>*@
-
-        @*<input type="text" class="form-control form-control-sm mb-2" name="searchTheme">*@
         <select class="form-control form-control-sm mx-sm-3 mb-2" id="selectType" name="searchType" hidden>
             <option value="0">Theme Type</option>
             <option value="1">Color</option>
@@ -195,13 +186,9 @@
 
             var oldThemeTypeName = "TT" + oldButtonId;
 
-            //$(oldThemeTypeName).css({ "background-color": "#f8f9fa", "color" : "black" });
-            //$(oldThemeTypeName).css("color", "black !important");
-            //document.getElementById(oldThemeTypeName).style.backgroundColor = "#f8f9fa";
             document.getElementById(oldThemeTypeName).style.backgroundColor = "white";
             document.getElementById(oldThemeTypeName).style.color = "black";
             document.getElementById(oldThemeTypeName).style.opacity = "1";
-
 
         }
 
