@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Oeuvre.Helpers;
 using Oeuvre.Models;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Oeuvre.Services
         Account _account;
         Cloudinary _cloudinary;
         private dbo_OeuvreContext _context;
+        SearchGallery securityClass;
 
         public UploadService(dbo_OeuvreContext context)
         {
@@ -30,6 +32,8 @@ namespace Oeuvre.Services
             _cloudinary = new Cloudinary(_account);
 
             _context = context;
+
+            securityClass = new SearchGallery();
         }
 
         public enum themeTypeValues
@@ -117,13 +121,13 @@ namespace Oeuvre.Services
                 int highestNumber = numberList.Max() + 1;
 
 
-                newDatabaseEntry.ImgId = highestNumber.ToString();
+                newDatabaseEntry.ImgId =  highestNumber.ToString();
                 newDatabaseEntry.GalleryId = galleryID;
                 newDatabaseEntry.DateUploaded = DateTime.UtcNow;
-                newDatabaseEntry.Description = enteredForm.ImageDescription;
+                newDatabaseEntry.Description = securityClass.removeSqlInjectionParams(enteredForm.ImageDescription);
                 newDatabaseEntry.ImgLocation = imageURL;
-                newDatabaseEntry.Artist = enteredForm.ArtistName;
-                newDatabaseEntry.Name = enteredForm.ImageName;
+                newDatabaseEntry.Artist = securityClass.removeSqlInjectionParams(enteredForm.ArtistName);
+                newDatabaseEntry.Name = securityClass.removeSqlInjectionParams(enteredForm.ImageName);
                 newDatabaseEntry.ThemeId = "1";
 
 
@@ -145,7 +149,7 @@ namespace Oeuvre.Services
                 for (int i = 0; i < enteredForm.Themes.Count; i++)
                 {
                     currentType = enteredForm.Themes.ElementAt(i).ThemeType;
-                    currentValue = enteredForm.Themes.ElementAt(i).ThemeValue;
+                    currentValue = securityClass.removeSqlInjectionParams(enteredForm.Themes.ElementAt(i).ThemeValue);
 
                     //Check for null or empty strings inside of both values
                     if ((!string.IsNullOrEmpty(currentType)) && (!string.IsNullOrEmpty(currentValue)))
