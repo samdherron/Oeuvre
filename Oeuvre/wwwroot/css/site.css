@@ -5,6 +5,9 @@ for details on configuring this project to bundle and minify static web assets. 
     overflow-x: auto;
     white-space: nowrap;
 }*/
+
+
+
 @media (max-width: 36em) {
     .card-columns {
         -webkit-column-count: 2;
