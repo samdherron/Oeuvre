@@ -46,19 +46,18 @@
         <div class="row" id="searchBarRow">
             <div class="col-sm-1 offset-1">
                 <a asp-controller="Home" asp-action="Index">
-                    <!-- Get correct prototype asset during Phase 2 -->
-                    <img src="~/Icons/Logo_2.png" class="img-fluid ml-auto" height="67" width="128" alt="Oeuvre Art Collection" />
+                    <img src="~/Icons/Logos/FinalLogo.png" class="img-fluid ml-auto" style="margin-left: auto; margin-top: 26%; margin-bottom: 10%;" height="101" width="192" alt="Oeuvre Art Collection" />
                 </a>
             </div>
             <div class="col-md-7" id="innerRow">
                 <div class="right-inner-addon">
                     <i class="fa fa-search icon"></i>
-                    <input type="search" class="form-control" placeholder="Search" />
+                    <input type="search" class="form-control" style="margin-bottom: 2%;" placeholder="Search" />
                 </div>
             </div>
 
             <div class="col-sm-2" id="innerRow">
-                <button class="btn">Add your gallery's work</button>
+                <button class="btn" style="margin-bottom: 2%;">Add your gallery's work</button>
             </div>
         </div>
     </div>
@@ -69,9 +68,35 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer style="background-color: #eeedeb;">
         <div class="container">
-            &copy; 2020 - Oeuvre - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-sm-2"  style="margin-top: 5%; margin-bottom: 5%;">
+                    <h4 class="footerHeader" style="color: #a12412;">CONTACT US</h4>
+                    <h6 class="text-dark">Tel. +1 519 620 5500 </h6>
+                    <h6 class="text-dark">info@oeuvre.com</h6>
+                    <h6 class="text-dark">345 King Street</h6>
+                    <h6 class="text-dark">Waterloo, Ontario</h6>
+                    <h6 class="text-dark">N2E 4A4</h6>
+                </div>
+
+                <div class="col-sm-2"  style="margin-top: 5%; margin-bottom: 5%;">
+                    <h4 class="footerHeader" style="color: #a12412;">RESOURCES</h4>
+                    <a asp-controller="SearchGallery" asp-action="Index"><h6 class="text-dark">Collections</h6></a>
+                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Galleries</h6></a>
+                    <!-- Change Your Local Galleries to Maps page-->
+                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Your Local Galleries</h6></a>
+                    <!-- Change to Signup Page -->
+                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Add Your Gallery</h6></a>
+                    <!-- Change to privacy policy page -->
+                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Privacy Policy</h6></a>
+                </div>
+
+                <div class="col-sm-6 offset-2"  style="margin-top: 5%; margin-bottom: 5%;">
+                    <h4 class="footerHeader" style="color: #a12412;">SUBSCRIBE TO OUR NEWSLETTER</h4>
+
+                </div>
+             </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
