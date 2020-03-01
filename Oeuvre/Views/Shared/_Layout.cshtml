@@ -5,47 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Oeuvre</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/site.css" />
-    @RenderSection("Styles", false);
+    <link rel="stylesheet" href="~/css/Mainpage.css" />
+    @RenderSection("Styles", false)
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Oeuvre</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Galleries" asp-action="Index">Galleries</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SearchGallery" asp-action="SearchGallery">Collections</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Upload" asp-action="UploadImage">Upload</a>
-                        </li>
-                    </ul>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-0">
+            <div class="container-fluid" id="mainNavbar">
+                <div class="col-lg-11 ml-md-auto">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item" id="navLiFirst">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Galleries" asp-action="Index">Galleries</a>
+                            </li>
+                            <li class="nav-item" id="navLi">
+                                <a class="nav-link text-light" asp-area="" asp-controller="SearchGallery" asp-action="SearchGallery">Collections</a>
+                            </li>
+                            <li class="nav-item" id="navLi">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Upload" asp-action="UploadImage">Upload</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
+
+    <div class="container-fluid">
+        <div class="row" id="searchBarRow">
+            <div class="col-sm-1 offset-1">
+                <a asp-controller="Home" asp-action="Index">
+                    <img src="~/Icons/Logos/FinalLogo.png" class="img-fluid ml-auto" style="margin-left: auto; margin-top: 26%; margin-bottom: 10%;" height="101" width="192" alt="Oeuvre Art Collection" />
+                </a>
+            </div>
+            <div class="col-md-7" id="innerRow">
+                <div class="right-inner-addon">
+                    <i class="fa fa-search icon"></i>
+                    <input type="search" class="form-control" style="margin-bottom: 2%;" placeholder="Search" />
+                </div>
+            </div>
+
+            <div class="col-sm-2" id="innerRow">
+                <button class="btn" style="margin-bottom: 2%;">Add your gallery's work</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer style="background-color: #eeedeb;">
         <div class="container">
-            &copy; 2020 - Oeuvre - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-sm-2"  style="margin-top: 5%; margin-bottom: 5%;">
+                    <h4 class="footerHeader" style="color: #a12412;">CONTACT US</h4>
+                    <h6 class="text-dark">Tel. +1 519 620 5500 </h6>
+                    <h6 class="text-dark">info@oeuvre.com</h6>
+                    <h6 class="text-dark">345 King Street</h6>
+                    <h6 class="text-dark">Waterloo, Ontario</h6>
+                    <h6 class="text-dark">N2E 4A4</h6>
+                </div>
+
+                <div class="col-sm-2"  style="margin-top: 5%; margin-bottom: 5%;">
+                    <h4 class="footerHeader" style="color: #a12412;">RESOURCES</h4>
+                    <a asp-controller="SearchGallery" asp-action="Index"><h6 class="text-dark">Collections</h6></a>
+                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Galleries</h6></a>
+                    <!-- Change Your Local Galleries to Maps page-->
+                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Your Local Galleries</h6></a>
+                    <!-- Change to Signup Page -->
+                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Add Your Gallery</h6></a>
+                    <!-- Change to privacy policy page -->
+                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Privacy Policy</h6></a>
+                </div>
+
+                <div class="col-sm-6 offset-2"  style="margin-top: 5%; margin-bottom: 5%;">
+                    <h4 class="footerHeader" style="color: #a12412;">SUBSCRIBE TO OUR NEWSLETTER</h4>
+
+                </div>
+             </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -53,7 +100,11 @@
     <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
             asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
             asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site.js"></script>
     @RenderSection("Scripts", required: false)
+
+    @section Styles {
+        <link rel="stylesheet" href="~/css/Mainpage.css" />
+    }
 </body>
 </html>

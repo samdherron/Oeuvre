@@ -17,6 +17,8 @@ namespace Oeuvre.Controllers
         private dbo_OeuvreContext _context;
         private SearchGallery userSearch;
 
+        private string themeNumber = "";
+
         public SearchGalleryController(dbo_OeuvreContext context)
         {
             _context = context;
@@ -28,11 +30,29 @@ namespace Oeuvre.Controllers
             return View();
         }
 
+        public void setThemeType(string id)
+        {
+            Console.WriteLine("The old Theme number is: " + themeNumber);
+            themeNumber = id;
+
+            Console.WriteLine("The new Theme number is: " + themeNumber);
+        }
+
+
         public ViewResult getList(string searchTheme, string searchType)
         {
             userSearch = new SearchGallery();
 
-            string sTh= userSearch.removeSqlInjectionParams(searchTheme);
+            string sTh;
+
+            if (searchTheme != null && searchTheme != "")
+            {
+                sTh = userSearch.removeSqlInjectionParams(searchTheme);
+            }
+            else
+            {
+                sTh = "";
+            }
 
             int sTy = Int32.Parse(searchType);
 
@@ -48,7 +68,7 @@ namespace Oeuvre.Controllers
 
                     userSearch = new SearchGallery();
 
-                    List<Image> imageList = userSearch.getGalleryItemsUsingGallery(_context, sTh);
+                    List<CollectionsImg> imageList = userSearch.getGalleryItemsUsingGallery(_context, sTh);
 
                     if (imageList.Count == 0)
                     {
@@ -67,7 +87,7 @@ namespace Oeuvre.Controllers
 
                     userSearch = new SearchGallery();
 
-                    List<Image> imageList = userSearch.getGalleryItemsUsingArtist(_context, sTh);
+                    List<CollectionsImg> imageList = userSearch.getGalleryItemsUsingArtist(_context, sTh);
 
                     if (imageList.Count == 0)
                     {
@@ -88,7 +108,7 @@ namespace Oeuvre.Controllers
 
                     userSearch = new SearchGallery();
 
-                    List<Image> imageList = userSearch.getGalleryItemsUsingSearchType(_context, searchType);
+                    List<CollectionsImg> imageList = userSearch.getGalleryItemsUsingSearchType(_context, searchType);
  
                     if (imageList.Count == 0)
                     {
@@ -110,7 +130,7 @@ namespace Oeuvre.Controllers
 
                     userSearch = new SearchGallery();
 
-                    List<Image> imageList = userSearch.getGalleryItemsUsingUserInput(_context, searchTheme);
+                    List<CollectionsImg> imageList = userSearch.getGalleryItemsUsingUserInput(_context, searchTheme);
 
 
                     if (imageList.Count == 0)
@@ -137,7 +157,7 @@ namespace Oeuvre.Controllers
 
                 userSearch = new SearchGallery();
 
-                List<Image> imageList = userSearch.getGalleryItemsUsingQuickSearch(_context);
+                List<CollectionsImg> imageList = userSearch.getGalleryItemsUsingQuickSearch(_context);
 
                 ViewData["Pieces"] = imageList;
 
