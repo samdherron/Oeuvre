@@ -8,12 +8,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@*<div class="container">This button is to go to the maps page</div>
+
+    <a class="nav-link text-light" asp-area="" asp-controller="VisitUs" asp-action="VisitUs">Google Maps</a>*@
+
 <div class="container" style="background-color: #838383; height:1px; margin-top: 45px; margin-bottom:20px"></div>
 
 <h1>@ViewData["Title"]</h1>
 
 
-@*<a class="nav-link text-dark" asp-area="" asp-controller="SearchGallery" asp-action="getList">Home</a>*@
 
 
 @{ if (ViewData["error"] != null && ViewData["error"] != "")
@@ -28,19 +31,9 @@
 }
 
 <form class="">
-    @*<button class="btn btn-outline-danger btn-sm  mb-2" asp-controller="SearchGallery" asp-action="getQuickSearchList">Quick Search</button>*@
+
     <div class="form-group form-inline mb-2" style="margin-bottom: 20px;">
 
-        @*<div class="input-group mb-2">
-                <input type="text" class="form-control" id="inlineFormInputGroup" name="searchTheme" placeholder="Username">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <button asp-controller="SearchGallery" asp-action="getList" class="btn" ><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-            </div>*@
-
-        @*<input type="text" class="form-control form-control-sm mb-2" name="searchTheme">*@
         <select class="form-control form-control-sm mx-sm-3 mb-2" id="selectType" name="searchType" hidden>
             <option value="0">Theme Type</option>
             <option value="1">Color</option>
@@ -52,71 +45,74 @@
             <option value="7">Gallery</option>
         </select>
 
+        <div class="container" style="position: relative">
+            <button type="button" class="btn text-center align-middle" style="position: absolute; background-color: #f3f3f3; border-radius: 0; z-index: 1; height: 52px; opacity: 0.8; border:none; cursor: auto" id="scrollLeft" ><i class="align-middle fa fa-chevron-left" style="color: grey; align-content: center;"></i></button>
+            <button type="button" class="btn text-center align-middle" style="position: absolute; right:0; background-color: #f3f3f3; border-radius: 0; z-index: 1; height: 52px; opacity: 0.8; cursor: auto" id="scrollRight" ><i class="fa fa-chevron-right" style="color: grey"></i></button>
 
-        <div class="scrolling-wrapper" id="themeType" style="width:100%">
+            <div class="scrolling-wrapper" id="themeType" style="width:100%; overflow: auto">
 
-            <a onclick="setButtonClicked(3)">
-                <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT3" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius:0;">
-                    <img class="img-responsive" src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
-                    <span style="line-height: 50px">Artist</span>
-                </div>
-            </a>
-
-
-            <a onclick="setButtonClicked(7)">
-                <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT7" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
-                    <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
-                    <span class="" style="line-height: 50px">Gallery</span>
-                </div>
-            </a>
-
-            <a onclick="setButtonClicked(1)">
-                <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT1" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius:0;">
-
-                    <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
-                    <span class="" style="line-height: 50px">Color</span>
-
-                </div>
-            </a>
+                <a onclick="setButtonClicked(3)">
+                    <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT3" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius:0;">
+                        <img class="img-responsive" src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <span style="line-height: 50px">Artist</span>
+                    </div>
+                </a>
 
 
-            <a onclick="setButtonClicked(2)">
-                <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT2" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
-                    <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
-                    <span style="line-height: 50px">Age</span>
-                </div>
-            </a>
+                <a onclick="setButtonClicked(7)">
+                    <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT7" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
+                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <span class="" style="line-height: 50px">Gallery</span>
+                    </div>
+                </a>
+
+                <a onclick="setButtonClicked(1)">
+                    <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT1" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
+
+                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <span class="" style="line-height: 50px">Color</span>
+
+                    </div>
+                </a>
+
+
+                <a onclick="setButtonClicked(2)">
+                    <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT2" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
+                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <span style="line-height: 50px">Age</span>
+                    </div>
+                </a>
 
 
 
-            <a onclick="setButtonClicked(4)">
-                <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT4" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
-                    <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
-                    <span class="" style="line-height: 50px">Art Type</span>
-                </div>
-            </a>
+                <a onclick="setButtonClicked(4)">
+                    <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT4" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
+                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <span class="" style="line-height: 50px">Art Type</span>
+                    </div>
+                </a>
 
-            <a onclick="setButtonClicked(5)">
-                <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right  my-auto" id="TT5" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0">
-                    <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
-                    <span class="" style="line-height: 50px">Genre</span>
-                </div>
-            </a>
+                <a onclick="setButtonClicked(5)">
+                    <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right  my-auto" id="TT5" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0">
+                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <span class="" style="line-height: 50px">Genre</span>
+                    </div>
+                </a>
 
-            <a onclick="setButtonClicked(6)">
-                <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT6" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
-                    <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
-                    <span class="" style="line-height: 50px">Other</span>
-                </div>
-            </a>
+                <a onclick="setButtonClicked(6)">
+                    <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT6" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
+                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <span class="" style="line-height: 50px">Other</span>
+                    </div>
+                </a>
+            </div>
 
-        </div>
-
-        <div class="input-group" style="margin-top: 15px; width:100%">
-            <input type="text" class="form-control" id="inlineFormInputGroup" name="searchTheme" placeholder="Theme / Artist / Gallery Search" style="border: none; border-radius: 0;background-color:#f3f3f3">
-            <span class="input-group-btn" style="background-color:#f3f3f3">
-                <button asp-controller="SearchGallery" asp-action="getList" class="btn" style="background-color: #f3f3f3; border-radius: 0"><i class="fa fa-search" style="color: grey"></i></button>
-            </span>
+            <div class="input-group" style="margin-top: 15px; width:100%">
+                <input type="text" class="form-control" id="inlineFormInputGroup" name="searchTheme" placeholder="Theme / Artist / Gallery Search" style="border: none; border-radius: 0;background-color:#f3f3f3">
+                <span class="input-group-btn" style="background-color:#f3f3f3">
+                    <button asp-controller="SearchGallery" asp-action="getList" class="btn" style="background-color: #f3f3f3; border-radius: 0"><i class="fa fa-search" style="color: grey"></i></button>
+                </span>
+            </div>
         </div>
 
         @*<button asp-controller="SearchGallery" asp-action="getList" class="btn btn-primary btn-sm mx-sm-3 mb-2">Search</button>*@
@@ -177,11 +173,50 @@
 
 }
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#scrollLeft").mouseover(function () {
+            console.log("hit me");
+
+            var maxscroll = $("#themeType").width();
+            var speed = maxscroll * 5;
+
+            //speed = -Math.abs(speed);
+
+            console.log(speed);
+
+            $("#themeType").animate({
+                scrollLeft: 0
+            }, speed, "linear");
+        });
+
+         $("#scrollLeft").mouseout(function() {
+            $("#themeType").stop();    
+        });
+
+         //for stuff that scrolls left on hover
+        $("#scrollRight").mouseover(function () {
+            console.log("hit me");
+
+            var maxscroll = $("#themeType").width();
+            var speed = maxscroll * 5;
+            $("#themeType").animate({
+                scrollLeft: maxscroll
+            }, speed, "linear");
+        });
+
+        $("#scrollRight").mouseout(function() {
+            $("#themeType").stop();    
+        });
 
 
-    var oldButtonId = 0;
+
+    });
+
+     var oldButtonId = 0;
     /* Script will update the filename on the page upon selecting an image */
     function setButtonClicked(tt) {
 
@@ -195,13 +230,9 @@
 
             var oldThemeTypeName = "TT" + oldButtonId;
 
-            //$(oldThemeTypeName).css({ "background-color": "#f8f9fa", "color" : "black" });
-            //$(oldThemeTypeName).css("color", "black !important");
-            //document.getElementById(oldThemeTypeName).style.backgroundColor = "#f8f9fa";
             document.getElementById(oldThemeTypeName).style.backgroundColor = "white";
             document.getElementById(oldThemeTypeName).style.color = "black";
             document.getElementById(oldThemeTypeName).style.opacity = "1";
-
 
         }
 
@@ -226,6 +257,7 @@
         //setThemeType(tt);
 
     }
+
 
 </script>
 
