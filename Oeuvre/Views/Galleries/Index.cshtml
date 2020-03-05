@@ -1,65 +1,40 @@
-﻿@model IEnumerable<Oeuvre.Models.Gallery>
+﻿@model Oeuvre.Models.GalleryListing
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Galleries";
 }
 
-<h1>Index</h1>
+<h1>Galleries Listing</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.GalleryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Province)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthUserId)
-            </th>
+            
+            
+         
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GalleryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Province)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthUserId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.GalleryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.GalleryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.GalleryId">Delete</a>
-            </td>
-        </tr>
+
+        @{List<List<Image>> item = Model.Images;}
+        @{List<string> id = Model.GalleryId;}
+        @{List<string> nameString = Model.GalleryName;}
+        
+        @for (var x = 0; x < Model.GalleryName.Count; x++)
+        {
+            <div name="Gallerydisplaycard" class="col-sm-3 ml-auto"  id="exhibitionCardColumn">
+                <a asp-controller="Galleries" asp-action="Details" asp-route-id="@id[x]">
+                    <img class="listImage" src="@item[x][0].ImgLocation" alt="Current Exhibitions List #1" />
+                </a>
+                <h4 class="text-dark font-weight-bolder">@nameString[x]</h4>
+                <h6 class="text-dark" id="galleryImageDescription">@item[x][0].Description</h6>
+            </div>
 }
+        
+        
     </tbody>
 </table>

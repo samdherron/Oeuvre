@@ -21,7 +21,144 @@ namespace Oeuvre.Controllers
         // GET: Galleries
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Gallery.ToListAsync());
+            int galCount = _context.Gallery.Count();
+            //Variable Declaration
+             List<Gallery> galleryList = new List<Gallery>();
+            galleryList = await _context.Gallery.ToListAsync();
+            string id;
+            // galleryList.Equals();
+            //List<int> galleryIDs = new List<int>();
+            // return View(await _context.Gallery.Include(a => a.Image).ToListAsync());
+            //List<GalleryDisplay> galleries = new List<GalleryDisplay>();
+            //GalleryDisplay galleryImages = new GalleryDisplay();
+            List<string> tempName = new List<string>();
+            List<string> tempAddress = new List<string>();
+            List<string> tempProvince = new List<string>();
+            List<string> tempPostal = new List<string>();
+            List<string> tempCity= new List<string>();
+            List<string> tempId = new List<string>();
+            List < List < Image >> tempImages = new List<List<Image>>();
+            GalleryListing galleryCollection = new GalleryListing();
+            List<Image> myList = new List<Image>();
+            //How many Galleries there are
+            Console.WriteLine(galCount);
+            int idCheck = 0;
+            int idCheckAdv=1;
+            var gallery = await _context.Gallery.FirstOrDefaultAsync();
+
+
+
+
+
+
+
+            for (int x =0; x<galCount; x++)
+            {
+                
+                /*for(int y = idCheck; y < idCheckAdv; y++)
+                  {
+                      while (gallery == null)
+                      {
+                          try
+                          {
+                              gallery = await _context.Gallery
+                     .FirstOrDefaultAsync(m => m.GalleryId == y.ToString());
+                          }
+                          catch (Exception e)
+                          {
+
+                          }
+                          idCheck += 1;
+                          idCheckAdv += 1;
+                      }
+                  }
+                  id = idCheck.ToString();
+                  */
+                id = galleryList[x].GalleryId;
+                gallery = await _context.Gallery
+                .FirstOrDefaultAsync(m => m.GalleryId == id);
+                tempId.Add(gallery.GalleryId);
+                tempName.Add(gallery.GalleryName);
+                tempAddress.Add( gallery.Address);
+                tempProvince.Add(gallery.Province);               
+                tempPostal.Add(gallery.PostalCode);
+                tempCity.Add( gallery.City);
+
+                var images = (from image in _context.Image
+                              where image.GalleryId.Contains(id)
+                              select new
+                              {
+                                  image.ImgId,
+                                  image.ImgLocation,
+                                  image.GalleryId,
+                                  image.ThemeId,
+                                  image.DateUploaded,
+                                  image.Artist,
+                                  image.Description,
+                                  image.Name
+
+                              }).ToList();
+                for (int i = 1; i <= 3; i++)
+                {
+                    bool testExsist = true;
+                    Image tempImage = new Image();
+                    try
+                    {
+                        tempImage.ImgLocation = images.ElementAt(i).ImgLocation;
+                        testExsist = true;
+                    }
+                    catch(Exception q)
+                    {
+                        Console.Out.WriteLine(q);
+                        testExsist = false;
+                    }
+
+                    if(!testExsist)
+                    {
+                        tempImage.ImgLocation = "https://res.cloudinary.com/oeuvre/image/upload/v1583410971/no-image-available_jkydpu.jpg";
+                        myList.Add(tempImage);
+                       // tempImages.Add(myList);
+                        testExsist = true;
+                    }
+                    else
+                    {
+                        //tempImage.ImgLocation = "https://res.cloudinary.com/oeuvre/image/upload/v1583410971/no-image-available_jkydpu.jpg";
+
+                        tempImage.ImgLocation = images.ElementAt(i).ImgLocation;
+                        myList.Add(tempImage);
+                       
+                        testExsist = true;
+                    }
+                    
+                    if (i == 3)
+                    {
+                        tempImages.Add(myList);
+                        myList = new List<Image>();
+                    }
+                    
+                }
+                galleryCollection.GalleryId = tempId;
+                galleryCollection.GalleryName = tempName;
+                galleryCollection.Address = tempAddress;
+                galleryCollection.Province= tempProvince;
+                galleryCollection.PostalCode = tempPostal;
+                galleryCollection.City = tempCity;
+                galleryCollection.Images=tempImages;
+               // idCheckAdv = idCheck + 1;
+                //galleryCollection.galleryDisplays.Add(galleryImages);
+
+
+            }
+
+
+
+            //get the images code =)
+            // id = "0";
+               
+               
+
+            
+            return View(galleryCollection);
         }
 
         // GET: Galleries/Details/5
