@@ -1,13 +1,13 @@
 ﻿@model Oeuvre.Models.GalleryListing
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Galleries";
 }
 
-<h1>Index</h1>
+<h1>Galleries Listing</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    
 </p>
 <table class="table">
     <thead>
@@ -19,36 +19,22 @@
         </tr>
     </thead>
     <tbody>
-        
+
         @{List<List<Image>> item = Model.Images;}
-        @{List<string>nameString = Model.GalleryName;}
-        @for(var x =0;x< Model.GalleryName.Count;x++)
+        @{List<string> id = Model.GalleryId;}
+        @{List<string> nameString = Model.GalleryName;}
+        
+        @for (var x = 0; x < Model.GalleryName.Count; x++)
         {
-
-            <tr>
-                testing
-            </tr>
-            
-            <tr>
-
-                <img class="" src="@item[x][0].ImgLocation" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
-
-            </tr> 
-            <tr>
-
-                <img class="" src="@item[x][1].ImgLocation" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
-
-            </tr> 
-            <tr>
-                
-                    <img class="" src="@item[x][2].ImgLocation" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
-
-                
-
-            </tr>
-
-            
-                
-            }
+            <div name="Gallerydisplaycard" class="col-sm-3 ml-auto"  id="exhibitionCardColumn">
+                <a asp-controller="Galleries" asp-action="Details" asp-route-id="@id[x]">
+                    <img class="listImage" src="@item[x][0].ImgLocation" alt="Current Exhibitions List #1" />
+                </a>
+                <h4 class="text-dark font-weight-bolder">@nameString[x]</h4>
+                <h6 class="text-dark" id="galleryImageDescription">@item[x][0].Description</h6>
+            </div>
+}
+        
+        
     </tbody>
 </table>
