@@ -12,19 +12,22 @@
         <div class="row" id="discoverLocalArtSection">
             <div class="col-md-12" id="discoverLocalArtColumn">
                 <div id="outerContainer">
-                    <div class="container-fluid ">
-                        <br />
-                        <h1 class="text-dark" id="headerDiscover">Discover</h1>
-                        <h1 class="text-dark">Local Art</h1>
-                        <br />
-                        <h3 class="text-left" id="subheaderDiscover">
-                            Showcasing the best local <br />
-                            galleries and museums
-                        </h3>
-                        <br />
-                        <button class="btn" id="innerImageButton">FIND A GALLERY</button>
-                        <br />
-                        <br />
+                    <div class="container-fluid">
+                        <div class="col-md-3">
+                            <br />
+                            <h1 class="text-dark" id="headerDiscover">Discover</h1>
+                            <h1 class="text-dark">Local Art</h1>
+                            <br />
+                            <h3 class="text-left" id="subheaderDiscover">
+                                Showcasing the best local <br />
+                                galleries and museums
+                            </h3>
+                            <br />
+                            <button class="btn" id="innerImageButton">FIND A GALLERY</button>
+                        </div>
+                        <div class="col-md-9">
+                            <img src="~/Assets/Home/LPTriangles.png" style="width:inherit; height: inherit;" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,27 +65,27 @@
             <!-- Update the srcs for the images, gallery names and descriptions shown from viewbag in controller -->
             <div name="galleryImageOne" class="col-sm-3 ml-auto" id="galleryCardColumn">
                 <a asp-controller="Galleries" asp-action="Index">
-                    <img class="listImage" src="~/Assets/Home/Willet_1.jpg" alt="Discover Gallery List #1" />
+                    <img class="listImage" src=@ViewData["galleryImage1"] alt="Discover Gallery List #1" />
                 </a>
-                <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
+                <h4 class="text-dark font-weight-bolder">@ViewData["galleryName1"]</h4>
                 <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
             </div>
 
 
             <div name="galleryImageTwo" class="col-sm-3 ml-auto" id="galleryCardColumn">
                 <a asp-controller="Galleries" asp-action="Index">
-                    <img class="listImage" src="~/Assets/Home/Creek-Crossing_2013_Nurielle-Stern_websize.jpg" alt="Discover Gallery List #2" />
+                    <img class="listImage" src=@ViewData["galleryImage2"] alt="Discover Gallery List #2" />
                 </a>
-                <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
+                <h4 class="text-dark font-weight-bolder">@ViewData["galleryName2"]</h4>
                 <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
             </div>
 
 
             <div name="galleryImageThree" class="col-sm-3 ml-auto mr-auto" id="galleryCardColumn">
                 <a asp-controller="Galleries" asp-action="Index">
-                    <img class="listImage" src="~/Assets/Home/1973004001_trim.jpg" alt="Discover Gallery List #3" />
+                    <img class="listImage" src=@ViewData["galleryImage3"] alt="Discover Gallery List #3" />
                 </a>
-                <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
+                <h4 class="text-dark font-weight-bolder">@ViewData["galleryName3"]</h4>
                 <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
             </div>
         </div>
@@ -110,7 +113,7 @@
         <br />
         <br />
         <!-- Change to Exhibitions -->
-        <a class="viewMoreLink" asp-controller="Galleries" asp-action="Index"><p>View More</p></a>
+        <a class="viewMoreLink" asp-controller="SearchGallery" asp-action="SearchGallery"><p>View More</p></a>
         <br />
         <br />
 
@@ -168,7 +171,7 @@
         <br />
         <br />
         <!-- Change to Themes -->
-        <a class="viewMoreLink" asp-controller="Galleries" asp-action="Index"><p>View More</p></a>
+        <a class="viewMoreLink" asp-controller="SearchGallery" asp-action="SearchGallery"><p>View More</p></a>
         <br />
         <br />
 
