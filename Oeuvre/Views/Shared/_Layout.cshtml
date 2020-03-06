@@ -77,7 +77,7 @@
     <footer style="background-color: #eeedeb;">
         <div class="container">
             <div class="row">
-                <div class="col-sm-2"  style="margin-top: 5%; margin-bottom: 5%;">
+                <div class="col-sm-2" style="margin-top: 5%; margin-bottom: 5%;">
                     <h4 class="footerHeader" style="color: #a12412;">CONTACT US</h4>
                     <h6 class="text-dark">Tel. +1 519 620 5500 </h6>
                     <h6 class="text-dark">info@oeuvre.com</h6>
@@ -86,7 +86,7 @@
                     <h6 class="text-dark">N2E 4A4</h6>
                 </div>
 
-                <div class="col-sm-2"  style="margin-top: 5%; margin-bottom: 5%;">
+                <div class="col-sm-2" style="margin-top: 5%; margin-bottom: 5%;">
                     <h4 class="footerHeader" style="color: #a12412;">RESOURCES</h4>
                     <a asp-controller="SearchGallery" asp-action="Index"><h6 class="text-dark">Collections</h6></a>
                     <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Galleries</h6></a>
@@ -98,11 +98,29 @@
                     <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Privacy Policy</h6></a>
                 </div>
 
-                <div class="col-sm-6 offset-2"  style="margin-top: 5%; margin-bottom: 5%;">
+                <div class="col-sm-6 offset-2" style="margin-top: 5%; margin-bottom: 5%;">
                     <h4 class="footerHeader" style="color: #a12412;">SUBSCRIBE TO OUR NEWSLETTER</h4>
+                    <br />
+                    <div class="form-group">
+                    <input type="text" class="input-group-text" placeholder="Email" />
+                    <br />
+                    <div class="d-inline-block">
+                        <input type="text" class="input-group-text" placeholder="First Name" />
+                        <br />
+                        <input type="text" class="input-group-text" placeholder="Last Name" />
 
+                    </div>
+
+                    <br />
+                    <br />
+
+                    <label for="subscribeCheckbox" class="radio-inline" style="width: 70%; color: #a12412;">
+                        <input name="subscribeCheckbox" value="subscribeNewsletter" style="margin-right: 1%;" type="checkbox" />
+                        Keep me updated on the latest Oeuvre Exhibitions. You can unsubscribe at any time.
+                    </label>
+                    </div>
                 </div>
-             </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
