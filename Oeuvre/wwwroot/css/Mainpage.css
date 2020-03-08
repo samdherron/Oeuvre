@@ -78,6 +78,7 @@ header {
     background-color: rgba(161, 36, 18, 0.8);
     border-radius: 20px;
     margin-bottom: 5%;
+    margin-left: 2%;
 }
 
 #innerImageButton:hover {
@@ -93,8 +94,16 @@ header {
     border-radius: 20px;
 }
 
+#headerDiscover {
+    margin-top: 2%;
+}
+
+#headerDiscover2 {
+}
+
 #subheaderDiscover {
     color: rgb(94, 94, 94);
+    margin-left: 2%;
 }
 
 #outerContainer {
@@ -175,4 +184,11 @@ header {
     }
 
 }
+
+#newsletterInput {
+    width: 80%;
+    margin-left: auto;
+}
+
+
 
