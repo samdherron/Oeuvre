@@ -94,12 +94,11 @@ header {
     border-radius: 20px;
 }
 
-#headerDiscover {
-    margin-top: 2%;
+.headerDiscover {
+    font-size: 200%;
+    color: grey;
 }
 
-#headerDiscover2 {
-}
 
 #subheaderDiscover {
     color: rgb(94, 94, 94);
