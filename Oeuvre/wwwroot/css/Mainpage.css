@@ -185,9 +185,27 @@ header {
 }
 
 #newsletterInput {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #808080;
+    color: #808080;
+    text-align:left;
+    outline: none;
     width: 80%;
-    margin-left: auto;
 }
+
+#submitButton {
+    color: #FFF;
+    background-color: rgba(161, 36, 18, 0.9);
+    padding: 2% 2%;
+    text-align: center;
+    -webkit-transition: background-color 1s;
+}
+
+    #submitButton:hover {
+        -webkit-transition: background-color 1s;
+        background-color: rgba(161, 36, 18, 1);
+    }
 
 
 

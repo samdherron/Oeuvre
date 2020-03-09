@@ -79,6 +79,7 @@
             <div class="row" style="width: 80%; margin-left: auto; margin-right: auto;">
                 <div class="col-sm-3" style="margin-top: 5%; margin-bottom: 5%;">
                     <h4 class="footerHeader" style="color: #a12412;">CONTACT US</h4>
+                    <br />
                     <h6 class="text-dark">Tel. +1 519 620 5500 </h6>
                     <h6 class="text-dark">info@oeuvre.com</h6>
                     <h6 class="text-dark">345 King Street</h6>
@@ -88,6 +89,7 @@
 
                 <div class="col-sm-3" style="margin-top: 5%; margin-bottom: 5%;">
                     <h4 class="footerHeader" style="color: #a12412;">RESOURCES</h4>
+                    <br />
                     <a asp-controller="SearchGallery" asp-action="Index"><h6 class="text-dark">Collections</h6></a>
                     <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Galleries</h6></a>
                     <!-- Change Your Local Galleries to Maps page-->
@@ -102,23 +104,49 @@
                     <h4 class="footerHeader" style="color: #a12412;">SUBSCRIBE TO OUR NEWSLETTER</h4>
                     <br />
                     <div class="form-group">
-                    <input type="text" class="input-group-text" id="newsletterInput" placeholder="Email" />
-                    <br />
-                    <div class="d-inline-block">
-                        <input type="text" class="input-group-text" id="newsletterInput" placeholder="First Name" />
+                        <div class="d-inline-block" style="width: 100%;">
+                            <input type="text" class="input-group-text" id="newsletterInput" placeholder="Email" />
+                            <br/>
+                            <input type="text" class="input-group-text" id="newsletterInput" placeholder="First Name" />
+                            <br/>
+                            <input type="text" class="input-group-text" id="newsletterInput" placeholder="Last Name" />
+                        </div>
+
                         <br />
-                        <input type="text" class="input-group-text" id="newsletterInput" placeholder="Last Name" />
+                        <br />
+
+                        <label for="subscribeCheckbox" class="radio-inline" style="width: 70%; color: #a12412;">
+                            <input name="subscribeCheckbox" value="subscribeNewsletter" style="margin-right: 1%;" type="checkbox" />
+                            Keep me updated on the latest Oeuvre Exhibitions. You can unsubscribe at any time.
+                        </label>
+
+                        <br />
+                        <br />
+
+                        <input type="submit" value="Subscribe" class="btn" id="submitButton" />
 
                     </div>
-
-                    <br />
-                    <br />
-
-                    <label for="subscribeCheckbox" class="radio-inline" style="width: 70%; color: #a12412;">
-                        <input name="subscribeCheckbox" value="subscribeNewsletter" style="margin-right: 1%;" type="checkbox" />
-                        Keep me updated on the latest Oeuvre Exhibitions. You can unsubscribe at any time.
-                    </label>
-                    </div>
+                </div>
+            </div>
+            <div class="row" style="width: 80%; margin-left: auto; margin-right: auto;">
+                <div class="col-sm-3" style="margin-top: 5%; margin-bottom: 5%;">
+                    <ul class="list-group list-group-horizontal">
+                            <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
+                                <a class="text-light" href="http://www.facebook.com" id="iconLink">
+                                    <img src="~/Icons/facebook_maroon.png" width="24" height="24" alt="facebookIcon" />
+                                </a>
+                            </li>
+                            <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
+                                <a class="text-light" href="http://www.instagram.com" id="iconLink">
+                                    <img src="~/Icons/instagram_maroon.png" width="24" height="24" alt="instagramIcon" />
+                                </a>
+                            </li>
+                            <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
+                                <a class="text-light" href="http://www.twitter.com" id="iconLink">
+                                    <img src="~/Icons/twitter_maroon.png" width="24" height="24" alt="twitterIcon" />
+                                </a>
+                            </li>
+                    </ul>
                 </div>
             </div>
         </div>
