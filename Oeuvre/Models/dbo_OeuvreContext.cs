@@ -155,6 +155,8 @@ namespace Oeuvre.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
+                entity.Property(e => e.GalleryDescription).HasColumnName("Gallery_Description");
+
                 entity.Property(e => e.GalleryName)
                     .IsRequired()
                     .HasColumnName("Gallery_Name")
@@ -182,6 +184,13 @@ namespace Oeuvre.Models
 
                 entity.Property(e => e.Artist).IsUnicode(false);
 
+                entity.Property(e => e.CollectionType).HasColumnName("collectionType");
+
+                entity.Property(e => e.CuratorName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
                 entity.Property(e => e.DateUploaded)
                     .HasColumnName("Date_Uploaded")
                     .HasColumnType("datetime");
@@ -200,10 +209,20 @@ namespace Oeuvre.Models
 
                 entity.Property(e => e.Name).IsUnicode(false);
 
+                entity.Property(e => e.PieceDimensions)
+                    .HasColumnName("pieceDimensions")
+                    .HasMaxLength(255)
+                    .IsFixedLength();
+
                 entity.Property(e => e.ThemeId)
                     .IsRequired()
                     .HasColumnName("Theme_ID")
                     .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.Property(e => e.YearCreated)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
                     .IsFixedLength();
 
                 entity.HasOne(d => d.Gallery)

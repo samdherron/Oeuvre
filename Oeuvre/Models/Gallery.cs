@@ -17,6 +17,7 @@ namespace Oeuvre.Models
         public string PostalCode { get; set; }
         public string Province { get; set; }
         public string AuthUserId { get; set; }
+        public string GalleryDescription { get; set; }
 
         public virtual ICollection<Image> Image { get; set; }
     }
