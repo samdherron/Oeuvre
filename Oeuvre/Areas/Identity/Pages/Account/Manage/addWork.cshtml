@@ -1,7 +1,232 @@
 ﻿@page
 @model addWorkModel
 @{
-    ViewData["Title"] = "addwork";
+    ViewData["Title"] = "addwork";     
 }
 
-<h1>Add Work</h1>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+
+
+    <div class="container rounded" style="background-color: white; margin-left: 25px;">
+
+        <h6 style="color: #a12412; padding-top: 15px;">Add Work</h6>
+        <br />
+        @*<form method="post" asp-controller="Upload" asp-action="SaveImage_GetData" enctype="multipart/form-data">*@
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="imageName">Piece Name</label>
+                    <br />
+                    <input name="imageNameInput" class="form-control" id="formInput" type="text" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="imageArtist">Artist Name</label>
+                    <br />
+                    <input name="artistNameInput" class="form-control" type="text" required />
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="curatorName">Curator Name</label>
+                    <br />
+                    <input name="curatorName" class="form-control" type="text" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="yearCreated">Year Created</label>
+                    <br />
+                    <input name="yearCreated" class="form-control" type="text" required />
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="medium">Medium</label>
+                    <br />
+                    <input name="medium" class="form-control" type="text" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="collectionType">Current Or Permanent Collection</label>
+                    <br />
+                    @*<input name="collectionType" class="form-control" type="text" required />*@
+                    <select class="form-control" name="collectionType">
+                        <option value="">Select Collection Type</option>
+                        <option value="1">Current</option>
+                        <option value="2">Permanent</option>
+                    </select>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-xl-6">
+                    <label for="pieceDimensions">Piece Dimensions</label>
+                    <br />
+                    <input name="pieceDimensions" class="form-control" type="text" required />
+                </div>
+            </div>
+
+            <br />
+
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <label for="imageDescription">Description:</label>
+                    <br />
+                    <textarea name="imageDescriptionInput" class="form-control" id="formInput"></textarea>
+                </div>
+            </div>
+
+            <br />
+
+            <!-- Create a seperate row for the labels so they're not duplicated when adding new rows -->
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="imageThemes">Theme Type:</label>
+                </div>
+                <div class="col-md-6">
+                    <label for="imageThemes">Theme:</label>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="dynamicThemes">
+                <!-- This div entire div will be duplicated when clicking the addition sign below-->
+                <div id="dynamicThemesInitial" class="dynamicThemeMember" style="margin-bottom: 2%;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select name="initialThemeCategory" class="form-control">
+                                <option>Colour</option>
+                                <option>Age</option>
+                                <option>Artist</option>
+                                <option>Art Type</option>
+                                <option>Genre</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input name="initialThemeValue" class="form-control" type="text" required />
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                <!-- End of duplication -->
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <img src="~/Icons/plusIcon2.png" height="24" width="24" onclick="addRow(this)" role="button" />
+                    <img src="~/Icons/xIcon.png" height="24" width="24" style="margin-left: 0.5em;" onclick="deleteRow(this)" role="button" />
+                </div>
+
+            </div>
+
+            <br />
+            <br />
+
+            <div class="row">
+                <div class="col-xl-12" style="text-align: center;">
+                    <label id="previewHeader" style="display: none;" for="imagePreview">Preview:</label>
+                    <br />
+                    <img id="imagePreview" style="height: auto; width: 60%; max-height: 850px;
+                                       max-width: 700px; display: none; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);" />
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label id="imageLabel" for="file">Image:</label>
+                    <input id="imageUpload" type="file" name="image"
+                           accept="image/png, image/jpeg" onchange="previewImage(event)" required>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-sm-3" style="margin-bottom: 20px;">
+                    <input type="submit" value="Upload" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+<script type="text/javascript">
+
+    //The initial theme is not counted, just the dynamic theme inputs
+    var themeCounter = 0;
+
+    //Adds a new theme input row by cloning the parent node and generating a new ID
+    function addRow() {
+        var numberThemes = document.querySelectorAll('.dynamicThemeMember').length;
+        console.log(numberThemes);
+        let newThemeClone = document.querySelector('#dynamicThemesInitial').cloneNode(true);
+        newThemeClone.setAttribute('id', 'dynamicTheme' + numberThemes);
+        document.querySelector('.dynamicThemes').appendChild(newThemeClone);
+        themeCounter += 1;
+    }
+
+    /*Deletes a new theme input row by getting the theme count and deleting the
+      corresponding node from the parent */
+    function deleteRow() {
+        var numberThemes = document.querySelectorAll('.dynamicThemeMember').length;
+        console.log(numberThemes);
+
+        if (themeCounter > 0) {
+            var elementID = "dynamicTheme" + (themeCounter);
+            var topElement = document.getElementById(elementID);
+            topElement.parentNode.removeChild(topElement);
+            themeCounter -= 1;
+        }
+    }
+
+</script>
+
+<script type="text/javascript">
+    /* Script will update the filename on the page upon selecting an image */
+    $(document).ready(function () {
+        $("#imageUpload").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next("#imageLabel").html(fileName);
+        })
+    });
+</script>
+
+<script>
+    /* Script will refresh image src with selected file, then display
+       the image and the header */
+    var previewImage = function (event) {
+        var image = document.getElementById('imagePreview');
+        var previewText = document.getElementById('previewHeader');
+        previewText.style.display = "initial";
+        image.style.display = "initial";
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@*@section Styles {
+    <link rel="stylesheet" href="~/css/UploadImage.css" />
+}*@
