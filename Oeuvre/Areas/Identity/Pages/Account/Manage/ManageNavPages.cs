@@ -8,6 +8,8 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
 {
     public static class ManageNavPages
     {
+
+        public static string EditGalleryArtPiece => "EditGalleryArtPiece";
         public static string Artwork => "Artwork";
         public static string addWork => "addWork";
         public static string ProfileInformation => "ProfileInformation";
@@ -22,6 +24,8 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
         public static string PersonalData => "PersonalData";
 
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
+
+        public static string EditGalleryArtPieceNavClass(ViewContext viewContext) => PageNavClass(viewContext, EditGalleryArtPiece);
 
         public static string ArtworkNavClass(ViewContext viewContext) => PageNavClass(viewContext, Artwork);
         public static string addWorkNavClass(ViewContext viewContext) => PageNavClass(viewContext, addWork);

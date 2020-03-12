@@ -1,18 +1,36 @@
 ﻿@page
-@model addWorkModel
+@model EditGalleryArtPiece
 @{
-    ViewData["Title"] = "addwork";     
+    ViewData["Title"] = "EditPiece";
+    ViewData["ActivePage"] = ManageNavPages.EditGalleryArtPiece;
 }
-
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-
-
 
 
     <div class="container rounded" id="addWorkContainer" style="background-color: white; margin-left: 25px;">
 
-        <h6 style="color: #a12412; padding-top: 15px;">Add Work</h6>
+        <a asp-page="./Artwork" style="width: 50px; height: 50px; color: black !important">
+
+            <div class="input-group" style="margin-top: 15px; width:100%">
+                <span class="input-group-btn" style="">
+                    <i class="fa fa-angle-left fa-2x" style="color: grey;"></i>
+                </span>
+                <span style="margin-top: 3px; margin-left: 5px; text-decoration: none" >Go Back</span>
+
+            </div>
+        </a>
+
+        <h6 style="color: #a12412; padding-top: 15px;">Edit Art Piece</h6>
         <br />
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-xl-12" style="text-align: center;">
+                <label id="previewHeader" style="display: none;" for="imagePreview">Preview:</label>
+                <br />
+                <img id="imagePreview" src="@Model.ArtPieceInfo.imageDetails.ImgLocation" class="rounded" style="height: auto; width: 60%; max-height: 850px;
+                                       max-width: 700px;" />
+            </div>
+        </div>
+
         @*<form method="post" asp-controller="Upload" asp-action="SaveImage_GetData" enctype="multipart/form-data">*@
         <form method="post" enctype="multipart/form-data">
             <div class="row">
@@ -25,7 +43,7 @@
                 <div class="col-md-6">
                     <label for="imageArtist">Artist Name</label>
                     <br />
-                    <input name="artistNameInput" class="form-control" type="text" required />
+                    <input name="artistNameInput" class="form-control" type="text" value="@Model.ArtPieceInfo.imageDetails.Artist" required></input>
                 </div>
             </div>
 
@@ -79,15 +97,18 @@
             <br />
 
 
+
             <div class="row">
                 <div class="col-xl-12">
                     <label for="imageDescription">Description:</label>
                     <br />
-                    <textarea name="imageDescriptionInput" class="form-control" id="formInput"></textarea>
+                    <textarea name="imageDescriptionInput" class="form-control" value="@Model.ArtPieceInfo.imageDetails.Description" id="formInput">"@Model.ArtPieceInfo.imageDetails.Description</textarea>
                 </div>
             </div>
 
             <br />
+
+
 
             <!-- Create a seperate row for the labels so they're not duplicated when adding new rows -->
             <div class="row">
@@ -101,29 +122,81 @@
 
             <br />
 
-            <div class="dynamicThemes">
-                <!-- This div entire div will be duplicated when clicking the addition sign below-->
-                <div id="dynamicThemesInitial" class="dynamicThemeMember" style="margin-bottom: 2%;">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <select name="initialThemeCategory" class="form-control">
-                                <option>Colour</option>
-                                <option>Age</option>
-                                <option>Artist</option>
-                                <option>Art Type</option>
-                                <option>Genre</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
 
-                        <div class="col-md-6">
-                            <input name="initialThemeValue" class="form-control" type="text" required />
+            @foreach (var item in Model.ListArtPieceTheme.ArtPieceThemes)
+            {
+                <div class="dynamicThemes">
+                    <!-- This div entire div will be duplicated when clicking the addition sign below-->
+                    <div id="dynamicThemesInitial" class="dynamicThemeMember" style="margin-bottom: 2%;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select name="initialThemeCategory" class="form-control">
+                                    @switch (item.imgthemeTypeName)
+                                    {
+                                        case "Color":
+                                            <option selected>Colour</option>
+                                            <option>Age</option>
+                                            <option>Artist</option>
+                                            <option>Art Type</option>
+                                            <option>Genre</option>
+                                            <option>Other</option>
+                                            break;
+                                        case "Age":
+                                            <option>Colour</option>
+                                            <option>selected</option>
+                                            <option>Artist</option>
+                                            <option>Art Type</option>
+                                            <option>Genre</option>
+                                            <option>Other</option>
+                                            break;
+                                        case "Artists":
+                                            <option>Colour</option>
+                                            <option>Age</option>
+                                            <option selected>Artist</option>
+                                            <option>Art Type</option>
+                                            <option>Genre</option>
+                                            <option>Other</option>
+                                            break;
+                                        case "ArtType":
+                                            <option>Colour</option>
+                                            <option>Age</option>
+                                            <option>Artist</option>
+                                            <option selected>Art Type</option>
+                                            <option>Genre</option>
+                                            <option>Other</option>
+                                            break;
+                                        case "Genre":
+                                            <option>Colour</option>
+                                            <option>Age</option>
+                                            <option>Artist</option>
+                                            <option>Art Type</option>
+                                            <option selected>Genre</option>
+                                            <option>Other</option>
+                                            break;
+                                        case "Other":
+                                            <option>Colour</option>
+                                            <option>Age</option>
+                                            <option>Artist</option>
+                                            <option>Art Type</option>
+                                            <option>Genre</option>
+                                            <option selected>Other</option>
+                                            break;
+                                    }
+
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input name="initialThemeValue" class="form-control" type="text" value="@item.imgThemeName" required />
+                            </div>
+                            <br />
                         </div>
-                        <br />
                     </div>
+                    <!-- End of duplication -->
                 </div>
-                <!-- End of duplication -->
-            </div>
+                <br />
+            }
+
             <br />
 
             <div class="row">
@@ -137,7 +210,7 @@
             <br />
             <br />
 
-            <div class="row">
+            @*<div class="row">
                 <div class="col-xl-12" style="text-align: center;">
                     <label id="previewHeader" style="display: none;" for="imagePreview">Preview:</label>
                     <br />
@@ -156,11 +229,11 @@
                 </div>
             </div>
 
-            <br />
+            <br />*@
 
             <div class="row">
                 <div class="col-sm-3" style="margin-bottom: 20px;">
-                    <input type="submit" value="Upload" class="btn btn-primary" />
+                    <input type="submit" value="Update" class="btn btn-outline-danger" />
                 </div>
             </div>
         </form>
@@ -226,7 +299,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
-@*@section Styles {
-    <link rel="stylesheet" href="~/css/UploadImage.css" />
-}*@
