@@ -10,7 +10,7 @@ namespace Oeuvre.Models
             Image = new HashSet<Image>();
         }
 
-        public string GalleryId { get; set; }
+        public int GalleryId { get; set; }
         public string GalleryName { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

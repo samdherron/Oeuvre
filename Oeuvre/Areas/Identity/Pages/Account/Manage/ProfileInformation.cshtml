@@ -1,0 +1,90 @@
+﻿@page
+@model ProfileInformationModel
+@{
+    ViewData["Title"] = "ProfileInformation";
+}
+
+
+<div class="container rounded" id="addWorkContainer" style="background-color: white; margin-left: 25px;">
+
+    <h6 style="color: #a12412; padding-top: 15px;">Profile Settings</h6>
+    <br />
+    @*<form method="post" asp-controller="Upload" asp-action="SaveImage_GetData" enctype="multipart/form-data">*@
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-lg-6">
+            <label for="galleryName">Gallery Name</label>
+            <br />
+            <input name="galleryName" class="form-control" id="formInput" type="text" value="@Model.profile.galleryInformation.GalleryName" disabled />
+        </div>
+
+        <div class="col-md-6">
+            <label for="galleryType">Gallery Type</label>
+            <br />
+            <input name="galleryType" class="form-control" type="text" disabled />
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label for="phoneNumber">Phone Number</label>
+            <br />
+            <input name="phoneNumber" class="form-control" type="text" disabled />
+        </div>
+
+        <div class="col-md-6">
+            <label for="email">Email</label>
+            <br />
+            <input name="email" class="form-control" type="text" value="@Model.galleryEmail" required disabled/>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label for="address">Address</label>
+            <br />
+            <input name="address" class="form-control" type="text" value="@Model.profile.galleryInformation.Address" required disabled />
+        </div>
+
+        <div class="col-md-6">
+            <label for="postalCode">Postal Code</label>
+            <br />
+            <input name="postalCode" class="form-control" type="text" value="@Model.profile.galleryInformation.PostalCode" required disabled/>
+        </div>
+    </div>
+
+
+    <br />
+
+    <div class="row">
+        <div class="col-xl-6">
+            <label for="pieceDimensions">Piece Dimensions</label>
+            <br />
+            <input name="pieceDimensions" class="form-control" type="text" required />
+        </div>
+    </div>
+
+    <br />
+
+
+    <div class="row">
+        <div class="col-xl-12">
+            <label for="galleryDescription">Gallery Description</label>
+            <br />
+            <textarea name="galleryDescription" rows="10" class="form-control" id="formInput">@Model.profile.galleryInformation.GalleryDescription</textarea>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-sm-3" style="margin-bottom: 20px;">
+            <input type="submit" value="Save" class="btn btn-outline-danger rounded" />
+        </div>
+    </div>
+</form>
+</div>

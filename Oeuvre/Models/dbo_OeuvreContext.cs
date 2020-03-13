@@ -140,10 +140,7 @@ namespace Oeuvre.Models
 
             modelBuilder.Entity<Gallery>(entity =>
             {
-                entity.Property(e => e.GalleryId)
-                    .HasColumnName("Gallery_ID")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                entity.Property(e => e.GalleryId).HasColumnName("Gallery_ID");
 
                 entity.Property(e => e.Address)
                     .IsRequired()
@@ -199,11 +196,7 @@ namespace Oeuvre.Models
                     .IsRequired()
                     .IsUnicode(false);
 
-                entity.Property(e => e.GalleryId)
-                    .IsRequired()
-                    .HasColumnName("Gallery_ID")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                entity.Property(e => e.GalleryId).HasColumnName("Gallery_ID");
 
                 entity.Property(e => e.ImgLocation).HasColumnName("Img_Location");
 
