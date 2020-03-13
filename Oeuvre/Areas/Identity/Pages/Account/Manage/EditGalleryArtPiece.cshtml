@@ -32,97 +32,98 @@
         </div>
 
         @*<form method="post" asp-controller="Upload" asp-action="SaveImage_GetData" enctype="multipart/form-data">*@
-        <form method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-lg-6">
-                    <label for="imageName">Piece Name</label>
-                    <br />
-                    <input name="imageNameInput" class="form-control" id="formInput" type="text" required />
-                </div>
-
-                <div class="col-md-6">
-                    <label for="imageArtist">Artist Name</label>
-                    <br />
-                    <input name="artistNameInput" class="form-control" type="text" value="@Model.ArtPieceInfo.imageDetails.Artist" required></input>
-                </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="imageName">Piece Name</label>
+                <br />
+                <input name="imageNameInput" class="form-control" id="formInput" type="text" required />
             </div>
 
-            <br />
+            <div class="col-md-6">
+                <label for="imageArtist">Artist Name</label>
+                <br />
+                <input name="artistNameInput" class="form-control" type="text" value="@Model.ArtPieceInfo.imageDetails.Artist" required></input>
+            </div>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <label for="curatorName">Curator Name</label>
-                    <br />
-                    <input name="curatorName" class="form-control" type="text" required />
-                </div>
+        <br />
 
-                <div class="col-md-6">
-                    <label for="yearCreated">Year Created</label>
-                    <br />
-                    <input name="yearCreated" class="form-control" type="text" required />
-                </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="curatorName">Curator Name</label>
+                <br />
+                <input name="curatorName" class="form-control" type="text" required />
             </div>
 
-            <br />
+            <div class="col-md-6">
+                <label for="yearCreated">Year Created</label>
+                <br />
+                <input name="yearCreated" class="form-control" type="text" required />
+            </div>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <label for="medium">Medium</label>
-                    <br />
-                    <input name="medium" class="form-control" type="text" required />
-                </div>
+        <br />
 
-                <div class="col-md-6">
-                    <label for="collectionType">Current Or Permanent Collection</label>
-                    <br />
-                    @*<input name="collectionType" class="form-control" type="text" required />*@
-                    <select class="form-control" name="collectionType">
-                        <option value="">Select Collection Type</option>
-                        <option value="1">Current</option>
-                        <option value="2">Permanent</option>
-                    </select>
-                </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="medium">Medium</label>
+                <br />
+                <input name="medium" class="form-control" type="text" required />
             </div>
 
-            <br />
-
-            <div class="row">
-                <div class="col-xl-6">
-                    <label for="pieceDimensions">Piece Dimensions</label>
-                    <br />
-                    <input name="pieceDimensions" class="form-control" type="text" required />
-                </div>
+            <div class="col-md-6">
+                <label for="collectionType">Current Or Permanent Collection</label>
+                <br />
+                @*<input name="collectionType" class="form-control" type="text" required />*@
+                <select class="form-control" name="collectionType">
+                    <option value="">Select Collection Type</option>
+                    <option value="1">Current</option>
+                    <option value="2">Permanent</option>
+                </select>
             </div>
+        </div>
 
-            <br />
+        <br />
 
-
-
-            <div class="row">
-                <div class="col-xl-12">
-                    <label for="imageDescription">Description:</label>
-                    <br />
-                    <textarea name="imageDescriptionInput" class="form-control" value="@Model.ArtPieceInfo.imageDetails.Description" id="formInput">"@Model.ArtPieceInfo.imageDetails.Description</textarea>
-                </div>
+        <div class="row">
+            <div class="col-xl-6">
+                <label for="pieceDimensions">Piece Dimensions</label>
+                <br />
+                <input name="pieceDimensions" class="form-control" type="text" required />
             </div>
+        </div>
 
-            <br />
+        <br />
 
 
 
-            <!-- Create a seperate row for the labels so they're not duplicated when adding new rows -->
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="imageThemes">Theme Type:</label>
-                </div>
-                <div class="col-md-6">
-                    <label for="imageThemes">Theme:</label>
-                </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <label for="imageDescription">Description:</label>
+                <br />
+                <textarea name="imageDescriptionInput" class="form-control" value="@Model.ArtPieceInfo.imageDetails.Description" id="formInput">@Model.ArtPieceInfo.imageDetails.Description</textarea>
             </div>
+        </div>
 
-            <br />
+        <br />
 
 
+
+        <!-- Create a seperate row for the labels so they're not duplicated when adding new rows -->
+        <div class="row">
+            <div class="col-md-6">
+                <label for="imageThemes">Theme Type:</label>
+            </div>
+            <div class="col-md-6">
+                <label for="imageThemes">Theme:</label>
+            </div>
+        </div>
+
+        <br />
+
+        @if (Model.ListArtPieceTheme.ArtPieceThemes.Count > 0)
+        {
             @foreach (var item in Model.ListArtPieceTheme.ArtPieceThemes)
             {
                 <div class="dynamicThemes">
@@ -196,47 +197,76 @@
                 </div>
                 <br />
             }
+        }
+        else
+        {
+            <div class="dynamicThemes">
+                <!-- This div entire div will be duplicated when clicking the addition sign below-->
+                <div id="dynamicThemesInitial" class="dynamicThemeMember" style="margin-bottom: 2%;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select name="initialThemeCategory" class="form-control">                              
+                                        <option>Colour</option>
+                                        <option>Age</option>
+                                        <option>Artist</option>
+                                        <option>Art Type</option>
+                                        <option>Genre</option>
+                                        <option selected>Other</option>       
+                            </select>
+                        </div>
 
-            <br />
-
-            <div class="row">
-                <div class="col-sm-2">
-                    <img src="~/Icons/plusIcon2.png" height="24" width="24" onclick="addRow(this)" role="button" />
-                    <img src="~/Icons/xIcon.png" height="24" width="24" style="margin-left: 0.5em;" onclick="deleteRow(this)" role="button" />
+                        <div class="col-md-6">
+                            <input name="initialThemeValue" class="form-control" type="text" required />
+                        </div>
+                        <br />
+                    </div>
                 </div>
+                <!-- End of duplication -->
+            </div>
+            <br />
+        }
 
+
+        <br />
+
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="~/Icons/plusIcon2.png" height="24" width="24" onclick="addRow(this)" role="button" />
+                <img src="~/Icons/xIcon.png" height="24" width="24" style="margin-left: 0.5em;" onclick="deleteRow(this)" role="button" />
             </div>
 
-            <br />
-            <br />
+        </div>
 
-            @*<div class="row">
-                <div class="col-xl-12" style="text-align: center;">
-                    <label id="previewHeader" style="display: none;" for="imagePreview">Preview:</label>
-                    <br />
-                    <img id="imagePreview" style="height: auto; width: 60%; max-height: 850px;
-                                       max-width: 700px; display: none; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);" />
-                </div>
+        <br />
+        <br />
+
+        @*<div class="row">
+            <div class="col-xl-12" style="text-align: center;">
+                <label id="previewHeader" style="display: none;" for="imagePreview">Preview:</label>
+                <br />
+                <img id="imagePreview" style="height: auto; width: 60%; max-height: 850px;
+                                   max-width: 700px; display: none; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);" />
             </div>
+        </div>
 
-            <br />
+        <br />
 
-            <div class="row">
-                <div class="col-sm-3">
-                    <label id="imageLabel" for="file">Image:</label>
-                    <input id="imageUpload" type="file" name="image"
-                           accept="image/png, image/jpeg" onchange="previewImage(event)" required>
-                </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <label id="imageLabel" for="file">Image:</label>
+                <input id="imageUpload" type="file" name="image"
+                       accept="image/png, image/jpeg" onchange="previewImage(event)" required>
             </div>
+        </div>
 
-            <br />*@
+        <br />*@
 
-            <div class="row">
-                <div class="col-sm-3" style="margin-bottom: 20px;">
-                    <input type="submit" value="Update" class="btn btn-outline-danger" />
-                </div>
+        <div class="row">
+            <div class="col-sm-3" style="margin-bottom: 20px;">
+                <input type="submit" value="Update" class="btn btn-outline-danger" />
             </div>
-        </form>
+        </div>
+    </form>
     </div>
 
 

@@ -85,6 +85,8 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
                 imageDetails = newImage
             };
 
+            id = id.Replace(" ", "");
+
             var artPieceThemes = (from img in _context.Image
                                   join tl in _context.ThemeLookup on img.ImgId equals tl.ImgId
                                   join imgt in _context.ImgThemes on tl.ThemeLookupId equals imgt.ThemeLookupId
