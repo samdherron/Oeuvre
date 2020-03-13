@@ -54,7 +54,7 @@ namespace Oeuvre.Controllers
             var currentUser = await _users.GetUserAsync(HttpContext.User);
             string currentAuthID = currentUser.Id;
             var currentGallery = _context.Gallery.Single(g => g.AuthUserId == currentAuthID);
-            string currentGalleryID = currentGallery.GalleryId.Trim();
+            string currentGalleryID = currentGallery.GalleryId.ToString();
 
             List<FormThemeModel> themeList = new List<FormThemeModel>();
             FormDataModel enteredForm = new FormDataModel();

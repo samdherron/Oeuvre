@@ -121,8 +121,10 @@ namespace Oeuvre.Services
                 int highestNumber = numberList.Max() + 1;
 
 
+                
+
                 newDatabaseEntry.ImgId =  highestNumber.ToString();
-                newDatabaseEntry.GalleryId = galleryID;
+                newDatabaseEntry.GalleryId = int.Parse(galleryID);
                 newDatabaseEntry.DateUploaded = DateTime.UtcNow;
                 newDatabaseEntry.Description = securityClass.removeSqlInjectionParams(enteredForm.ImageDescription);
                 newDatabaseEntry.ImgLocation = imageURL;

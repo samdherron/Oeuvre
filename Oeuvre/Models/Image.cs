@@ -11,7 +11,7 @@ namespace Oeuvre.Models
         }
 
         public string ImgId { get; set; }
-        public string GalleryId { get; set; }
+        public int GalleryId { get; set; }
         public DateTime DateUploaded { get; set; }
         public string ThemeId { get; set; }
         public string Description { get; set; }
