@@ -23,18 +23,20 @@
         @{List<List<Image>> item = Model.Images;}
         @{List<string> id = Model.GalleryId;}
         @{List<string> nameString = Model.GalleryName;}
-        
+        @{List<string> descString = Model.GalleryDescription;}
+
         @for (var x = 0; x < Model.GalleryName.Count; x++)
         {
-            <div name="Gallerydisplaycard" class="col-sm-3 ml-auto"  id="exhibitionCardColumn">
-                <a asp-controller="Galleries" asp-action="Details" asp-route-id="@id[x]">
-                    <img class="listImage" src="@item[x][0].ImgLocation" alt="Current Exhibitions List #1" />
-                </a>
-                <h4 class="text-dark font-weight-bolder">@nameString[x]</h4>
-                <h6 class="text-dark" id="galleryImageDescription">@item[x][0].Description</h6>
-            </div>
-}
-        
-        
+        <div name="Gallerydisplaycard" class="col-sm-3 ml-auto" id="exhibitionCardColumn">
+            <a asp-controller="Galleries" asp-action="Details" asp-route-id="@id[x]">
+                <img class="listImage" src="@item[x][0].ImgLocation" alt="Current Exhibitions List #1" />
+            </a>
+            <h4 class="text-dark font-weight-bolder">@nameString[x]</h4>
+            <h6 class="text-dark">@descString[x]</h6>
+            
+        </div>
+        }
+
+
     </tbody>
 </table>

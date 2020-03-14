@@ -37,6 +37,7 @@ namespace Oeuvre.Controllers
             List<string> tempPostal = new List<string>();
             List<string> tempCity= new List<string>();
             List<string> tempId = new List<string>();
+            List<string> tempDesc = new List<string>();
             List < List < Image >> tempImages = new List<List<Image>>();
             GalleryListing galleryCollection = new GalleryListing();
             List<Image> myList = new List<Image>();
@@ -83,6 +84,7 @@ namespace Oeuvre.Controllers
                 tempProvince.Add(gallery.Province);               
                 tempPostal.Add(gallery.PostalCode);
                 tempCity.Add( gallery.City);
+                tempDesc.Add(gallery.GalleryDescription);
 
                 var images = (from image in _context.Image
                               where image.GalleryId.Contains(id)
@@ -98,7 +100,8 @@ namespace Oeuvre.Controllers
                                   image.Name
 
                               }).ToList();
-                for (int i = 1; i <= 3; i++)
+
+                for (int i = 1; i <=3; i++)
                 {
                     bool testExsist = true;
                     Image tempImage = new Image();
@@ -117,13 +120,23 @@ namespace Oeuvre.Controllers
                     {
                         tempImage.ImgLocation = "https://res.cloudinary.com/oeuvre/image/upload/v1583410971/no-image-available_jkydpu.jpg";
                         myList.Add(tempImage);
-                       // tempImages.Add(myList);
+                        if (i == 1)
+                        {
+                            //tempDesc.Add("This Gallery has no images yet. Stay tuned!");
+                        }
+                        
+                        // tempImages.Add(myList);
                         testExsist = true;
                     }
                     else
                     {
                         //tempImage.ImgLocation = "https://res.cloudinary.com/oeuvre/image/upload/v1583410971/no-image-available_jkydpu.jpg";
 
+                       // if (i == 1)
+                        //{
+                         //   tempDesc.Add(images.ElementAt(i).Description);
+                        //}
+                        
                         tempImage.ImgLocation = images.ElementAt(i).ImgLocation;
                         myList.Add(tempImage);
                        
@@ -143,6 +156,7 @@ namespace Oeuvre.Controllers
                 galleryCollection.Province= tempProvince;
                 galleryCollection.PostalCode = tempPostal;
                 galleryCollection.City = tempCity;
+                galleryCollection.GalleryDescription = tempDesc;
                 galleryCollection.Images=tempImages;
                // idCheckAdv = idCheck + 1;
                 //galleryCollection.galleryDisplays.Add(galleryImages);
@@ -207,9 +221,11 @@ namespace Oeuvre.Controllers
             galleryImages.Province = gallery.Province;
             galleryImages.PostalCode = gallery.PostalCode;
             galleryImages.City = gallery.City;
+            galleryImages.GalleryDescription = gallery.GalleryDescription;
             galleryImages.Images = myList;
+           
 
-            
+
             return View(galleryImages);
         }
 
