@@ -140,10 +140,7 @@ namespace Oeuvre.Models
 
             modelBuilder.Entity<Gallery>(entity =>
             {
-                entity.Property(e => e.GalleryId)
-                    .HasColumnName("Gallery_ID")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                entity.Property(e => e.GalleryId).HasColumnName("Gallery_ID");
 
                 entity.Property(e => e.Address)
                     .IsRequired()
@@ -154,6 +151,8 @@ namespace Oeuvre.Models
                 entity.Property(e => e.City)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.Property(e => e.GalleryDescription).HasColumnName("Gallery_Description");
 
                 entity.Property(e => e.GalleryName)
                     .IsRequired()
@@ -182,6 +181,13 @@ namespace Oeuvre.Models
 
                 entity.Property(e => e.Artist).IsUnicode(false);
 
+                entity.Property(e => e.CollectionType).HasColumnName("collectionType");
+
+                entity.Property(e => e.CuratorName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
                 entity.Property(e => e.DateUploaded)
                     .HasColumnName("Date_Uploaded")
                     .HasColumnType("datetime");
@@ -190,20 +196,26 @@ namespace Oeuvre.Models
                     .IsRequired()
                     .IsUnicode(false);
 
-                entity.Property(e => e.GalleryId)
-                    .IsRequired()
-                    .HasColumnName("Gallery_ID")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                entity.Property(e => e.GalleryId).HasColumnName("Gallery_ID");
 
                 entity.Property(e => e.ImgLocation).HasColumnName("Img_Location");
 
                 entity.Property(e => e.Name).IsUnicode(false);
 
+                entity.Property(e => e.PieceDimensions)
+                    .HasColumnName("pieceDimensions")
+                    .HasMaxLength(255)
+                    .IsFixedLength();
+
                 entity.Property(e => e.ThemeId)
                     .IsRequired()
                     .HasColumnName("Theme_ID")
                     .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.Property(e => e.YearCreated)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
                     .IsFixedLength();
 
                 entity.HasOne(d => d.Gallery)

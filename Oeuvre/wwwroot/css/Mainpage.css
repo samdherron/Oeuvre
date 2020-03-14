@@ -78,6 +78,7 @@ header {
     background-color: rgba(161, 36, 18, 0.8);
     border-radius: 20px;
     margin-bottom: 5%;
+    margin-left: 2%;
 }
 
 #innerImageButton:hover {
@@ -93,8 +94,15 @@ header {
     border-radius: 20px;
 }
 
+.headerDiscover {
+    font-size: 200%;
+    color: grey;
+}
+
+
 #subheaderDiscover {
     color: rgb(94, 94, 94);
+    margin-left: 2%;
 }
 
 #outerContainer {
@@ -171,8 +179,33 @@ header {
 
 @media display and (max-width: 575px) {
     body {
-        margin: auto;
+        /*margin: auto;*/
     }
 
 }
+
+#newsletterInput {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #808080;
+    color: #808080;
+    text-align:left;
+    outline: none;
+    width: 80%;
+}
+
+#submitButton {
+    color: #FFF;
+    background-color: rgba(161, 36, 18, 0.9);
+    padding: 2% 2%;
+    text-align: center;
+    -webkit-transition: background-color 1s;
+}
+
+    #submitButton:hover {
+        -webkit-transition: background-color 1s;
+        background-color: rgba(161, 36, 18, 1);
+    }
+
+
 

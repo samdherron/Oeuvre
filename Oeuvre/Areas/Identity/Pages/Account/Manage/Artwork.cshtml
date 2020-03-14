@@ -1,0 +1,59 @@
+﻿@page
+@model ArtworkModel
+@{
+    ViewData["Title"] = "Artwork";
+    ViewData["ActivePage"] = ManageNavPages.Artwork;
+}
+
+@*<h1>ArtWork</h1>*@
+
+@if (Model.Art.galleryCollection != null)
+{
+
+    <div class="container" style="background-color: white">
+        <h6 style="color: #a12412; padding-top: 15px;">Gallery Artwork</h6>
+
+        <table class="rounded" id="galleryCollectionID" width="100%">
+
+
+            @foreach (var item in Model.Art.galleryCollection)
+            {
+
+                <tr>
+                    <td>
+                        <img class="rounded" src=@Html.DisplayFor(modelItem => item.ImgLocation) alt="img" width="100px" height="100px">
+                    </td>
+                    <td>
+                        <div class="container">
+                            Name Of Piece: @Html.DisplayFor(modelItem => item.Name)
+                            <br />
+                            Artist Name: @Html.DisplayFor(modelItem => item.Artist)
+                            @*<br />
+                            Piece Description: @Html.DisplayFor(modelItem => item.Description)*@
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+
+                            <a asp-page="./EditGalleryArtPiece" asp-route-id=@item.ImgId>Edit</a> |
+                            <a asp-page="./EditGalleryArtPiece" asp-route-id=@item.ImgId>Details</a> |
+                            <a asp-page="./EditGalleryArtPiece" asp-route-id=@item.ImgId>Delete</a>
+
+                            @*<button type="button" id=@Html.DisplayFor(modelItem => item.ImgId) class="btn btn-outline-danger">Delete</button>
+                            <button type="button" asp-page="./EditGalleryArtPiece" asp-route-id="@Html.DisplayFor(modelItem => item.ImgId)" id=@Html.DisplayFor(modelItem => item.ImgId) class="btn btn-outline-info">Edit</button>*@
+                        </div>
+                    </td>
+
+                </tr>
+
+            }
+
+        </table>
+
+    </div>
+}
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

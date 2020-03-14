@@ -1,0 +1,46 @@
+﻿body {
+    background-color: #f3f3f3;
+}
+
+
+nav{
+    background-color: #a12412 !important;
+}
+
+.navbar {
+    background-color: #a12412 !important;
+}
+
+footer{
+    opacity: 0 !important;
+}
+
+
+
+.navbar-light .navbar-brand {
+    color: white !important;
+}
+
+.container{
+    max-width: 1000px;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    /*background-color: white;*/
+}
+
+table #galleryCollectionID tr, td {
+    margin-bottom: 15px;
+    padding: 5px;
+
+}
+
+@media (max-width: 756px) {
+    #addWorkContainer{
+        margin-left: 0px !important;
+        margin-top: 15px !important;
+    }
+}
+

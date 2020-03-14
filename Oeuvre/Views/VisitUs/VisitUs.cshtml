@@ -1,0 +1,323 @@
+﻿
+@{
+    ViewData["Title"] = "VisitUs";
+}
+
+<div class="container" style="background-color: #838383; height:1px; margin-top: 45px; margin-bottom:20px"></div>
+
+<h1>Visit A Gallery</h1>
+
+<div class="button-box" style="margin-left: 0; margin-top: 30px; margin-bottom: 40px;">
+    <button class="btn mapBtn" style="        border: 2px solid #dc3545;
+        background-color: #dc3545; color: white" id="nearMeBtn" onclick="changeSearchCriteria(1)"> Near Me </button>
+    <button class="btn mapBtn" style="border: 2px solid #dc3545; color: #dc3545" id="cityBtn" onclick="changeSearchCriteria(2)"> City </button>
+</div>
+
+
+<div class="input-group" style="width:100%; margin-bottom: 40px">
+    <span class="input-group-btn" style="background-color:#f3f3f3">
+        <button class="btn" style="background-color: #f3f3f3; border-radius: 0" onclick="checkForValidInfo()"><i class="fa fa-search" style="color: grey"></i></button>
+    </span>
+    <input type="text" class="form-control" id="userInfo" name="mapInput" placeholder="Postal Code" style="border: none; border-radius: 0; background-color: #f3f3f3">
+</div>
+
+<div class="container" id="errorMessage">
+
+   
+
+</div>
+
+
+<div class="container" id="myDiv" style="width:100%;height:500px; border-radius: 15px"></div>
+<div id="map"></div>
+<script type="text/javascript">
+    var lat = "";
+    var long = "";
+    var searchFilter = 1;
+    //Set the Latitude and Longitude of the Map
+    var myAddress = new google.maps.LatLng(43.3259999, -80.146000);
+
+    //Create Options or set different Characteristics of Google Map
+    var mapOptions = {
+        center: myAddress,
+        zoom: 15,
+        minZoom: 10,
+        streetViewControl: false,
+        mapTypeControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+
+    var bounds = new google.maps.LatLngBounds();
+    //Display the Google map in the div control with the defined Options
+    var map = new google.maps.Map(document.getElementById("myDiv"), mapOptions);
+
+    function changeSearchCriteria(id) {
+        searchFilter = id
+
+        if (searchFilter == "1") {
+
+            $('#userInfo').attr("placeholder","Postal Code");
+
+            document.getElementById("userInfo").value = "";
+
+            //document.getElementByName('mapInput').placeholder = "Postal Code";
+
+            document.getElementById("nearMeBtn").style.backgroundColor = "#dc3545";
+            document.getElementById("nearMeBtn").style.color = "white";
+
+            document.getElementById("cityBtn").style.backgroundColor = "white";
+            document.getElementById("cityBtn").style.color = "#dc3545";
+        }
+        else {
+              document.getElementById("userInfo").value = "";
+            
+            $('#userInfo').attr("placeholder","Address / City");
+
+            document.getElementById("cityBtn").style.backgroundColor = "#dc3545";
+            document.getElementById("cityBtn").style.color = "white";
+
+            document.getElementById("nearMeBtn").style.backgroundColor = "white";
+            document.getElementById("nearMeBtn").style.color = "#dc3545";
+        }
+
+        console.log(searchFilter);
+    }
+
+    function getMapInfo() {
+        if (searchFilter == 1) {
+            getLocation();
+        }
+        else if (searchFilter == 2) {       
+            getCityLocation();
+        }
+        else {
+
+        }
+    }
+
+    function checkForValidInfo() {
+        var userInput = document.getElementById("userInfo").value;
+
+        if (searchFilter == 0 || (userInput == "" || userInput == null)) {
+
+            console.log("error found");
+
+            setErrorMessage("Please choose one of the buttons and fill in the appropriate input!");
+
+        }
+        else {
+
+            if (searchFilter == 1) {
+
+                if (checkPostalCode(userInput) == true) {
+                    console.log("that is a valid postal code");
+                     getMapInfo(userInput);
+                }
+                else {
+                    $("#errorMessage").html();
+
+                    setErrorMessage("Please enter in a valid postal code");
+                }
+
+                 
+
+            } else {
+               getMapInfo(userInput);
+            }
+
+        }
+    }
+
+    function setErrorMessage(errorDesc) {
+
+          var errorMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                    + errorDesc +
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                    '<span aria-hidden="true">&times;</span>' +
+                    ' </button>' +
+                        '</div>';
+
+        $("#errorMessage").html(errorMessage);
+    }
+
+    function checkPostalCode(userInput) {
+
+        var userPostal = userInput.toUpperCase();
+        var postalRegex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+
+        //var checkPostal = regex.exec()
+        if (postalRegex.test(userPostal) == true) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    function getCityLocation() {
+        var city = document.getElementById("userInfo").value;
+
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + city + '&key=AIzaSyDyjF30YbdusvvUeLmtnfEMFIfytOrvkEU&';
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+        }).done(function (result) {
+            var lat = result.results[0].geometry.location.lat;
+            var long = result.results[0].geometry.location.lng;
+
+            getPlaces(lat, long);
+
+        });
+
+    }
+
+    function getLocation() {
+        var postalCode = document.getElementById("userInfo").value;
+
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDyjF30YbdusvvUeLmtnfEMFIfytOrvkEU&components=postal_code:' + postalCode;
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+        }).done(function (result) {
+            console.log(result);
+            console.log(result.results[0].geometry.location.lat);
+
+            lat = result.results[0].geometry.location.lat;
+            long = result.results[0].geometry.location.lng;
+
+            getPlaces(lat, long);
+        });
+
+    }
+
+    function getPlaces(lat, long) {
+
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+        $.ajax({
+            url: proxyurl + 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDyjF30YbdusvvUeLmtnfEMFIfytOrvkEU&location=' + lat + ',' + long + '&radius=5000&keyword=gallery',
+            type: 'POST',
+        }).done(function (result) {
+            createNewMap(result, lat, long);
+        });
+    }
+
+    function createNewMap(result, lat, long) {
+
+        var myAddress = new google.maps.LatLng(lat, long);
+
+        mapOptions = {
+            center: myAddress,
+            zoom: 10,
+            minZoom: 10,
+            streetViewControl: false,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        map = new google.maps.Map(document.getElementById("myDiv"), mapOptions);
+
+        map.setTilt(45);
+
+        //Info Window Content
+        var contentString = "";
+        var infowindow = new google.maps.InfoWindow();
+        var marker, i;
+
+        var position = new google.maps.LatLng(lat, long);
+
+        bounds.extend(position);
+
+        marker = new google.maps.Marker({
+            position: position,
+            map: map
+        });
+
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+                infowindow.setContent("You Are Here!");
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
+
+        infowindow.setContent("You Are Here!");
+        infowindow.open(map, marker);
+
+        var contentArray = new Array(result.results.length);
+
+        for (i = 0; i < result.results.length; i++) {
+
+            console.log("");
+            console.log("");
+            console.log("Latitude: " + result.results[i].geometry.location.lat + " Longitude: " + result.results[i].geometry.location.lng);
+            console.log("Name: " + result.results[i].name);
+            console.log("");
+            console.log("");
+
+            var placeLat = result.results[i].geometry.location.lat;
+            var placeLong = result.results[i].geometry.location.lng;
+            var name = result.results[i].name;
+            var location = result.results[i].vicinity;
+            var urlId = result.results[i].place_id;
+
+
+            var url = 'https://www.google.com/maps/place/?q=place_id:' + urlId;
+
+            var contentString = '<div id="content"><div id="siteNotice"></div>';
+            contentString += '<div id="bodyContent"><p><b>' + name + '</b></p>';
+            contentString += '<p>' + location + '</p>';
+
+            contentString += '<a href="' + url + '" target="_blank">View on Google Maps</a>';
+
+
+            contentArray[i] = contentString;
+
+            console.log("The console string is: " + contentString);
+
+            var position = new google.maps.LatLng(placeLat, placeLong);
+
+            bounds.extend(position);
+
+            marker = new google.maps.Marker({
+                position: position,
+                map: map
+            });
+
+
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+
+
+                    infowindow.setContent(contentArray[i]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+
+            // Automatically center the map fitting all markers on the screen
+            map.fitBounds(bounds);
+
+            contentString = "";
+
+           
+        }
+
+         document.getElementById("userInfo").value = "";
+        // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+        //var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        //    this.setZoom(14);
+        //    google.maps.event.removeListener(boundsListener);
+        //});
+    }
+
+
+
+</script>

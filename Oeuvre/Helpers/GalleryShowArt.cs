@@ -16,7 +16,7 @@ namespace Oeuvre.Helpers
             
 
             var images = (from image in _dbContext.Image
-                          where image.GalleryId.Contains(id)
+                          where image.GalleryId == int.Parse(id)
                           select new
                           {
                               image.ImgId,

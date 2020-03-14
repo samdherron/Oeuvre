@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Oeuvre.Models;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-
+using Oeuvre.Services;
 
 namespace Oeuvre.Controllers
 {
@@ -18,6 +18,7 @@ namespace Oeuvre.Controllers
         private dbo_OeuvreContext _context;
         Account _account;
         Cloudinary _cloudinary;
+        HomeDataService _dataService;
 
         public HomeController(ILogger<HomeController> logger, dbo_OeuvreContext context)
         {
@@ -29,16 +30,56 @@ namespace Oeuvre.Controllers
             _cloudinary = new Cloudinary(_account);
             _logger = logger;
             _context = context;
+
+            _dataService = new HomeDataService(_context);
+
         }
 
         public IActionResult Index()
         {
+            OrchestratePageData();
             return View();
         }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public async void OrchestratePageData()
+        {
+            await GetGalleryInfo();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetGalleryInfo()
+        {
+
+            List<GalleryDisplay> galleryList = _dataService.RetrieveGalleryInfo();
+
+            if (galleryList.Count == 3)
+            {
+                for (int i = 0; i < galleryList.Count; i++)
+                {
+                    string indexKey = "galleryName" + (i + 1);
+                    ViewData[indexKey] = galleryList.ElementAt(i).GalleryName;
+                }
+
+            }
+
+            List<string> imageURLS = _dataService.RetrieveGalleryImages(galleryList);
+
+            if (imageURLS.Count == 3)
+            {
+                for (int i = 0; i < galleryList.Count; i++)
+                {
+                    string indexKey = "galleryImage" + (i + 1);
+                    ViewData[indexKey] = imageURLS.ElementAt(i);
+                }
+            }
+
+            return Ok();
+            
         }
 
         //public ViewResult getList()
