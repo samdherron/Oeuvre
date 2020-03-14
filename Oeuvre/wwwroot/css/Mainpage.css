@@ -179,7 +179,7 @@ header {
 
 @media display and (max-width: 575px) {
     body {
-        margin: auto;
+        /*margin: auto;*/
     }
 
 }

@@ -1,55 +1,38 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+using Oeuvre.Controllers;
+using Oeuvre.Models;
+using Oeuvre.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Oeuvre.Models;
-using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
-using Microsoft.AspNetCore.Http;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using Oeuvre.Data;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Oeuvre.Services;
 
-namespace Oeuvre.Controllers
+namespace Oeuvre.Areas.Identity.Pages.Account.Manage
 {
-    public class UploadController : Controller
+    public class addWorkModel : PageModel
     {
-
         private readonly ILogger<UploadController> _logger;
         private dbo_OeuvreContext _context;
         IWebHostEnvironment _envir;
         private readonly UserManager<IdentityUser> _users;
         UploadService uploadService;
 
-        public UploadController(dbo_OeuvreContext context, ILogger<UploadController> logger, IWebHostEnvironment environment, UserManager<IdentityUser> userManager)
+        public addWorkModel(dbo_OeuvreContext context, ILogger<UploadController> logger, IWebHostEnvironment environment, UserManager<IdentityUser> userManager)
         {
             _logger = logger;
             _context = context;
             _envir = environment;
             _users = userManager;
             uploadService = new UploadService(_context);
-        }
 
-        //Default action of returning a view
-        public IActionResult UploadImage()
-        {
-            return View();
         }
-
-        /// <summary>
-        /// This method grabs the image from the front end,
-        /// temporarily saves it locally in the wwwroot folder and gets the form information.
-        /// </summary>
-        /// <param name="image">The image the user chose before submitting the form.</param>
-        /// <param name="form">The form the user entered data into associated with the image.</param>
-        [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> SaveImage_GetData(IFormFile image, IFormCollection form)
+        
+        public async Task<IActionResult> OnPostAsync(IFormFile image, IFormCollection form)
         {
             var currentUser = await _users.GetUserAsync(HttpContext.User);
             string currentAuthID = currentUser.Id;
@@ -73,8 +56,8 @@ namespace Oeuvre.Controllers
                     enteredForm.ImageDescription = form.ElementAt(2).Value.ToString();
 
                     //Splits all of the theme types and theme values into two seperate string arrays
-                    string[] themeTypeSplit = Request.Form.ElementAt(3).Value.ToString().Split(',');
-                    string[] themeValueSplit = Request.Form.ElementAt(4).Value.ToString().Split(',');
+                    string[] themeTypeSplit = Request.Form.ElementAt(8).Value.ToString().Split(',');
+                    string[] themeValueSplit = Request.Form.ElementAt(9).Value.ToString().Split(',');
                     int numberThemes = themeTypeSplit.Length;
 
                     //Generates a List of FormThemeModel objects
@@ -102,7 +85,7 @@ namespace Oeuvre.Controllers
 
 
 
-            return View("UploadImage");
+            return Page();
 
         }
 
@@ -119,8 +102,9 @@ namespace Oeuvre.Controllers
             //Saves all image & theme information into database
             await uploadService.SaveDatabase(formData, galleryID, imageURL);
 
-            return Ok();
+            return Page();
         }
-
     }
+
+    
 }

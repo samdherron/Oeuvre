@@ -10,9 +10,10 @@
             <img src="~/Icons/facebookPlaceholdericon.png" width="32" height="32" alt="facebookIcon" />
         </li>
         -->
-            <li class="nav-item">
-                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name!</a>
-            </li>
+        <li class="nav-item">
+            @*<a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name!</a>*@
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/ProfileInformation" title="Manage">@User.Identity.Name!</a>
+        </li>
             <li class="nav-item">
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button type="submit" class="nav-link btn btn-link text-light">Logout</button>

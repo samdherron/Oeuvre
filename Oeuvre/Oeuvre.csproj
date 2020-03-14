@@ -5,6 +5,32 @@
     <UserSecretsId>aspnet-Oeuvre-382795D1-A1A8-409C-AAC4-70E04938A2A5</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Areas\Identity\Pages\Account\library\jquery\dist\jquery.js" />
+    <None Remove="Areas\Identity\Pages\Account\library\jquery\dist\jquery.min.js" />
+    <None Remove="Areas\Identity\Pages\Account\library\jquery\dist\jquery.min.map" />
+    <None Remove="Areas\Identity\Pages\Account\library\jquery\LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\Identity\Pages\Account\library\jquery\dist\jquery.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\library\jquery\dist\jquery.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\library\jquery\dist\jquery.min.map">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\library\jquery\LICENSE.txt">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.4.1" />
@@ -18,6 +44,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Views\ProfileInformation\" />
   </ItemGroup>
 
 </Project>

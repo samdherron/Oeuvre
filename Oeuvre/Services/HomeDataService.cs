@@ -34,7 +34,7 @@ namespace Oeuvre.Services
             {
                 GalleryDisplay currentGallery = new GalleryDisplay();
                 currentGallery.GalleryName = threeGalleries.ElementAt(i).GalleryName;
-                currentGallery.GalleryId = threeGalleries.ElementAt(i).GalleryId;
+                currentGallery.GalleryId = threeGalleries.ElementAt(i).GalleryId.ToString();
                 homepageGalleries.Add(currentGallery);
             }
 
@@ -51,7 +51,7 @@ namespace Oeuvre.Services
             {
                 var galleryRandomImage = (from b in _context.Image
                                           orderby b.ImgId
-                                          where b.GalleryId == galleryNames.ElementAt(i).GalleryId
+                                          where b.GalleryId == int.Parse(galleryNames.ElementAt(i).GalleryId)
                                           select b.ImgLocation).Take(1).ToList();
                 imageURLS.Add(galleryRandomImage.FirstOrDefault());
 

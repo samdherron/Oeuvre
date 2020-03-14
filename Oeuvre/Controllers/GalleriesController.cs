@@ -75,10 +75,10 @@ namespace Oeuvre.Controllers
                   }
                   id = idCheck.ToString();
                   */
-                id = galleryList[x].GalleryId;
+                id = galleryList[x].GalleryId.ToString();
                 gallery = await _context.Gallery
-                .FirstOrDefaultAsync(m => m.GalleryId == id);
-                tempId.Add(gallery.GalleryId);
+                .FirstOrDefaultAsync(m => m.GalleryId == int.Parse(id));
+                tempId.Add(gallery.GalleryId.ToString());
                 tempName.Add(gallery.GalleryName);
                 tempAddress.Add( gallery.Address);
                 tempProvince.Add(gallery.Province);               
@@ -87,7 +87,7 @@ namespace Oeuvre.Controllers
                 tempDesc.Add(gallery.GalleryDescription);
 
                 var images = (from image in _context.Image
-                              where image.GalleryId.Contains(id)
+                              where image.GalleryId == int.Parse(id)
                               select new
                               {
                                   image.ImgId,
@@ -184,7 +184,7 @@ namespace Oeuvre.Controllers
             }
 
             var gallery = await _context.Gallery
-                .FirstOrDefaultAsync(m => m.GalleryId == id);
+                .FirstOrDefaultAsync(m => m.GalleryId == int.Parse(id));
             if (gallery == null)
             {
                 return NotFound();
@@ -194,7 +194,7 @@ namespace Oeuvre.Controllers
 
 
             var images = (from image in _context.Image
-                          where image.GalleryId.Contains(id)
+                          where image.GalleryId == int.Parse(id)
                           select new
                           {
                               image.ImgId,
@@ -274,7 +274,7 @@ namespace Oeuvre.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("GalleryId,GalleryName,Address,City,PostalCode,Province,AuthUserId")] Gallery gallery)
         {
-            if (id != gallery.GalleryId)
+            if (int.Parse(id) != gallery.GalleryId)
             {
                 return NotFound();
             }
@@ -288,7 +288,7 @@ namespace Oeuvre.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!GalleryExists(gallery.GalleryId))
+                    if (!GalleryExists(gallery.GalleryId.ToString()))
                     {
                         return NotFound();
                     }
@@ -311,7 +311,7 @@ namespace Oeuvre.Controllers
             }
 
             var gallery = await _context.Gallery
-                .FirstOrDefaultAsync(m => m.GalleryId == id);
+                .FirstOrDefaultAsync(m => m.GalleryId == int.Parse(id));
             if (gallery == null)
             {
                 return NotFound();
@@ -333,7 +333,7 @@ namespace Oeuvre.Controllers
 
         private bool GalleryExists(string id)
         {
-            return _context.Gallery.Any(e => e.GalleryId == id);
+            return _context.Gallery.Any(e => e.GalleryId == int.Parse(id));
         }
     }
 }
