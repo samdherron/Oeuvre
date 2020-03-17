@@ -211,4 +211,12 @@ header {
     }
 
 
+#themeValue {
+    color: #ad4132;
+    font-size: 80%;
+    font-weight: bold;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
 

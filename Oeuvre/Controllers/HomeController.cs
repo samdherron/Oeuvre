@@ -49,6 +49,7 @@ namespace Oeuvre.Controllers
         public async void OrchestratePageData()
         {
             await GetGalleryInfo();
+            await GetThemeInfo();
         }
 
         [HttpGet]
@@ -80,6 +81,62 @@ namespace Oeuvre.Controllers
 
             return Ok();
             
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetThemeInfo()
+        {
+
+            Tuple<string, int> galleryInfo = _dataService.RetrieveGalleryName_ThemeCards();
+
+            if (galleryInfo != null)
+            {
+
+                string galleryName = galleryInfo.Item1;
+                int galleryID = galleryInfo.Item2;
+
+                ViewData["themeCards_galleryName"] = galleryName;
+
+                List<Image> images = _dataService.RetrieveImages_ThemeCards(galleryID);
+
+
+                List<string> imageThemeValues = _dataService.RetrieveThemeValues_ThemeCards(images);
+
+                //Will cap the description at 60 characters and throw an ellipsis at the end.
+                for (int i = 0; i < images.Count; i++)
+                {
+                    string indexKey = "themeCards_Gallery" + (i + 1) + "SRC";
+                    ViewData[indexKey] = images.ElementAt(i).ImgLocation;
+
+                    indexKey = "themeCards_Gallery" + (i + 1) + "Theme";
+                    ViewData[indexKey] = imageThemeValues.ElementAt(i);
+
+
+
+                    indexKey = "themeCards_Gallery" + (i + 1) + "Description";
+
+                    if (images.ElementAt(i).Description.Length > 60)
+                    {
+                        string descriptionCut = images.ElementAt(i).Description.Substring(0, 60);
+                        descriptionCut += "...";
+                        ViewData[indexKey] = descriptionCut;
+                    }
+
+                    else
+                    {
+                        ViewData[indexKey] = images.ElementAt(i).Description;
+
+
+                    }
+
+                }
+
+            }
+           
+
+            return Ok();
+
         }
 
         //public ViewResult getList()
