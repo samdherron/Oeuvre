@@ -197,7 +197,10 @@ header {
 #submitButton {
     color: #FFF;
     background-color: rgba(161, 36, 18, 0.9);
-    padding: 2% 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 2%;
+    padding-bottom: 2%;
     text-align: center;
     -webkit-transition: background-color 1s;
 }
