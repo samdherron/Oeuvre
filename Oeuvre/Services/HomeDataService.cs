@@ -61,6 +61,38 @@ namespace Oeuvre.Services
             return imageURLS;
         }
 
+        public Tuple<string, int> RetrieveGalleryName_ExhibitionCards()
+        {
+
+            string galleryName;
+            int galleryID;
+            var randomGallery = (from g in _context.Gallery
+                                 where g.GalleryId == 2
+                                 select g).ToList();
+
+
+            galleryName = randomGallery[0].GalleryName;
+            galleryID = randomGallery[0].GalleryId;
+
+            var galleryTuple = new Tuple<string, int>(galleryName, galleryID);
+
+            return galleryTuple;
+        }
+
+        public List<string> RetrieveCollectionTypes_ExhibitionCards(List<Image> images)
+        {
+            List<string> collectionTypes = new List<string>();
+
+            foreach (Image i in images)
+            {
+                collectionTypes.Add(i.CollectionType.Trim());
+            }
+
+
+            return collectionTypes;
+
+        }
+
         public Tuple<string, int> RetrieveGalleryName_ThemeCards()
         {
 
