@@ -24,6 +24,7 @@
     margin-top: 0;
     height: 20%;
     background-color: #eeedeb;
+    width: 100%;
 }
 
 #innerRow {
@@ -217,6 +218,11 @@ header {
     font-weight: bold;
     margin-top: 1%;
     margin-bottom: 1%;
+}
+
+#searchbarItem {
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
 }
 
 
