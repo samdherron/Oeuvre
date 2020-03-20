@@ -66,31 +66,35 @@
             <!-- Update the srcs for the images, gallery names and descriptions shown from viewbag in controller -->
             <div name="galleryImageOne" class="col-sm-3 ml-auto" id="galleryCardColumn">
                 <a asp-controller="Galleries" asp-action="Index">
-                    <img class="listImage" src=@ViewData["galleryImage1"] alt="Discover Gallery List #1" />
+                    <img class="listImage" src="~/Assets/Home/Willet_1.jpg" alt="Discover Gallery List #1" />
                 </a>
-                <h4 class="text-dark font-weight-bolder">@ViewData["galleryName1"]</h4>
-                <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
+                <h4 class="text-dark font-weight-bolder">University of Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
             </div>
 
 
             <div name="galleryImageTwo" class="col-sm-3 ml-auto" id="galleryCardColumn">
                 <a asp-controller="Galleries" asp-action="Index">
-                    <img class="listImage" src=@ViewData["galleryImage2"] alt="Discover Gallery List #2" />
+                    <img class="listImage" src="~/Assets/Home/Creek-Crossing_2013_Nurielle-Stern_websize.jpg" alt="Discover Gallery List #2" />
                 </a>
-                <h4 class="text-dark font-weight-bolder">@ViewData["galleryName2"]</h4>
-                <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
+                <h4 class="text-dark font-weight-bolder">The Clay and Glass</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
             </div>
 
 
             <div name="galleryImageThree" class="col-sm-3 ml-auto mr-auto" id="galleryCardColumn">
                 <a asp-controller="Galleries" asp-action="Index">
-                    <img class="listImage" src=@ViewData["galleryImage3"] alt="Discover Gallery List #3" />
+                    <img class="listImage" src="~/Assets/Home/1973004001_trim.jpg" alt="Discover Gallery List #3" />
                 </a>
-                <h4 class="text-dark font-weight-bolder">@ViewData["galleryName3"]</h4>
-                <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
             </div>
         </div>
 
+        <br />
+        <br />
+        <br />
+        <br />
         <br />
         <br />
 
@@ -120,35 +124,34 @@
 
         <div class="row mr-auto" id="exploreGalleryCards">
 
-            <!-- Update the srcs for the images, gallery names and descriptions shown from viewbag in controller -->
             <div name="exhibitionImageOne" class="col-sm-3 ml-auto" id="exhibitionCardColumn">
                 <a asp-controller="SearchGallery" asp-action="SearchGallery">
-                    <img class="listImage" src=@ViewData["exhibitionsCard1_SRC"] alt="Current Exhibitions List #1" />
+                    <img class="listImage" src="~/Assets/Home/birmingham-museums-trust-5F3u0j6s6pM-unsplash.jpg" alt="Current Exhibitions List #1" />
                 </a>
                 <br />
-                <p id="themeValue">@ViewData["exhibitionsCard1_CollectionType"]</p>
-                <h4 class="text-dark font-weight-bolder">@ViewData["exhibitionCard_galleryName"]</h4>
-                <h6 class="text-dark" id="galleryImageDescription">@ViewData["exhibitionsCard1_Description"]</h6>
+                <p id="themeValue">Permanent Collections</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
             </div>
 
 
             <div name="exhibitionImageTwo" class="col-sm-3 ml-auto" id="exhibitionCardColumn">
                 <a asp-controller="SearchGallery" asp-action="SearchGallery">
-                    <img class="listImage" src=@ViewData["exhibitionsCard2_SRC"] alt="Current Exhibitions List #2" />
+                    <img class="listImage" src="~/Assets/Home/birmingham-museums-trust-8FNuCxFfbFw-unsplash.jpg" alt="Current Exhibitions List #2" />
                 </a>
-                <p id="themeValue">@ViewData["exhibitionsCard2_CollectionType"]</p>
-                <h4 class="text-dark font-weight-bolder">@ViewData["exhibitionCard_galleryName"]</h4>
-                <h6 class="text-dark" id="galleryImageDescription">@ViewData["exhibitionsCard2_Description"]</h6>
+                <p id="themeValue">Current Collections</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
             </div>
 
 
             <div name="exhibitionImageThree" class="col-sm-3 ml-auto mr-auto" id="exhibitionCardColumn">
                 <a asp-controller="SearchGallery" asp-action="SearchGallery">
-                    <img class="listImage" src=@ViewData["exhibitionsCard3_SRC"] alt="Current Exhibitions List #3" />
+                    <img class="listImage" src="~/Assets/Home/birmingham-museums-trust-9pOXS0ZGPDM-unsplash.jpg" alt="Current Exhibitions List #3" />
                 </a>
-                <p id="themeValue">@ViewData["exhibitionsCard3_CollectionType"]</p>
-                <h4 class="text-dark font-weight-bolder">@ViewData["exhibitionCard_galleryName"]</h4>
-                <h6 class="text-dark" id="galleryImageDescription">@ViewData["exhibitionsCard3_Description"]</h6>
+                <p id="themeValue">Permanent Collections</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
             </div>
         </div>
 
@@ -185,31 +188,31 @@
             <!-- Update the srcs for the images, gallery names and descriptions shown from viewbag in controller -->
             <div name="themeImageOne" class="col-sm-3 ml-auto" id="themeCardColumn">
                 <a asp-controller="Galleries" asp-action="Index">
-                    <img class="listImage" src=@ViewData["themeCards_Gallery1SRC"] alt="Explore Themes List #1" />
+                    <img class="listImage" src="~/Assets/Home/gustavo-centurion-O6fs4ablxw8-unsplash.jpg" alt="Explore Themes List #1" />
                 </a>
-                <p id="themeValue">@ViewData["themeCards_Gallery1Theme"]</p>
-                <h4 class="text-dark font-weight-bolder">@ViewData["themeCards_galleryName"]</h4>
-                <h6 class="text-dark" id="galleryImageDescription">@ViewData["themeCards_Gallery1Description"]</h6>
+                <p id="themeValue">Abstract Expressionism</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
             </div>
 
 
             <div name="themeImageTwo" class="col-sm-3 ml-auto" id="themeCardColumn">
                 <a asp-controller="Galleries" asp-action="Index">
-                    <img class="listImage" src=@ViewData["themeCards_Gallery2SRC"] alt="Explore Themes List #2" />
+                    <img class="listImage" src="~/Assets/Home/europeana-3DcrMnM-uMQ-unsplash.jpg" alt="Explore Themes List #2" />
                 </a>
-                <p id="themeValue">@ViewData["themeCards_Gallery2Theme"]</p>
-                <h4 class="text-dark font-weight-bolder">@ViewData["themeCards_galleryName"]</h4>
-                <h6 class="text-dark" id="galleryImageDescription">@ViewData["themeCards_Gallery2Description"]</h6>
+                <p id="themeValue">Nature</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
             </div>
 
 
             <div name="themeImageThree" class="col-sm-3 ml-auto mr-auto" id="themeCardColumn">
                 <a asp-controller="Galleries" asp-action="Index">
-                    <img class="listImage" src=@ViewData["themeCards_Gallery3SRC"] alt="Explore Themes List #3" />
+                    <img class="listImage" src="~/Assets/Home/mr-tt-xb0wLfZH9Zo-unsplash.jpg" alt="Explore Themes List #3" />
                 </a>
-                <p id="themeValue">@ViewData["themeCards_Gallery3Theme"]</p>
-                <h4 class="text-dark font-weight-bolder">@ViewData["themeCards_galleryName"]</h4>
-                <h6 class="text-dark" id="galleryImageDescription">@ViewData["themeCards_Gallery3Description"]</h6>
+                <p id="themeValue">Surrealist</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
             </div>
         </div>
 
