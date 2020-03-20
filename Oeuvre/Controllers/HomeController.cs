@@ -19,7 +19,6 @@ namespace Oeuvre.Controllers
         Account _account;
         Cloudinary _cloudinary;
         HomeDataService _dataService;
-
         public HomeController(ILogger<HomeController> logger, dbo_OeuvreContext context)
         {
             _account = new Account(
