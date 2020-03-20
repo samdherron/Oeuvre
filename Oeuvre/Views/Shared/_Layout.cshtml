@@ -38,9 +38,12 @@
                             <li class="nav-item" id="navLi">
                                 <a class="nav-link text-light" asp-area="" asp-controller="VisitUs" asp-action="VisitUs">Visit</a>
                             </li>
+                            <li class="nav-item" id="navLi">
+                                <a class="nav-link text-light" asp-area="" asp-controller="ArtPieceController" asp-action="Gallery_ArtPiece">Art Piece Test</a>
+                            </li>
                             @*<li class="nav-item" id="navLi">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Upload" asp-action="UploadImage">Upload</a>
-                            </li>*@
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Upload" asp-action="UploadImage">Upload</a>
+                                </li>*@
                         </ul>
                     </div>
                 </div>
@@ -48,25 +51,25 @@
         </nav>
     </header>
 
-    <div class="container-fluid">
-        <div class="row" id="searchBarRow">
-            <div class="col-sm-1 offset-1">
-                <a asp-controller="Home" asp-action="Index">
-                    <img src="~/Icons/Logos/FinalLogo.png" class="img-fluid ml-auto" style="margin-left: auto; margin-top: 26%; margin-bottom: 10%;" height="101" width="192" alt="Oeuvre Art Collection" />
-                </a>
-            </div>
-            <div class="col-md-7" id="innerRow">
-                <div class="right-inner-addon">
-                    <i class="fa fa-search icon"></i>
-                    <input type="search" class="form-control" style="margin-bottom: 2%;" placeholder="Search" />
-                </div>
-            </div>
 
-            <div class="col-sm-2" id="innerRow">
-                <button class="btn" style="margin-bottom: 2%;">Add your gallery's work</button>
-            </div>
+    <div class="container-fluid" id="searchBarRow">
+        <div class="col-md-2">
+
         </div>
-    </div>
+        <div class="input-group" style="width:100%">
+            <a asp-controller="Home" asp-action="Index" id="searchbarItem" style="margin-left: 8%;">
+                <img src="~/Icons/Logos/FinalLogo.png" class="img-fluid" height="34" width="141" alt="Oeuvre Art Collection" />
+            </a>
+            <input type="search" class="form-control" placeholder="Search" style="margin-left: 2%;" id="searchbarItem" />
+            <span class="input-group-btn" style="background-color:#f3f3f3" id="searchbarItem">
+                <button asp-controller="SearchGallery" asp-action="getList" class="btn" style="background-color: #f3f3f3; border-radius: 0"><i class="fa fa-search" style="color: grey"></i></button>
+            </span>
+            <button class="btn btn-secondary" style="margin-left: 2%; font-size: 95%; font-weight: bold; margin-right: 8%; background-color: #9b999a;" id="searchbarItem">Add your gallery's work</button>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        </div>
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -106,9 +109,9 @@
                     <div class="form-group">
                         <div class="d-inline-block" style="width: 100%;">
                             <input type="text" class="input-group-text" id="newsletterInput" placeholder="Email" />
-                            <br/>
+                            <br />
                             <input type="text" class="input-group-text" id="newsletterInput" placeholder="First Name" />
-                            <br/>
+                            <br />
                             <input type="text" class="input-group-text" id="newsletterInput" placeholder="Last Name" />
                         </div>
 
@@ -131,21 +134,21 @@
             <div class="row" style="width: 80%; margin-left: auto; margin-right: auto;">
                 <div class="col-sm-3" style="margin-top: 5%; margin-bottom: 5%;">
                     <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
-                                <a class="text-light" href="http://www.facebook.com" id="iconLink">
-                                    <img src="~/Icons/facebook_maroon.png" width="24" height="24" alt="facebookIcon" />
-                                </a>
-                            </li>
-                            <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
-                                <a class="text-light" href="http://www.instagram.com" id="iconLink">
-                                    <img src="~/Icons/instagram_maroon.png" width="24" height="24" alt="instagramIcon" />
-                                </a>
-                            </li>
-                            <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
-                                <a class="text-light" href="http://www.twitter.com" id="iconLink">
-                                    <img src="~/Icons/twitter_maroon.png" width="24" height="24" alt="twitterIcon" />
-                                </a>
-                            </li>
+                        <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
+                            <a class="text-light" href="http://www.facebook.com" id="iconLink">
+                                <img src="~/Icons/facebook_maroon.png" width="24" height="24" alt="facebookIcon" />
+                            </a>
+                        </li>
+                        <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
+                            <a class="text-light" href="http://www.instagram.com" id="iconLink">
+                                <img src="~/Icons/instagram_maroon.png" width="24" height="24" alt="instagramIcon" />
+                            </a>
+                        </li>
+                        <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
+                            <a class="text-light" href="http://www.twitter.com" id="iconLink">
+                                <img src="~/Icons/twitter_maroon.png" width="24" height="24" alt="twitterIcon" />
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
