@@ -23,7 +23,6 @@ namespace Oeuvre.Controllers
         // GET: ArtPiece
         public async Task<IActionResult> Index(string imageID)
         {
-
             var image = await _context.Image.Where(i => i.ImgId == imageID.Trim()).ToListAsync();
             ViewData["Image"] = image;
 
