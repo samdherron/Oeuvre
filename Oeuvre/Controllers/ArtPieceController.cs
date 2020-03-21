@@ -21,18 +21,20 @@ namespace Oeuvre.Controllers
         }
 
         // GET: ArtPiece
-        public async Task<IActionResult> Index(string imageID)
+        public IActionResult Index(string imageID)
         {
-            var image = await _context.Image.Where(i => i.ImgId == imageID.Trim()).ToListAsync();
-            ViewData["Image"] = image;
 
-            Image returnImage = fillImageObject(image);
+            Image returnImage = fillImageObject(imageID).Result;
+
+            ViewData["Image"] = returnImage;
 
             return View(returnImage);
         }
 
-        public Image fillImageObject(List<Image> image)
+        public async Task<Image> fillImageObject(string imageID)
         {
+            var image = await _context.Image.Where(i => i.ImgId == imageID.Trim()).ToListAsync();
+
             Image imageData = new Image();
 
             if (image != null && image.Count > 0)
