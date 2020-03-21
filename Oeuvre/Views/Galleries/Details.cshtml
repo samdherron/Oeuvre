@@ -54,11 +54,11 @@
             {
 
 
-
                 <div class="card">
-
-                    <img src=@img.ImgLocation class="card-img-top" alt="Responsive image">
-                    <div class="card-body">
+                    <a asp-action="Index" asp-controller="ArtPiece" asp-route-imageID="@img.ImgId">
+                        <img src=@img.ImgLocation class="card-img-top" alt="Responsive image">
+                    </a>
+                        <div class="card-body">
                         
                     </div>
 

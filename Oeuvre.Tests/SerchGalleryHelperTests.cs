@@ -60,7 +60,7 @@ namespace Oeuvre.Tests
 
             Gallery _gl = new Gallery()
             {
-                GalleryId = "1",
+                GalleryId = 1,
                 GalleryName = "Test Gallery",
                 Address = "Test 1 Ave",
                 City = "Test",
@@ -72,7 +72,7 @@ namespace Oeuvre.Tests
             _dbContext.Gallery.Add(_gl);
 
             string[] imgId = { "1", "2" };
-            string[] galleryId = { "1", "1" };
+            int[] galleryId = { 1, 1 };
             //string[] dateUploaded = { DateTime.Today.ToString(), DateTime.Today.ToString()};
             string[] imageThemeId = { "1", "1" };
             string[] description = { "Testing", "Testing" };

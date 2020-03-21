@@ -198,6 +198,7 @@ namespace Oeuvre.Controllers
             {
                 Image tempImage = new Image();
                 tempImage.ImgLocation = images.ElementAt(i).ImgLocation;
+                tempImage.ImgId = images.ElementAt(i).ImgId.Trim();
                 myList.Add(tempImage);
             }
 

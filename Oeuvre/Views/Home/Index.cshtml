@@ -22,7 +22,11 @@
                                 galleries and museums
                             </h5>
                             <br />
-                            <button class="btn" id="innerImageButton">FIND A GALLERY</button>
+                        
+                            <button class="btn" id="innerImageButton" onclick="location.href='@Url.Action("Index", "Galleries")'">
+                                    FIND A GALLERY
+                            </button>
+
                         </div>
 
 
@@ -180,8 +184,7 @@
         <br />
         <!-- Change to Themes -->
         <a class="viewMoreLink" asp-controller="SearchGallery" asp-action="SearchGallery"><p>View More</p></a>
-        <br />
-        <br />
+
 
         <div class="row mr-auto" id="exploreThemeCards">
 
