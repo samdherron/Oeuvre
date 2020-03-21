@@ -36,48 +36,6 @@ namespace Oeuvre.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-
-        //public ViewResult getList()
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        //var Galleries = _context.Gallery.Where(p => p.GalleryId == "1");
-
-        //        var Galleries = _context.Gallery.ToList();               
-
-        //        List<Gallery> galleryList = new List<Gallery>();
-
-        //        foreach(Gallery g in Galleries)
-        //        {
-        //            Gallery myGallery = new Gallery();
-
-        //            myGallery.GalleryId = g.GalleryId;
-        //            myGallery.GalleryName = g.GalleryName;
-        //            myGallery.Province = g.Province;
-
-        //            galleryList.Add(myGallery);
-        //        }
-
-        //        ViewData["Galleries"] = galleryList;
-        //        //return RedirectToAction("Index");
-        //        return View("Index");
-        //    }
-        //    else
-        //        return View();
-
-
-        //}
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+   
     }
 }
