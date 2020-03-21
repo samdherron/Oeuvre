@@ -4,239 +4,252 @@
 
 
 
-<div class="container">
+    <div class="container">
 
-    <br />
-    <br />
-    <div class="row" id="discoverLocalArtSection">
-        <div id="discoverLocalArtColumn">
-            <div id="outerContainer">
-                <div class="row">
-                    <div class="col-lg-3 offset-1 mt-5 mb-5">
-                        <br />
-                        <h1 class="headerDiscover">Discover</h1>
-                        <h1 class="headerDiscover">Local Art</h1>
-                        <br />
-                        <h5 class="text-left" id="subheaderDiscover">
-                            Showcasing the best local <br />
-                            galleries and museums
-                        </h5>
-                        <br />
-                        <button class="btn" id="innerImageButton">FIND A GALLERY</button>
+        <br />
+        <br />
+        <div class="row" id="discoverLocalArtSection">
+            <div id="discoverLocalArtColumn">
+                <div id="outerContainer">
+                    <div class="row">
+                        <div class="col-lg-3 offset-1 mt-5 mb-5">
+                            <br />
+                            <h1 class="headerDiscover">Discover</h1>
+                            <h1 class="headerDiscover">Local Art</h1>
+                            <br />
+                            <h5 class="text-left" id="subheaderDiscover">
+                                Showcasing the best local <br />
+                                galleries and museums
+                            </h5>
+                            <br />
+                        
+                            <button class="btn" id="innerImageButton" onclick="location.href='@Url.Action("Index", "Galleries")'">
+                                    FIND A GALLERY
+                            </button>
+
+                        </div>
+
+
+                        <div class="col-lg-7 mt-5 mr-0 mb-5" style="width: 100%;">
+                            <img src="~/Assets/Home/LPTriangles_crop.png" style="width: inherit; height: inherit;" />
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <div class="row">
+
+            <div class="col-md-12" id="exploreGalleryColumn">
+                <div id="innerContainerExplore">
+                    <div class="container-fluid ml-auto">
+                        <br />
+                        <br />
+                        <h2 id="exploreText">Explore by gallery</h2>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
 
-                    <div class="col-lg-7 mt-5 mr-0 mb-5" style="width: 100%;">
-                        <img src="~/Assets/Home/LPTriangles_crop.png" style="width: inherit; height: inherit;" />
+        <br />
+        <br />
+
+        <a class="viewMoreLink" asp-controller="Galleries" asp-action="Index"><p>View More</p></a>
+        <br />
+        <br />
+
+        <div class="row mr-auto" id="exploreGalleryCards">
+
+            <!-- Update the srcs for the images, gallery names and descriptions shown from viewbag in controller -->
+            <div name="galleryImageOne" class="col-sm-3 ml-auto" id="galleryCardColumn">
+                <a asp-controller="Galleries" asp-action="Index">
+                    <img class="listImage" src="~/Assets/Home/Willet_1.jpg" alt="Discover Gallery List #1" />
+                </a>
+                <h4 class="text-dark font-weight-bolder">University of Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
+            </div>
+
+
+            <div name="galleryImageTwo" class="col-sm-3 ml-auto" id="galleryCardColumn">
+                <a asp-controller="Galleries" asp-action="Index">
+                    <img class="listImage" src="~/Assets/Home/Creek-Crossing_2013_Nurielle-Stern_websize.jpg" alt="Discover Gallery List #2" />
+                </a>
+                <h4 class="text-dark font-weight-bolder">The Clay and Glass</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
+            </div>
+
+
+            <div name="galleryImageThree" class="col-sm-3 ml-auto mr-auto" id="galleryCardColumn">
+                <a asp-controller="Galleries" asp-action="Index">
+                    <img class="listImage" src="~/Assets/Home/1973004001_trim.jpg" alt="Discover Gallery List #3" />
+                </a>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="row">
+
+            <div class="col-md-12 m-auto" id="exploreExhibitionColumn">
+                <div id="innerContainerExplore">
+                    <div class="container-fluid ml-auto">
+                        <br />
+                        <br />
+                        <h2 id="exploreText">Explore current exhibitions</h2>
+                        <br />
+                        <br />
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <br />
-    <br />
 
-    <div class="row">
 
-        <div class="col-md-12" id="exploreGalleryColumn">
-            <div id="innerContainerExplore">
-                <div class="container-fluid ml-auto">
-                    <br />
-                    <br />
-                    <h2 id="exploreText">Explore by gallery</h2>
-                    <br />
-                    <br />
+        <br />
+        <br />
+        <!-- Change to Exhibitions -->
+        <a class="viewMoreLink" asp-controller="SearchGallery" asp-action="SearchGallery"><p>View More</p></a>
+        <br />
+        <br />
+
+        <div class="row mr-auto" id="exploreGalleryCards">
+
+            <div name="exhibitionImageOne" class="col-sm-3 ml-auto" id="exhibitionCardColumn">
+                <a asp-controller="SearchGallery" asp-action="SearchGallery">
+                    <img class="listImage" src="~/Assets/Home/birmingham-museums-trust-5F3u0j6s6pM-unsplash.jpg" alt="Current Exhibitions List #1" />
+                </a>
+                <br />
+                <p id="themeValue">Permanent Collections</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
+            </div>
+
+
+            <div name="exhibitionImageTwo" class="col-sm-3 ml-auto" id="exhibitionCardColumn">
+                <a asp-controller="SearchGallery" asp-action="SearchGallery">
+                    <img class="listImage" src="~/Assets/Home/birmingham-museums-trust-8FNuCxFfbFw-unsplash.jpg" alt="Current Exhibitions List #2" />
+                </a>
+                <p id="themeValue">Current Collections</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
+            </div>
+
+
+            <div name="exhibitionImageThree" class="col-sm-3 ml-auto mr-auto" id="exhibitionCardColumn">
+                <a asp-controller="SearchGallery" asp-action="SearchGallery">
+                    <img class="listImage" src="~/Assets/Home/birmingham-museums-trust-9pOXS0ZGPDM-unsplash.jpg" alt="Current Exhibitions List #3" />
+                </a>
+                <p id="themeValue">Permanent Collections</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+
+
+        <div class="row">
+            <div class="col-md-12 m-auto" id="exploreThemeColumn">
+                <div id="innerContainerExplore">
+                    <div class="container-fluid ml-auto">
+                        <br />
+                        <br />
+                        <h2 id="exploreText">Explore by themes</h2>
+                        <br />
+                        <br />
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div>
+        <br />
+        <br />
+        <!-- Change to Themes -->
+        <a class="viewMoreLink" asp-controller="SearchGallery" asp-action="SearchGallery"><p>View More</p></a>
 
 
-    <br />
-    <br />
+        <div class="row mr-auto" id="exploreThemeCards">
 
-    <a class="viewMoreLink" asp-controller="Galleries" asp-action="Index"><p>View More</p></a>
-    <br />
-    <br />
+            <!-- Update the srcs for the images, gallery names and descriptions shown from viewbag in controller -->
+            <div name="themeImageOne" class="col-sm-3 ml-auto" id="themeCardColumn">
+                <a asp-controller="Galleries" asp-action="Index">
+                    <img class="listImage" src="~/Assets/Home/gustavo-centurion-O6fs4ablxw8-unsplash.jpg" alt="Explore Themes List #1" />
+                </a>
+                <p id="themeValue">Abstract Expressionism</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
+            </div>
 
-    <div class="row mr-auto" id="exploreGalleryCards">
 
-        <!-- Update the srcs for the images, gallery names and descriptions shown from viewbag in controller -->
-        <div name="galleryImageOne" class="col-sm-3 ml-auto" id="galleryCardColumn">
-            <a asp-controller="Galleries" asp-action="Index">
-                <img class="listImage" src=@ViewData["galleryImage1"] alt="Discover Gallery List #1" />
-            </a>
-            <h4 class="text-dark font-weight-bolder">@ViewData["galleryName1"]</h4>
-            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
+            <div name="themeImageTwo" class="col-sm-3 ml-auto" id="themeCardColumn">
+                <a asp-controller="Galleries" asp-action="Index">
+                    <img class="listImage" src="~/Assets/Home/europeana-3DcrMnM-uMQ-unsplash.jpg" alt="Explore Themes List #2" />
+                </a>
+                <p id="themeValue">Nature</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
+            </div>
+
+
+            <div name="themeImageThree" class="col-sm-3 ml-auto mr-auto" id="themeCardColumn">
+                <a asp-controller="Galleries" asp-action="Index">
+                    <img class="listImage" src="~/Assets/Home/mr-tt-xb0wLfZH9Zo-unsplash.jpg" alt="Explore Themes List #3" />
+                </a>
+                <p id="themeValue">Surrealist</p>
+                <h4 class="text-dark font-weight-bolder">Kitchener Waterloo Art Gallery</h4>
+                <h6 class="text-dark" id="galleryImageDescription">Terracotta maiden sporting a cartoonish witch</h6>
+            </div>
         </div>
 
+        <br />
+        <br />
+        <br />
+        <br />
 
-        <div name="galleryImageTwo" class="col-sm-3 ml-auto" id="galleryCardColumn">
-            <a asp-controller="Galleries" asp-action="Index">
-                <img class="listImage" src=@ViewData["galleryImage2"] alt="Discover Gallery List #2" />
-            </a>
-            <h4 class="text-dark font-weight-bolder">@ViewData["galleryName2"]</h4>
-            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
-        </div>
+        <div class="row" id="includeGallerySection" style="margin-top: 3%;">
 
-
-        <div name="galleryImageThree" class="col-sm-3 ml-auto mr-auto" id="galleryCardColumn">
-            <a asp-controller="Galleries" asp-action="Index">
-                <img class="listImage" src=@ViewData["galleryImage3"] alt="Discover Gallery List #3" />
-            </a>
-            <h4 class="text-dark font-weight-bolder">@ViewData["galleryName3"]</h4>
-            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
-        </div>
-    </div>
-
-    <br />
-    <br />
-
-    <div class="row">
-
-        <div class="col-md-12 m-auto" id="exploreExhibitionColumn">
-            <div id="innerContainerExplore">
-                <div class="container-fluid ml-auto">
-                    <br />
-                    <br />
-                    <h2 id="exploreText">Explore current exhibitions</h2>
-                    <br />
-                    <br />
+            <div class="col-md-12 m-auto" id="includeGalleryColumn">
+                <div id="outerContainer">
+                    <div class="container-fluid offset-1">
+                        <br />
+                        <h1 class="text-dark" id="headerDiscover">Include your</h1>
+                        <h1 class="text-dark">gallery's work</h1>
+                        <br />
+                        <h3 class="text-left" id="subheaderDiscover">
+                            Gain more visitors
+                        </h3>
+                        <br />
+                        <button class="btn" id="innerImageButton">ADD YOUR GALLERY</button>
+                        <br />
+                        <br />
+                    </div>
                 </div>
             </div>
         </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
     </div>
-
-
-
-    <br />
-    <br />
-    <!-- Change to Exhibitions -->
-    <a class="viewMoreLink" asp-controller="SearchGallery" asp-action="SearchGallery"><p>View More</p></a>
-    <br />
-    <br />
-
-    <div class="row mr-auto" id="exploreGalleryCards">
-
-        <!-- Update the srcs for the images, gallery names and descriptions shown from viewbag in controller -->
-        <div name="exhibitionImageOne" class="col-sm-3 ml-auto" id="exhibitionCardColumn">
-            <a asp-controller="Galleries" asp-action="Index">
-                <img class="listImage" src="~/Assets/Home/birmingham-museums-trust-5F3u0j6s6pM-unsplash.jpg" alt="Current Exhibitions List #1" />
-            </a>
-            <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
-            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
-        </div>
-
-
-        <div name="exhibitionImageTwo" class="col-sm-3 ml-auto" id="exhibitionCardColumn">
-            <a asp-controller="Galleries" asp-action="Index">
-                <img class="listImage" src="~/Assets/Home/birmingham-museums-trust-8FNuCxFfbFw-unsplash.jpg" alt="Current Exhibitions List #2" />
-            </a>
-            <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
-            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
-        </div>
-
-
-        <div name="exhibitionImageThree" class="col-sm-3 ml-auto mr-auto" id="exhibitionCardColumn">
-            <a asp-controller="Galleries" asp-action="Index">
-                <img class="listImage" src="~/Assets/Home/birmingham-museums-trust-9pOXS0ZGPDM-unsplash.jpg" alt="Current Exhibitions List #3" />
-            </a>
-            <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
-            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
-        </div>
-    </div>
-
-    <br />
-    <br />
-    <br />
-    <br />
-
-
-
-    <div class="row">
-        <div class="col-md-12 m-auto" id="exploreThemeColumn">
-            <div id="innerContainerExplore">
-                <div class="container-fluid ml-auto">
-                    <br />
-                    <br />
-                    <h2 id="exploreText">Explore by themes</h2>
-                    <br />
-                    <br />
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <br />
-    <br />
-    <!-- Change to Themes -->
-    <a class="viewMoreLink" asp-controller="SearchGallery" asp-action="SearchGallery"><p>View More</p></a>
-    <br />
-    <br />
-
-    <div class="row mr-auto" id="exploreThemeCards">
-
-        <!-- Update the srcs for the images, gallery names and descriptions shown from viewbag in controller -->
-        <div name="themeImageOne" class="col-sm-3 ml-auto" id="themeCardColumn">
-            <a asp-controller="Galleries" asp-action="Index">
-                <img class="listImage" src="~/Assets/Home/gustavo-centurion-O6fs4ablxw8-unsplash.jpg" alt="Explore Themes List #1" />
-            </a>
-            <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
-            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
-        </div>
-
-
-        <div name="themeImageTwo" class="col-sm-3 ml-auto" id="themeCardColumn">
-            <a asp-controller="Galleries" asp-action="Index">
-                <img class="listImage" src="~/Assets/Home/steve-johnson-AnnQ-TOuBxc-unsplash.jpg" alt="Explore Themes List #2" />
-            </a>
-            <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
-            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
-        </div>
-
-
-        <div name="themeImageThree" class="col-sm-3 ml-auto mr-auto" id="themeCardColumn">
-            <a asp-controller="Galleries" asp-action="Index">
-                <img class="listImage" src="~/Assets/Home/mr-tt-xb0wLfZH9Zo-unsplash.jpg" alt="Explore Themes List #3" />
-            </a>
-            <h4 class="text-dark font-weight-bolder">Name Placeholder</h4>
-            <h6 class="text-dark" id="galleryImageDescription">Description Placeholder</h6>
-        </div>
-    </div>
-
-    <br />
-    <br />
-    <br />
-    <br />
-
-    <div class="row" id="includeGallerySection">
-
-        <div class="col-md-12 m-auto" id="includeGalleryColumn">
-            <div id="outerContainer">
-                <div class="container-fluid offset-1">
-                    <br />
-                    <h1 class="text-dark" id="headerDiscover">Include your</h1>
-                    <h1 class="text-dark">gallery's work</h1>
-                    <br />
-                    <h3 class="text-left" id="subheaderDiscover">
-                        Gain more visitors
-                    </h3>
-                    <br />
-                    <button class="btn" id="innerImageButton">ADD YOUR GALLERY</button>
-                    <br />
-                    <br />
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <br />
-    <br />
-    <br />
-    <br />
-</div>
 
 @section Styles {
     <link rel="stylesheet"
