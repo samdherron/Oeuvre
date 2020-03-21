@@ -1,0 +1,66 @@
+﻿@model Oeuvre.Models.Image
+
+@{
+    ViewData["Title"] = "Art Piece";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container-fluid">
+
+        @{
+            if (ViewData["Image"] != null)
+            {
+                <div class="row">
+                    <div class="col-md-6" style="margin-top: 5%; margin-bottom: 3%; margin-left: auto; margin-right: auto;">
+                        <img src=@Html.DisplayFor(model => model.ImgLocation) class="card-img-top" alt=@Html.DisplayFor(model => model.Name) style="border-radius: 1.3rem; width: inherit; height: inherit;">
+                    </div>
+                </div>
+
+                <div class="border-top my-3" style="border-color: rgba(77, 77, 77, 0.6)!important;">
+                    <div class="row">
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 5%;">
+
+
+
+                    <div class="col-md-10" style="margin: auto;">
+                        <h5 style="font-weight: bolder;">@Html.DisplayFor(model => model.Name)</h5>
+                        <p style="color: #757575;">@Html.DisplayFor(model => model.Artist)</p>
+                        <br />
+                        <p style="color: #757575;">@Html.DisplayFor(model => model.Description)</p>
+                        <br />
+                        <p style="font-weight: bold;">Details</p>
+                        <br />
+                        <p>Title: @Html.DisplayFor(model => model.Name)</p>
+                        <p>Artist: @Html.DisplayFor(model => model.Artist)</p>
+                        <p>Curator: @Html.DisplayFor(model => model.CuratorName)</p>
+                        <p>Date Created: @Html.DisplayFor(model => model.DateUploaded)</p>
+                        <p>Medium: @Html.DisplayFor(model => model.Medium)</p>
+                        <p>Dimensions: @Html.DisplayFor(model => model.PieceDimensions)</p>
+                    </div>
+                </div>
+                 <br />
+
+                <div class="border-top my-3" style="margin-top: 2%; margin-bottom: 2%; border-color: rgba(77, 77, 77, 0.6)!important;">
+                    <div class="row">
+                    </div>
+                </div>
+
+                <br />
+
+            }
+
+        }
+
+
+
+    </div>
+
+@section Styles {
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/Mainpage.css" />
+
+}
