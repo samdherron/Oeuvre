@@ -141,7 +141,7 @@
             {
 
                 <div class="card artPieceCard" style="border:none">
-                    <a asp-controller="SearchGallery" asp-action="testImgId" asp-route-id="@img.ImgId" value="@img.ImgId">
+                    <a asp-controller="ArtPiece" asp-action="Index" asp-route-imageID="@img.ImgId" value="@img.ImgId">
                         <img src=@img.ImgLocation class="card-img-top " alt="Responsive image" style="border-radius: 1.3rem">
                     </a>
                     <div class="card-body">

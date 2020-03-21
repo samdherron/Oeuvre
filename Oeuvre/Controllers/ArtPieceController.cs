@@ -24,7 +24,7 @@ namespace Oeuvre.Controllers
         public async Task<IActionResult> Index(string imageID)
         {
 
-            var image = _context.Image.Where(i => i.ImgId == imageID).ToList();
+            var image = await _context.Image.Where(i => i.ImgId == imageID.Trim()).ToListAsync();
             ViewData["Image"] = image;
 
             Image returnImage = fillImageObject(image);
