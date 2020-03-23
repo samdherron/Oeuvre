@@ -159,6 +159,10 @@ namespace Oeuvre.Models
                     .HasColumnName("Gallery_Name")
                     .HasMaxLength(50);
 
+                entity.Property(e => e.PhoneNumber)
+                    .HasColumnName("phone_number")
+                    .HasMaxLength(15);
+
                 entity.Property(e => e.PostalCode)
                     .IsRequired()
                     .HasColumnName("Postal_Code")

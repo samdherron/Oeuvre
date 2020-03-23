@@ -44,3 +44,12 @@ table #galleryCollectionID tr, td {
     }
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff !important;
+    background-color: #a12412 !important;
+    border-color: #a12412 !important
+}
+
+a {
+    color: #303032 !important;
+}

@@ -15,13 +15,13 @@
         <div class="col-lg-6">
             <label for="galleryName">Gallery Name</label>
             <br />
-            <input name="galleryName" class="form-control" id="formInput" type="text" value="@Model.profile.galleryInformation.GalleryName" disabled />
+            <input name="galleryName"  class="form-control" id="formInput" type="text" value="@Model.profile.galleryInformation.GalleryName" required />
         </div>
 
         <div class="col-md-6">
             <label for="galleryType">Gallery Type</label>
             <br />
-            <input name="galleryType" class="form-control" type="text" disabled />
+            <input name="galleryType" class="form-control" type="text" value="@Model.profile.galleryInformation.Type"/>
         </div>
     </div>
 
@@ -31,13 +31,13 @@
         <div class="col-lg-6">
             <label for="phoneNumber">Phone Number</label>
             <br />
-            <input name="phoneNumber" class="form-control" type="text" disabled />
+            <input name="phoneNumber" class="form-control" type="text" value="@Model.profile.galleryInformation.PhoneNumber" required />
         </div>
 
         <div class="col-md-6">
             <label for="email">Email</label>
             <br />
-            <input name="email" class="form-control" type="text" value="@Model.galleryEmail" required disabled/>
+            <input name="email" class="form-control" type="text" value="@Model.galleryEmail" disabled />
         </div>
     </div>
 
@@ -47,26 +47,32 @@
         <div class="col-lg-6">
             <label for="address">Address</label>
             <br />
-            <input name="address" class="form-control" type="text" value="@Model.profile.galleryInformation.Address" required disabled />
+            <input name="address" class="form-control" type="text" value="@Model.profile.galleryInformation.Address" required />
         </div>
 
         <div class="col-md-6">
             <label for="postalCode">Postal Code</label>
             <br />
-            <input name="postalCode" class="form-control" type="text" value="@Model.profile.galleryInformation.PostalCode" required disabled/>
+            <input name="postalCode" class="form-control" type="text" value="@Model.profile.galleryInformation.PostalCode" required />
         </div>
     </div>
-
 
     <br />
 
     <div class="row">
-        <div class="col-xl-6">
-            <label for="pieceDimensions">Piece Dimensions</label>
+        <div class="col-lg-6">
+            <label for="address">City</label>
             <br />
-            <input name="pieceDimensions" class="form-control" type="text" required />
+            <input  name="city" class="form-control" type="text" value="@Model.profile.galleryInformation.City" required />
+        </div>
+
+        <div class="col-md-6">
+            <label for="province">Province</label>
+            <br />
+            <input  name="province" class="form-control" type="text" value="@Model.profile.galleryInformation.Province" required />
         </div>
     </div>
+
 
     <br />
 
