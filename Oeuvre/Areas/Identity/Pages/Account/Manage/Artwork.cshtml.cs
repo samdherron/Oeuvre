@@ -96,6 +96,52 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var userId = user.Id;
+
+            //step 1 - get artpiece id
+
+            Image artPieces = (from img in _context.Image
+                             where img.ImgId == id.ToString()
+                             select img).SingleOrDefault();
+
+            string artPieceId = artPieces.ImgId;
+
+
+            //step 2 - get theme lookup id
+
+            ThemeLookup themeLookup = (from tl in _context.ThemeLookup
+                                  where tl.ImgId == artPieceId
+                                  select tl).SingleOrDefault();
+
+            int themeLoopupId = themeLookup.ThemeLookupId;
+
+
+
+            //step 3 delete all imgthemes that have a the same themelookupid
+            _context.ImgThemes.RemoveRange(_context.ImgThemes.Where(x => x.ThemeLookupId == themeLoopupId));
+            _context.SaveChanges();
+
+            //step 4 delete the themelookup
+            _context.ThemeLookup.Remove(themeLookup);
+            _context.SaveChanges();
+
+            //step 5 delete the img
+            _context.Image.Remove(artPieces);
+            _context.SaveChanges();
+
+
+            await LoadAsync(user);
+
+            return Page();
+        }
 
 
     }

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="~/css/Mainpage.css" />
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyjF30YbdusvvUeLmtnfEMFIfytOrvkEU"></script>
+
+
+
+
     @*<script src="https://maps.googleapis.com/maps/api/js?"></script>*@
 
     @RenderSection("Styles", false)
@@ -47,23 +51,28 @@
 
 
     <div class="container-fluid" id="searchBarRow">
-        <div class="col-md-2">
+        <form style="width:100%">
+            <div class="col-md-2">
 
-        </div>
-        <div class="input-group" style="width:100%">
-            <a asp-controller="Home" asp-action="Index" id="searchbarItem" style="margin-left: 8%;">
-                <img src="~/Icons/Logos/FinalLogo.png" class="img-fluid" height="34" width="141" alt="Oeuvre Art Collection" />
-            </a>
-            <input type="search" class="form-control" placeholder="Search" style="margin-left: 2%;" id="searchbarItem" />
-            <span class="input-group-btn" style="background-color:#f3f3f3" id="searchbarItem">
-                <button asp-controller="SearchGallery" asp-action="getList" class="btn" style="background-color: #f3f3f3; border-radius: 0"><i class="fa fa-search" style="color: grey"></i></button>
-            </span>
-            <button class="btn btn-secondary" style="margin-left: 2%; font-size: 95%; font-weight: bold; margin-right: 8%; background-color: #9b999a;" id="searchbarItem">Add your gallery's work</button>
-        </div>
-        <div class="col-md-2">
+            </div>
+            <div class="input-group" style="width:100%">
+                <a asp-controller="Home" asp-action="Index" id="searchbarItem" style="margin-left: 8%;">
+                    <img src="~/Icons/Logos/FinalLogo.png" class="img-fluid" height="34" width="141" alt="Oeuvre Art Collection" />
+                </a>
 
-        </div>
+                <input type="search" class="form-control" placeholder="Search" style="margin-left: 2%;" id="searchbarItem" name="searchBarInput"/>
+                <span class="input-group-btn" style="background-color:#f3f3f3" id="searchbarItem">
+                    <button asp-controller="SearchGallery" asp-action="getQuickSearchList" class="btn" style="background-color: #f3f3f3; border-radius: 0"><i class="fa fa-search" style="color: grey"></i></button>
+                </span>
+
+                <button class="btn btn-secondary" style="margin-left: 2%; font-size: 95%; font-weight: bold; margin-right: 8%; background-color: #9b999a;" id="searchbarItem">Add your gallery's work</button>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </form>
     </div>
+
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -155,10 +164,14 @@
             asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
     <script src="~/js/site.js"></script>
     <script>
+   
         function subscribeEffect() {
             document.getElementsByClassName('input-group-text').value = "";
         }
+
     </script>
+
+
     @RenderSection("Scripts", required: false)
 
     @section Styles {

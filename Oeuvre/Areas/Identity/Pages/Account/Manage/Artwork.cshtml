@@ -35,12 +35,18 @@
                     <td>
                         <div class="btn-group">
 
-                            <a asp-page="./EditGalleryArtPiece" asp-route-id=@item.ImgId>Edit</a> |
-                            <a asp-page="./EditGalleryArtPiece" asp-route-id=@item.ImgId>Details</a> |
-                            <a asp-page="./EditGalleryArtPiece" asp-route-id=@item.ImgId>Delete</a>
+                            <div class="input-group" style="width:100%">
 
-                            @*<button type="button" id=@Html.DisplayFor(modelItem => item.ImgId) class="btn btn-outline-danger">Delete</button>
-                            <button type="button" asp-page="./EditGalleryArtPiece" asp-route-id="@Html.DisplayFor(modelItem => item.ImgId)" id=@Html.DisplayFor(modelItem => item.ImgId) class="btn btn-outline-info">Edit</button>*@
+                                <a asp-page="./EditGalleryArtPiece" asp-route-id=@item.ImgId>
+                                    <button class="btn btn-outline-info" style="margin-left: 2%; font-size: 95%; font-weight: bold; margin-right: 8%;" id="searchbarItem">Edit</button>
+                                </a>
+                                
+                                <form method="post">
+                                    <button class="btn btn-outline-danger" asp-page-handler="delete" asp-route-id="@item.ImgId"  style="margin-left: 2%; font-size: 95%; font-weight: bold; margin-right: 8%;" id="searchbarItem">Delete</button>
+                                </form>                                
+                            
+                            </div>
+
                         </div>
                     </td>
 

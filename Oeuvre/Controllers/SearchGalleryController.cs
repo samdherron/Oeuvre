@@ -39,6 +39,48 @@ namespace Oeuvre.Controllers
         }
 
 
+        public ViewResult getQuickSearchList(string searchBarInput)
+        {
+            userSearch = new SearchGallery();
+            if (ModelState.IsValid)
+            {
+
+                searchBarInput = userSearch.removeSqlInjectionParams(searchBarInput);
+
+                if (searchBarInput == null || searchBarInput == "")
+                {
+                    //userSearch = new SearchGallery();
+
+                    List<CollectionsImg> imageList = userSearch.getGalleryItemsUsingQuickSearch(_context);
+
+                    ViewData["Pieces"] = imageList;
+                }
+                else
+                {
+                    //userSearch = new SearchGallery();
+
+                    List<CollectionsImg> imageList = userSearch.getGalleryItemsUsingUserInput(_context, searchBarInput);
+
+                    if (imageList.Count == 0)
+                    {
+                        ViewData["Count"] = "No Art Found";
+                        ViewData["Input"] = searchBarInput;
+                    }
+
+                    ViewData["Pieces"] = imageList;
+                }
+
+
+              
+
+            }
+
+
+            return View("SearchGallery");
+
+
+        }
+
         public ViewResult getList(string searchTheme, string searchType)
         {
             userSearch = new SearchGallery();
@@ -149,25 +191,25 @@ namespace Oeuvre.Controllers
 
         }
 
-        public ViewResult getQuickSearchList()
-        {
+        //public ViewResult getQuickSearchList()
+        //{
           
-            if (ModelState.IsValid)
-            {
+        //    if (ModelState.IsValid)
+        //    {
 
-                userSearch = new SearchGallery();
+        //        userSearch = new SearchGallery();
 
-                List<CollectionsImg> imageList = userSearch.getGalleryItemsUsingQuickSearch(_context);
+        //        List<CollectionsImg> imageList = userSearch.getGalleryItemsUsingQuickSearch(_context);
 
-                ViewData["Pieces"] = imageList;
+        //        ViewData["Pieces"] = imageList;
 
-            }
+        //    }
             
 
-            return View("SearchGallery");
+        //    return View("SearchGallery");
 
 
-        }
+        //}
 
         public ViewResult testImgId(int id)
         {
