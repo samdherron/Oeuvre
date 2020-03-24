@@ -110,27 +110,28 @@
                     <h4 class="footerHeader" style="color: #a12412;">SUBSCRIBE TO OUR NEWSLETTER</h4>
                     <br />
                     <div class="form-group">
-                        <div class="d-inline-block" style="width: 100%;">
-                            <input type="text" class="input-group-text" id="newsletterInput" placeholder="Email" />
+                        <form>
+                            <div class="d-inline-block" style="width: 100%;">
+                                <input type="text" class="input-group-text" id="newsletterInput" placeholder="Email" name="Email" />
+                                <br />
+                                <input type="text" class="input-group-text" id="newsletterInput" placeholder="First Name" name="firstname"/>
+                                <br />
+                                <input type="text" class="input-group-text" id="newsletterInput" placeholder="Last Name" name="lastname"/>
+                            </div>
+
                             <br />
-                            <input type="text" class="input-group-text" id="newsletterInput" placeholder="First Name" />
                             <br />
-                            <input type="text" class="input-group-text" id="newsletterInput" placeholder="Last Name" />
-                        </div>
 
-                        <br />
-                        <br />
+                            <label for="subscribeCheckbox" class="radio-inline" style="width: 70%; color: #a12412;">
+                                <input name="subscribeCheckbox" value="true" style="margin-right: 1%;" type="checkbox"  />
+                                Keep me updated on the latest Oeuvre Exhibitions. You can unsubscribe at any time.
+                            </label>
 
-                        <label for="subscribeCheckbox" class="radio-inline" style="width: 70%; color: #a12412;">
-                            <input name="subscribeCheckbox" value="subscribeNewsletter" style="margin-right: 1%;" type="checkbox" />
-                            Keep me updated on the latest Oeuvre Exhibitions. You can unsubscribe at any time.
-                        </label>
-
-                        <br />
-                        <br />
-
-                        <input type="submit" value="Subscribe" class="btn" onclick="subscribeEffect()" id="submitButton" />
-
+                            <br />
+                            <br />
+                            <button asp-controller="Mail" asp-action="SendEmail" class="btn" style="background-color: #f3f3f3; border-radius: 0">Subscribe</button>
+                            @*<input type="submit" value="Subscribe" class="btn" onclick="subscribeEffect()" id="submitButton" />*@
+                        </form>
                     </div>
                 </div>
             </div>

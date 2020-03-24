@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Oeuvre.Helpers;
 using Oeuvre.Models;
 
 namespace Oeuvre.Controllers
@@ -13,7 +14,6 @@ namespace Oeuvre.Controllers
     public class ArtPieceController : Controller
     {
         private readonly dbo_OeuvreContext _context;
-
 
         public ArtPieceController(dbo_OeuvreContext context)
         {

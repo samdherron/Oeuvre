@@ -9,6 +9,7 @@ using Oeuvre.Models;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Oeuvre.Services;
+using Oeuvre.Helpers;
 
 namespace Oeuvre.Controllers
 {
@@ -18,6 +19,7 @@ namespace Oeuvre.Controllers
         private dbo_OeuvreContext _context;
         Account _account;
         Cloudinary _cloudinary;
+        PageOn page;
 
         public HomeController(ILogger<HomeController> logger, dbo_OeuvreContext context)
         {
@@ -34,6 +36,7 @@ namespace Oeuvre.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
    
