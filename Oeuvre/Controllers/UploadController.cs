@@ -70,7 +70,12 @@ namespace Oeuvre.Controllers
                 {
                     enteredForm.ImageName = form.ElementAt(0).Value.ToString();
                     enteredForm.ArtistName = form.ElementAt(1).Value.ToString();
-                    enteredForm.ImageDescription = form.ElementAt(2).Value.ToString();
+                    enteredForm.CuratorName = form.ElementAt(2).Value.ToString();
+                    enteredForm.YearCreated = form.ElementAt(3).Value.ToString();
+                    enteredForm.Medium = form.ElementAt(4).Value.ToString();
+                    enteredForm.CollectionType = form.ElementAt(5).Value.ToString();
+                    enteredForm.PieceDimensions = form.ElementAt(6).Value.ToString();
+                    enteredForm.ImageDescription = form.ElementAt(7).Value.ToString();
 
                     //Splits all of the theme types and theme values into two seperate string arrays
                     string[] themeTypeSplit = Request.Form.ElementAt(3).Value.ToString().Split(',');
@@ -102,7 +107,7 @@ namespace Oeuvre.Controllers
 
 
 
-            return View("UploadImage");
+            return View("addWork");
 
         }
 
