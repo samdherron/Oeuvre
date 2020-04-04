@@ -78,7 +78,6 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             newImage.Artist = artPieceInformation[0].Artist;
             newImage.Description = artPieceInformation[0].Description;
             newImage.Name = artPieceInformation[0].Name;
-            newImage.ImgLocation = artPieceInformation[0].ImgLocation;
 
             ArtPieceInfo = new ArtPieceGalleryInfoModel
             {
