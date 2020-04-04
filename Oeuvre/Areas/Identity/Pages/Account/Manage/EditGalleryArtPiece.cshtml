@@ -122,13 +122,91 @@
 
         <br />
 
-        @if (Model.ListArtPieceTheme.ArtPieceThemes.Count > 0)
-        {
-            @foreach (var item in Model.ListArtPieceTheme.ArtPieceThemes)
+        <div class="dynamicThemes">
+            <!-- This div entire div will be duplicated when clicking the addition sign below-->
+            @if (Model.ListArtPieceTheme.ArtPieceThemes.Count > 0)
             {
-                <div class="dynamicThemes">
-                    <!-- This div entire div will be duplicated when clicking the addition sign below-->
-                    <div id="dynamicThemesInitial" class="dynamicThemeMember" style="margin-bottom: 2%;">
+                int i = 0;
+
+
+                @foreach (var item in Model.ListArtPieceTheme.ArtPieceThemes)
+                {
+                    if (i == 0)
+                    {
+                        <div id="dynamicThemeInitial" class="dynamicThemeMember" style="margin-bottom: 2%;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select name="initialThemeCategory" class="form-control">
+                                        @switch (item.imgthemeTypeName)
+                                        {
+                                            case "Color":
+                                                <option selected>Colour</option>
+                                                <option>Age</option>
+                                                <option>Artist</option>
+                                                <option>Art Type</option>
+                                                <option>Genre</option>
+                                                <option>Other</option>
+                                                break;
+                                            case "Age":
+                                                <option>Colour</option>
+                                                <option>selected</option>
+                                                <option>Artist</option>
+                                                <option>Art Type</option>
+                                                <option>Genre</option>
+                                                <option>Other</option>
+                                                break;
+                                            case "Artists":
+                                                <option>Colour</option>
+                                                <option>Age</option>
+                                                <option selected>Artist</option>
+                                                <option>Art Type</option>
+                                                <option>Genre</option>
+                                                <option>Other</option>
+                                                break;
+                                            case "ArtType":
+                                                <option>Colour</option>
+                                                <option>Age</option>
+                                                <option>Artist</option>
+                                                <option selected>Art Type</option>
+                                                <option>Genre</option>
+                                                <option>Other</option>
+                                                break;
+                                            case "Genre":
+                                                <option>Colour</option>
+                                                <option>Age</option>
+                                                <option>Artist</option>
+                                                <option>Art Type</option>
+                                                <option selected>Genre</option>
+                                                <option>Other</option>
+                                                break;
+                                            case "Other":
+                                                <option>Colour</option>
+                                                <option>Age</option>
+                                                <option>Artist</option>
+                                                <option>Art Type</option>
+                                                <option>Genre</option>
+                                                <option selected>Other</option>
+                                                break;
+                                        }
+
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input name="initialThemeValue" class="form-control" type="text" value="@item.imgThemeName" required />
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+
+                        i++;
+                    }
+                    else
+                    {
+
+                        var divId = "dynamicTheme" + i;
+
+                    <div id=@divId class="dynamicThemeMember" style="margin-bottom: 2%;">
                         <div class="row">
                             <div class="col-md-6">
                                 <select name="initialThemeCategory" class="form-control">
@@ -193,25 +271,25 @@
                             <br />
                         </div>
                     </div>
-                    <!-- End of duplication -->
-                </div>
-                <br />
-            }
-        }
-        else
-        {
-            <div class="dynamicThemes">
-                <!-- This div entire div will be duplicated when clicking the addition sign below-->
+
+                        i++;
+                    }
+                }
+                }
+
+
+            else
+            {
                 <div id="dynamicThemesInitial" class="dynamicThemeMember" style="margin-bottom: 2%;">
                     <div class="row">
                         <div class="col-md-6">
-                            <select name="initialThemeCategory" class="form-control">                              
-                                        <option>Colour</option>
-                                        <option>Age</option>
-                                        <option>Artist</option>
-                                        <option>Art Type</option>
-                                        <option>Genre</option>
-                                        <option selected>Other</option>       
+                            <select name="initialThemeCategory" class="form-control">
+                                <option>Colour</option>
+                                <option>Age</option>
+                                <option>Artist</option>
+                                <option>Art Type</option>
+                                <option>Genre</option>
+                                <option selected>Other</option>
                             </select>
                         </div>
 
@@ -221,10 +299,12 @@
                         <br />
                     </div>
                 </div>
-                <!-- End of duplication -->
-            </div>
-            <br />
-        }
+                <br />
+            }
+
+
+        </div>
+        <br />
 
 
         <br />
@@ -272,17 +352,13 @@
 
 <script type="text/javascript">
 
-    //The initial theme is not counted, just the dynamic theme inputs
-    var themeCounter = 0;
-
     //Adds a new theme input row by cloning the parent node and generating a new ID
     function addRow() {
         var numberThemes = document.querySelectorAll('.dynamicThemeMember').length;
         console.log(numberThemes);
-        let newThemeClone = document.querySelector('#dynamicThemesInitial').cloneNode(true);
+        let newThemeClone = document.querySelector('#dynamicThemeInitial').cloneNode(true);
         newThemeClone.setAttribute('id', 'dynamicTheme' + numberThemes);
         document.querySelector('.dynamicThemes').appendChild(newThemeClone);
-        themeCounter += 1;
     }
 
     /*Deletes a new theme input row by getting the theme count and deleting the
@@ -291,11 +367,10 @@
         var numberThemes = document.querySelectorAll('.dynamicThemeMember').length;
         console.log(numberThemes);
 
-        if (themeCounter > 0) {
-            var elementID = "dynamicTheme" + (themeCounter);
+        if (numberThemes > 0) {
+            var elementID = "dynamicTheme" + (numberThemes - 1);
             var topElement = document.getElementById(elementID);
             topElement.parentNode.removeChild(topElement);
-            themeCounter -= 1;
         }
     }
 
