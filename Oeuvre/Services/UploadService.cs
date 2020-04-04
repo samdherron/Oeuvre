@@ -126,10 +126,16 @@ namespace Oeuvre.Services
                 newDatabaseEntry.ImgId =  highestNumber.ToString();
                 newDatabaseEntry.GalleryId = int.Parse(galleryID);
                 newDatabaseEntry.DateUploaded = DateTime.UtcNow;
+                newDatabaseEntry.Name = securityClass.removeSqlInjectionParams(enteredForm.ImageName);
+                newDatabaseEntry.Artist = securityClass.removeSqlInjectionParams(enteredForm.ArtistName);
+                newDatabaseEntry.CuratorName = securityClass.removeSqlInjectionParams(enteredForm.CuratorName);
+                newDatabaseEntry.YearCreated = securityClass.removeSqlInjectionParams(enteredForm.YearCreated);
+                newDatabaseEntry.Medium = securityClass.removeSqlInjectionParams(enteredForm.Medium);
+                newDatabaseEntry.CollectionType = enteredForm.CollectionType;
+                newDatabaseEntry.PieceDimensions = securityClass.removeSqlInjectionParams(enteredForm.PieceDimensions);
                 newDatabaseEntry.Description = securityClass.removeSqlInjectionParams(enteredForm.ImageDescription);
                 newDatabaseEntry.ImgLocation = imageURL;
-                newDatabaseEntry.Artist = securityClass.removeSqlInjectionParams(enteredForm.ArtistName);
-                newDatabaseEntry.Name = securityClass.removeSqlInjectionParams(enteredForm.ImageName);
+
                 newDatabaseEntry.ThemeId = "1";
 
 
