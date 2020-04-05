@@ -18,7 +18,7 @@ namespace Oeuvre.Models
         public List<string> PostalCode { get; set; }
         public List<string> Province { get; set; }
         public List<string> GalleryDescription { get; set; }
-        public List<List<Image>> Images { get; set; }
+        public List<Image> Images { get; set; }
         public List<string> AuthUserId { get; set; }
         public string full { get; set; }
 

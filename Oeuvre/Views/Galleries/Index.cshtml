@@ -56,7 +56,7 @@
     <div style="        border-top: solid;
         border-color: lightgray;
         margin-bottom: 30px;margin-top:30px"></div>
-        @{List<List<Image>> item = Model.Images;}
+        @{List<Image> item = Model.Images;}
         @{List<string> id = Model.GalleryId;}
         @{List<string> nameString = Model.GalleryName;}
         @{List<string> descString = Model.GalleryDescription;}
@@ -73,8 +73,9 @@
                 {
                     <div class="card">
                         <a asp-controller="Galleries" asp-action="Details" asp-route-id="@id[x]">
-                            <img class="card-img-top" src="@item[x][0].ImgLocation" alt="Current Exhibitions List #1" />
+                            <img class="card-img-top" src="@item[x].ImgLocation" alt="Current Exhibitions List #1" />
                         </a>
+                        
                         <h4 class="text-dark font-weight-bolder">@nameString[x]</h4>
                         <h6 class="text-dark">@descString[x]</h6>
 
@@ -84,7 +85,7 @@
                 }
                 else
                 {
-                    <h3>There are no galleries starting with this letter.</h3>
+                    <h3 style="margin-top:60px;margin-bottom:60px;"align="center">There are no galleries starting with this letter.</h3>
                 }
             </div>
         </div>
