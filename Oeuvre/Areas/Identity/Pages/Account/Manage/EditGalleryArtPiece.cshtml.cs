@@ -71,6 +71,16 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
                                            img.Name
                                              ,
                                            img.ImgLocation
+                                           ,
+                                           img.CuratorName
+                                           ,
+                                           img.YearCreated
+                                           ,
+                                           img.Medium
+                                           ,
+                                           img.CollectionType
+                                           ,
+                                           img.PieceDimensions
                                        }).Distinct().ToList();
 
             Image newImage = new Image();
@@ -78,6 +88,15 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             newImage.Artist = artPieceInformation[0].Artist;
             newImage.Description = artPieceInformation[0].Description;
             newImage.Name = artPieceInformation[0].Name;
+            newImage.ImgLocation = artPieceInformation[0].ImgLocation;
+            newImage.CuratorName = artPieceInformation[0].CuratorName;
+            newImage.YearCreated = artPieceInformation[0].YearCreated;
+            newImage.Medium = artPieceInformation[0].Medium;
+            newImage.CollectionType = artPieceInformation[0].CollectionType;
+
+
+            newImage.CollectionType = artPieceInformation[0].CollectionType;
+            newImage.PieceDimensions = artPieceInformation[0].PieceDimensions;
 
             ArtPieceInfo = new ArtPieceGalleryInfoModel
             {

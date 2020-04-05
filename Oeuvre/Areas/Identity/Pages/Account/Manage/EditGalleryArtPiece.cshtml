@@ -37,7 +37,7 @@
             <div class="col-lg-6">
                 <label for="imageName">Piece Name</label>
                 <br />
-                <input name="imageNameInput" class="form-control" id="formInput" type="text" required />
+                <input name="imageNameInput" class="form-control" id="formInput" type="text" value="@Model.ArtPieceInfo.imageDetails.Name" required />
             </div>
 
             <div class="col-md-6">
@@ -53,13 +53,13 @@
             <div class="col-lg-6">
                 <label for="curatorName">Curator Name</label>
                 <br />
-                <input name="curatorName" class="form-control" type="text" required />
+                <input name="curatorName" class="form-control" type="text" value="@Model.ArtPieceInfo.imageDetails.CuratorName" required />
             </div>
 
             <div class="col-md-6">
                 <label for="yearCreated">Year Created</label>
                 <br />
-                <input name="yearCreated" class="form-control" type="text" required />
+                <input name="yearCreated" class="form-control" type="text" value="@Model.ArtPieceInfo.imageDetails.YearCreated" required />
             </div>
         </div>
 
@@ -69,18 +69,29 @@
             <div class="col-lg-6">
                 <label for="medium">Medium</label>
                 <br />
-                <input name="medium" class="form-control" type="text" required />
+                <input name="medium" class="form-control" type="text" value="@Model.ArtPieceInfo.imageDetails.Medium" required />
             </div>
 
             <div class="col-md-6">
                 <label for="collectionType">Current Or Permanent Collection</label>
                 <br />
                 @*<input name="collectionType" class="form-control" type="text" required />*@
-                <select class="form-control" name="collectionType">
-                    <option value="">Select Collection Type</option>
-                    <option value="1">Current</option>
+            <select class="form-control" name="collectionType" value="@Model.ArtPieceInfo.imageDetails.CollectionType">
+                <option value="">Select Collection Type</option>
+
+                @if (Model.ArtPieceInfo.imageDetails.CollectionType == "Current")
+                {
+                    <option selected="selected" value="1">Current</option>
                     <option value="2">Permanent</option>
-                </select>
+                }
+                else
+                {
+                    <option value="1">Current</option>
+                    <option selected="selected" value="2">Permanent</option>
+                }
+
+
+            </select>
             </div>
         </div>
 
@@ -90,7 +101,7 @@
             <div class="col-xl-6">
                 <label for="pieceDimensions">Piece Dimensions</label>
                 <br />
-                <input name="pieceDimensions" class="form-control" type="text" required />
+                <input name="pieceDimensions" class="form-control" type="text" value="@Model.ArtPieceInfo.imageDetails.PieceDimensions" required />
             </div>
         </div>
 
@@ -349,6 +360,7 @@
     </form>
     </div>
 
+    <script src="~/lib/jquery/dist/jquery.js"></script>
 
 <script type="text/javascript">
 
