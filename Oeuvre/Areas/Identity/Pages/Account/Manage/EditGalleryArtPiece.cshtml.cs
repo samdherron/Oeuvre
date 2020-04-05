@@ -51,6 +51,11 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             public List<ArtPieceGalleryThemeModel> ArtPieceThemes;
         }
 
+        private async Task PostAsync()
+        {
+
+        }
+
         private async Task LoadAsync(IdentityUser user, string id)
         {
             var userName = await _userManager.GetUserNameAsync(user);
@@ -152,6 +157,8 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
                      
 
         }
+
+       
 
 
         public string cleanWords(string word)
