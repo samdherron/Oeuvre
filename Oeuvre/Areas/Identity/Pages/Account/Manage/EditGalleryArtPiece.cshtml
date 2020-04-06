@@ -150,7 +150,7 @@
                                     <select name="initialThemeCategory" class="form-control">
                                         @switch (item.imgthemeTypeName)
                                         {
-                                            case "Color":
+                                            case "Mediums":
                                                 <option selected>Mediums</option>
                                                 <option>Movements</option>
                                                 <option>Locations</option>
@@ -158,15 +158,15 @@
                                                 <option>Period</option>
                                                 <option>Other</option>
                                                 break;
-                                            case "Age":
+                                            case "Movements":
                                                 <option>Mediums</option>
-                                                <option>Movements</option>
+                                                <option selected>Movements</option>
                                                 <option>Locations</option>
                                                 <option>Colour</option>
                                                 <option>Period</option>
                                                 <option>Other</option>
                                                 break;
-                                            case "Artists":
+                                            case "Locations":
                                                 <option>Mediums</option>
                                                 <option>Movements</option>
                                                 <option selected>Locations</option>
@@ -174,7 +174,7 @@
                                                 <option>Period</option>
                                                 <option>Other</option>
                                                 break;
-                                            case "ArtType":
+                                            case "Colour":
                                                 <option>Mediums</option>
                                                 <option>Movements</option>
                                                 <option>Locations</option>
@@ -182,7 +182,7 @@
                                                 <option>Period</option>
                                                 <option>Other</option>
                                                 break;
-                                            case "Genre":
+                                            case "Period":
                                                 <option>Mediums</option>
                                                 <option>Movements</option>
                                                 <option>Locations</option>
@@ -223,52 +223,52 @@
                                 <select name="initialThemeCategory" class="form-control">
                                     @switch (item.imgthemeTypeName)
                                     {
-                                        case "Color":
+                                        case "Mediums":
+                                            <option selected>Mediums</option>
+                                            <option>Movements</option>
+                                            <option>Locations</option>
+                                            <option>Colour</option>
+                                            <option>Period</option>
+                                            <option>Other</option>
+                                            break;
+                                        case "Movements":
+                                            <option>Mediums</option>
+                                            <option selected>Movements</option>
+                                            <option>Locations</option>
+                                            <option>Colour</option>
+                                            <option>Period</option>
+                                            <option>Other</option>
+                                            break;
+                                        case "Locations":
+                                            <option>Mediums</option>
+                                            <option>Movements</option>
+                                            <option selected>Locations</option>
+                                            <option>Colour</option>
+                                            <option>Period</option>
+                                            <option>Other</option>
+                                            break;
+                                        case "Colour":
+                                            <option>Mediums</option>
+                                            <option>Movements</option>
+                                            <option>Locations</option>
                                             <option selected>Colour</option>
-                                            <option>Age</option>
-                                            <option>Artist</option>
-                                            <option>Art Type</option>
-                                            <option>Genre</option>
+                                            <option>Period</option>
                                             <option>Other</option>
                                             break;
-                                        case "Age":
+                                        case "Period":
+                                            <option>Mediums</option>
+                                            <option>Movements</option>
+                                            <option>Locations</option>
                                             <option>Colour</option>
-                                            <option>selected</option>
-                                            <option>Artist</option>
-                                            <option>Art Type</option>
-                                            <option>Genre</option>
-                                            <option>Other</option>
-                                            break;
-                                        case "Artists":
-                                            <option>Colour</option>
-                                            <option>Age</option>
-                                            <option selected>Artist</option>
-                                            <option>Art Type</option>
-                                            <option>Genre</option>
-                                            <option>Other</option>
-                                            break;
-                                        case "ArtType":
-                                            <option>Colour</option>
-                                            <option>Age</option>
-                                            <option>Artist</option>
-                                            <option selected>Art Type</option>
-                                            <option>Genre</option>
-                                            <option>Other</option>
-                                            break;
-                                        case "Genre":
-                                            <option>Colour</option>
-                                            <option>Age</option>
-                                            <option>Artist</option>
-                                            <option>Art Type</option>
-                                            <option selected>Genre</option>
+                                            <option selected>Period</option>
                                             <option>Other</option>
                                             break;
                                         case "Other":
+                                            <option>Mediums</option>
+                                            <option>Movements</option>
+                                            <option>Locations</option>
                                             <option>Colour</option>
-                                            <option>Age</option>
-                                            <option>Artist</option>
-                                            <option>Art Type</option>
-                                            <option>Genre</option>
+                                            <option>Period</option>
                                             <option selected>Other</option>
                                             break;
                                     }
