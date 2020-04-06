@@ -71,7 +71,28 @@ namespace Oeuvre.Helpers
                 CollectionsImg newImg = new CollectionsImg();
 
                 newImg.ImgLocation = artPieces[i].ImgLocation;
-                newImg.Description = artPieces[i].Description;
+
+                char[] description = artPieces[i].Description.ToCharArray();
+                string newDesc = "";
+
+                for (int x = 0; x < description.Length; x++)
+                {
+                    
+                    if(x < 94)
+                    {
+                        newDesc += description[x];
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+
+                }
+
+                newDesc += "...";
+
+                newImg.Description = newDesc;
                 newImg.Artist = artPieces[i].Artist;
                 newImg.ImgId = artPieces[i].ImgId;
                 newImg.Name = artPieces[i].Name;
