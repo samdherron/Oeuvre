@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Oeuvre.Models;
@@ -51,10 +52,60 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             public List<ArtPieceGalleryThemeModel> ArtPieceThemes;
         }
 
-        private async Task PostAsync()
+        private async Task<IActionResult> PostAsync(IFormCollection form)
         {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            string currentAuthID = currentUser.Id;
+            var currentGallery = _context.Gallery.Single(g => g.AuthUserId == currentAuthID);
+            string currentGalleryID = currentGallery.GalleryId.ToString();
+
+            List<FormThemeModel> themeList = new List<FormThemeModel>();
+            FormDataModel enteredForm = new FormDataModel();
+
+
+                //Begin form data processing
+                try
+                {
+                    enteredForm.ImageName = form.ElementAt(0).Value.ToString();
+                    enteredForm.ArtistName = form.ElementAt(1).Value.ToString();
+                    enteredForm.CuratorName = form.ElementAt(2).Value.ToString();
+                    enteredForm.YearCreated = form.ElementAt(3).Value.ToString();
+                    enteredForm.Medium = form.ElementAt(4).Value.ToString();
+                    enteredForm.CollectionType = form.ElementAt(5).Value.ToString();
+                    enteredForm.PieceDimensions = form.ElementAt(6).Value.ToString();
+                    enteredForm.ImageDescription = form.ElementAt(7).Value.ToString();
+
+                    //Splits all of the theme types and theme values into two seperate string arrays
+                    string[] themeTypeSplit = Request.Form.ElementAt(8).Value.ToString().Split(',');
+                    string[] themeValueSplit = Request.Form.ElementAt(9).Value.ToString().Split(',');
+                    int numberThemes = themeTypeSplit.Length;
+
+                    //Generates a List of FormThemeModel objects
+                    //Each list entry will have a FormThemeModel with a ThemeType and a ThemeValue
+                    for (int i = 0; i < numberThemes; i++)
+                    {
+                        FormThemeModel themes = new FormThemeModel();
+                        themes.ThemeType = themeTypeSplit[i];
+                        themes.ThemeValue = themeValueSplit[i];
+                        themeList.Add(themes);
+                    }
+
+                    enteredForm.Themes = themeList;
+
+                }
+                catch
+                {
+
+                }
+
+
+            return Page();
+
+
 
         }
+
+
 
         private async Task LoadAsync(IdentityUser user, string id)
         {

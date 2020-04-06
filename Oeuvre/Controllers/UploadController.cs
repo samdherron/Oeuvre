@@ -78,8 +78,8 @@ namespace Oeuvre.Controllers
                     enteredForm.ImageDescription = form.ElementAt(7).Value.ToString();
 
                     //Splits all of the theme types and theme values into two seperate string arrays
-                    string[] themeTypeSplit = Request.Form.ElementAt(3).Value.ToString().Split(',');
-                    string[] themeValueSplit = Request.Form.ElementAt(4).Value.ToString().Split(',');
+                    string[] themeTypeSplit = Request.Form.ElementAt(8).Value.ToString().Split(',');
+                    string[] themeValueSplit = Request.Form.ElementAt(9).Value.ToString().Split(',');
                     int numberThemes = themeTypeSplit.Length;
 
                     //Generates a List of FormThemeModel objects
