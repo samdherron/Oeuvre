@@ -38,13 +38,12 @@ namespace Oeuvre.Services
 
         public enum themeTypeValues
         {
-            Colour = 1,
-            Age = 2,
-            Artist = 3,
-            ArtType = 4,
-            Genre = 5,
-            Other = 6,
-            Gallery = 7
+            Mediums = 1,
+            Movements = 2,
+            Locations = 3,
+            Colour = 4,
+            Period = 5,
+            Other = 6
         }
 
 
