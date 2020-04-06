@@ -215,7 +215,12 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
         public string cleanWords(string word)
         {
 
-            word = Regex.Replace(word, @"\s+", "");
+            word = word.Trim();
+            char[] letters = word.ToCharArray();
+            string firstLetter = letters[0].ToString();
+
+            word = word.Remove(0, 1);
+            word = word.Insert(0, firstLetter.ToUpperInvariant());
 
             //RegexOptions options = RegexOptions.None;
             //Regex regex = new Regex("[ ]{2,}", options);
