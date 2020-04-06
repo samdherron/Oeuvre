@@ -40,8 +40,21 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
 
             var userId = user.Id;
 
+
+            var Gallery = (from gl in _context.Gallery
+                           where gl.AuthUserId == user.Id
+                           select new
+                           {
+                               gl.GalleryId
+                           }).Distinct().FirstOrDefault();
+
+            int galId = Gallery.GalleryId;
+
+
+
             var artPieces = (from img in _context.Image
                              join gl in _context.Gallery on img.GalleryId equals gl.GalleryId
+                             where gl.GalleryId == galId
                              select new
                              {
                                  img.ImgId

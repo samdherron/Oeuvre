@@ -152,7 +152,15 @@ namespace Oeuvre.Services
 
                 //Save new entry to Image table
                 _context.Image.Add(newDatabaseEntry);
-                await _context.SaveChangesAsync();
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }catch(Exception e)
+                {
+                    Console.WriteLine("THIS IS A SQL ERROR");
+                    Console.WriteLine(e);
+                }
 
                 //Save new entry to ThemeLookup table
                 ThemeLookup newThemeLookupEntry = new ThemeLookup();
