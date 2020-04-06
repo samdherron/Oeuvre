@@ -103,7 +103,7 @@ namespace Oeuvre.Controllers
             {
                 ViewData["error"] = "You have to pick either Theme Type or put something in the search param!";
             }
-            else if(sTy == 7 && sTh != "")
+            else if(sTy == 8 && sTh != "")
             {
                 if (ModelState.IsValid)
                 {
@@ -123,7 +123,7 @@ namespace Oeuvre.Controllers
 
                 }
             }
-            else if(sTy == 3 && sTh != ""){
+            else if(sTy == 7 && sTh != ""){
                 if (ModelState.IsValid)
                 {
 

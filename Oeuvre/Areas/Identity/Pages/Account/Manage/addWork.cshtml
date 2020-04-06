@@ -106,11 +106,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <select name="initialThemeCategory" class="form-control">
+                                <option>Mediums</option>
+                                <option>Movements</option>
+                                <option>Locations</option>
                                 <option>Colour</option>
-                                <option>Age</option>
-                                <option>Artist</option>
-                                <option>Art Type</option>
-                                <option>Genre</option>
+                                <option>Period</option>
                                 <option>Other</option>
                             </select>
                         </div>
@@ -180,6 +180,7 @@
         document.querySelector('.dynamicThemes').appendChild(newThemeClone);
         themeCounter += 1;
     }
+
 
     /*Deletes a new theme input row by getting the theme count and deleting the
       corresponding node from the parent */

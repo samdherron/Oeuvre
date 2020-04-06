@@ -38,13 +38,12 @@ namespace Oeuvre.Services
 
         public enum themeTypeValues
         {
-            Colour = 1,
-            Age = 2,
-            Artist = 3,
-            ArtType = 4,
-            Genre = 5,
-            Other = 6,
-            Gallery = 7
+            Mediums = 1,
+            Movements = 2,
+            Locations = 3,
+            Colour = 4,
+            Period = 5,
+            Other = 6
         }
 
 
@@ -116,9 +115,21 @@ namespace Oeuvre.Services
                               orderby i.ImgId + 0
                               select i.ImgId).ToList();
 
-                List<int> numberList = number.Select(s => int.Parse(s)).ToList();
+                List<int> numberList = new List<int>();
 
-                int highestNumber = numberList.Max() + 1;
+                int highestNumber = 0;
+
+                if (number.Count == 0)
+                {
+                    highestNumber = 1;
+                }
+                else
+                {
+                    numberList = number.Select(s => int.Parse(s)).ToList();
+                    highestNumber = numberList.Max() + 1;
+                }
+
+                
 
 
                 
@@ -141,7 +152,15 @@ namespace Oeuvre.Services
 
                 //Save new entry to Image table
                 _context.Image.Add(newDatabaseEntry);
-                await _context.SaveChangesAsync();
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }catch(Exception e)
+                {
+                    Console.WriteLine("THIS IS A SQL ERROR");
+                    Console.WriteLine(e);
+                }
 
                 //Save new entry to ThemeLookup table
                 ThemeLookup newThemeLookupEntry = new ThemeLookup();
