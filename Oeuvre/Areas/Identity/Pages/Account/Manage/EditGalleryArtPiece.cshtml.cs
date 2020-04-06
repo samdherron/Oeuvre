@@ -52,7 +52,7 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             public List<ArtPieceGalleryThemeModel> ArtPieceThemes;
         }
 
-        private async Task<IActionResult> PostAsync(IFormCollection form)
+        private async Task<IActionResult> OnPostAsync(IFormCollection form)
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             string currentAuthID = currentUser.Id;
