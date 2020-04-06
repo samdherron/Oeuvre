@@ -3,40 +3,93 @@
 @{
     ViewData["Title"] = "Galleries";
 }
+    <div class="row" style="border-top:solid;margin-top:30px;margin-bottom:20px;border-color:lightgray">
+        <h1>Galleries</h1>
+    </div>
 
-<h1>Galleries Listing</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-2" style="margin-top:0px;margin-right:15px">
+                <a class="btn btn-outline-secondary " style="width: 150px;font-weight: bold;margin-bottom: 0px" asp-action="Index">All Galleries</a>
+                </div>
+            <div class="col-xs-1"></div>
+                <div class="col-xs-1" style="margin-top:0px">
+                    <div class="dropdown">
 
-<p>
-    
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            
-            
-         
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+                        <button class="btn btn-outline-secondary  dropdown-toggle" style="margin-bottom: 0px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            A-Z
+                        </button>
+                        <div class="dropdown-menu" style="overflow-x: hidden;height: auto;max-height: 200px;" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="A" value="A">A</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="B" value="B">B</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="C" value="C">C</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="D" value="D">D</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="E" value="E">E</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="F" value="F">F</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="G" value="G">G</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="H" value="H">H</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="I" value="I">I</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="J" value="J">J</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="K" value="K">K</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="L" value="L">L</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="M" value="M">M</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="N" value="N">N</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="O" value="O">O</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="P" value="P">P</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="Q" value="Q">Q</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="R" value="R">R</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="S" value="S">S</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="T" value="T">T</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="U" value="U">U</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="V" value="V">V</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="W" value="W">W</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="X" value="X">X</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="Y" value="Y">Y</a>
+                            <a class="dropdown-item" asp-action="Index" asp-route-letter="Z" value="Z">Z</a>
 
-        @{List<List<Image>> item = Model.Images;}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div style="        border-top: solid;
+        border-color: lightgray;
+        margin-bottom: 30px;margin-top:30px"></div>
+        @{List<Image> item = Model.Images;}
         @{List<string> id = Model.GalleryId;}
         @{List<string> nameString = Model.GalleryName;}
         @{List<string> descString = Model.GalleryDescription;}
 
-        @for (var x = 0; x < Model.GalleryName.Count; x++)
-        {
-        <div name="Gallerydisplaycard" class="col-sm-3 ml-auto" id="exhibitionCardColumn">
-            <a asp-controller="Galleries" asp-action="Details" asp-route-id="@id[x]">
-                <img class="listImage" src="@item[x][0].ImgLocation" alt="Current Exhibitions List #1" />
-            </a>
-            <h4 class="text-dark font-weight-bolder">@nameString[x]</h4>
-            <h6 class="text-dark">@descString[x]</h6>
-            
+
+        <div class="container">
+            @*<div class="panel-body col-xs-8 col-sm-6 col-lg-8">*@
+
+            <div class="card-columns" style="margin-top: 15px">
+
+                @if (Model.GalleryName.Count != 0)
+                {
+                @for (var x = 0; x < Model.GalleryName.Count; x++)
+                {
+                    <div class="card">
+                        <a asp-controller="Galleries" asp-action="Details" asp-route-id="@id[x]">
+                            <img class="card-img-top" src="@item[x].ImgLocation" alt="Current Exhibitions List #1" />
+                        </a>
+                        
+                        <h4 class="text-dark font-weight-bolder">@nameString[x]</h4>
+                        <h6 class="text-dark">@descString[x]</h6>
+
+                    </div>
+
+                }
+                }
+                else
+                {
+                    <h3 style="margin-top:60px;margin-bottom:60px;"align="center">There are no galleries starting with this letter.</h3>
+                }
+            </div>
         </div>
-        }
+        
 
 
-    </tbody>
-</table>
+     
