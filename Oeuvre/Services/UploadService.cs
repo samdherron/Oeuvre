@@ -115,9 +115,21 @@ namespace Oeuvre.Services
                               orderby i.ImgId + 0
                               select i.ImgId).ToList();
 
-                List<int> numberList = number.Select(s => int.Parse(s)).ToList();
+                List<int> numberList = new List<int>();
 
-                int highestNumber = numberList.Max() + 1;
+                int highestNumber = 0;
+
+                if (number.Count == 0)
+                {
+                    highestNumber = 1;
+                }
+                else
+                {
+                    numberList = number.Select(s => int.Parse(s)).ToList();
+                    highestNumber = numberList.Max() + 1;
+                }
+
+                
 
 
                 
