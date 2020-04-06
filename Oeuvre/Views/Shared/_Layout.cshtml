@@ -33,9 +33,10 @@
                             <li class="nav-item" id="navLiFirst">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Galleries" asp-action="Index">Galleries</a>
                             </li>
-                            <li class="nav-item" id="navLi">
-                                <a class="nav-link text-light">Current</a>
-                            </li>
+                            @*<li class="nav-item" id="navLi">
+                                <a class="nav-link text-light"  asp-area="" asp-controller="Current" asp-action="Index">Current</a>
+                            </li>*@
+                            @*this is a test*@
                             <li class="nav-item" id="navLi">
                                 <a class="nav-link text-light" asp-area="" asp-controller="SearchGallery" asp-action="SearchGallery">Discover</a>
                             </li>
@@ -96,14 +97,14 @@
                 <div class="col-sm-3" style="margin-top: 5%; margin-bottom: 5%;">
                     <h4 class="footerHeader" style="color: #a12412;">RESOURCES</h4>
                     <br />
-                    <a asp-controller="SearchGallery" asp-action="Index"><h6 class="text-dark">Collections</h6></a>
-                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Galleries</h6></a>
+                    <a asp-controller="SearchGallery" asp-action="SearchGallery"><h6 class="text-dark">Collections</h6></a>
+                    <a asp-controller="Galleries" asp-action="Index"><h6 class="text-dark">Galleries</h6></a>
                     <!-- Change Your Local Galleries to Maps page-->
-                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Your Local Galleries</h6></a>
+                    <a asp-controller="Galleries" asp-action="Index"><h6 class="text-dark">Your Local Galleries</h6></a>
                     <!-- Change to Signup Page -->
-                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Add Your Gallery</h6></a>
+                    <a asp-controller="Galleries" asp-action="Index"><h6 class="text-dark">Add Your Gallery</h6></a>
                     <!-- Change to privacy policy page -->
-                    <a asp-controller="Gallery" asp-action="Index"><h6 class="text-dark">Privacy Policy</h6></a>
+                    <a asp-controller="Galleries" asp-action="Index"><h6 class="text-dark">Privacy Policy</h6></a>
                 </div>
 
                 <div class="col-sm-6" style="margin-top: 5%; margin-bottom: 5%;">
@@ -139,16 +140,16 @@
                 <div class="col-sm-3" style="margin-top: 5%; margin-bottom: 5%;">
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
-                            <a class="text-light" href="http://www.facebook.com" id="iconLink">
+                            <a class="text-light" href="http://www.facebook.com" id="iconLink" target="_blank">
                                 <img src="~/Icons/facebook_maroon.png" width="24" height="24" alt="facebookIcon" />
                             </a>
                         </li>
                         <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
-                            <a class="text-light" href="http://www.instagram.com" id="iconLink">
+                            <a class="text-light" href="http://www.instagram.com" id="iconLink" target="_blank">
                                 <img src="~/Icons/instagram_maroon.png" width="24" height="24" alt="instagramIcon" />
                             </a>
                         </li>
-                        <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;">
+                        <li class="list-group-item border-0" style="background-color: #eeedeb; padding: 1%;" target="_blank">
                             <a class="text-light" href="http://www.twitter.com" id="iconLink">
                                 <img src="~/Icons/twitter_maroon.png" width="24" height="24" alt="twitterIcon" />
                             </a>
