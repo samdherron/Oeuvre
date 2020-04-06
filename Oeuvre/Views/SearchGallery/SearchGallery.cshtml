@@ -223,7 +223,8 @@
                         @*<h5 class="card-title">@img.Artist</h5>*@
                         <p class="card-text" style="color: rgba(161,36,18, 0.9); font-size: 0.8em; margin-bottom:0; font-weight:600">@img.Name</p>
                         <p class="card-text" style="color: #202020; font-size: 1em;margin-bottom:0; font-weight:bold">@img.GalleryName</p>
-                        <p class="card-text" style="color: #838383; font-size: 0.8em; height: 20px; overflow: hidden; font-weight:600">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        @*<p class="card-text" style="color: #838383; font-size: 0.8em; height: 20px; overflow: hidden; font-weight:600">Some quick example text to build on the card title and make up the bulk of the card's content.</p>*@
+                        <p class="card-text" style="color: #838383; font-size: 0.8em; height: 20px; overflow: hidden; font-weight:600">@img.Description</p>
                         @*<a class="btn btn-secondary btn-sm" asp-controller="SearchGallery" asp-action="testImgId" asp-route-id="@img.ImgId" value="@img.ImgId">More Info</a>*@
                     </div>
 
