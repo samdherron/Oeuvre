@@ -362,10 +362,7 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
                 }
 
            */
-            //await LoadAsync(user, imageID);
 
-            //return Page();
-            //await LoadAsync(_userManager.GetUserAsync(), 
         }
 
 
