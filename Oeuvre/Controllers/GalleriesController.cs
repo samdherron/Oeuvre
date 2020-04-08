@@ -39,6 +39,7 @@ namespace Oeuvre.Controllers
             List<string> tempCity= new List<string>();
             List<string> tempId = new List<string>();
             List<string> tempDesc = new List<string>();
+            List<string> tempType = new List<string>();
             List < List < Image >> tempImages = new List<List<Image>>();
             GalleryListing galleryCollection = new GalleryListing();
             List<Image> myList = new List<Image>();
@@ -61,6 +62,7 @@ namespace Oeuvre.Controllers
 
                         tempId.Add(gallery.GalleryId.ToString());
                         tempName.Add(gallery.GalleryName);
+                    tempType.Add(gallery.Type + " Gallery");
                         if (gallery.GalleryDescription.Length <= 90)
                         {
                             tempDesc.Add(gallery.GalleryDescription);
@@ -114,6 +116,7 @@ namespace Oeuvre.Controllers
                     galleryCollection.GalleryName = tempName;
                     galleryCollection.GalleryDescription = tempDesc;
                     galleryCollection.Images = myList;
+                    galleryCollection.Types = tempType;
                 }
                     }
             else
@@ -131,6 +134,7 @@ namespace Oeuvre.Controllers
                       
                         tempId.Add(gallery.GalleryId.ToString());
                         tempName.Add(gallery.GalleryName);
+                        tempType.Add(gallery.Type + " Gallery");
                         if (gallery.GalleryDescription.Length <= 90)
                         {
                             tempDesc.Add(gallery.GalleryDescription);
@@ -184,6 +188,7 @@ namespace Oeuvre.Controllers
                     galleryCollection.GalleryName = tempName;
                     galleryCollection.GalleryDescription = tempDesc;
                     galleryCollection.Images = myList;
+                    galleryCollection.Types = tempType;
                 }
             }
             return View(galleryCollection);

@@ -51,7 +51,8 @@ namespace Oeuvre.Controllers
                 imageData.Name = image.ElementAt(0).Name;
                 imageData.PieceDimensions = image.ElementAt(0).PieceDimensions;
                 imageData.Theme = image.ElementAt(0).Theme;
-             
+                imageData.GalleryId = image.ElementAt(0).GalleryId;
+
             }
 
             return imageData;
