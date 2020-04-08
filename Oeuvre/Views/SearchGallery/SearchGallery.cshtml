@@ -120,7 +120,7 @@
 
                 <a onclick="setButtonClicked(7)">
                     <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT7" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius:0;">
-                        <img class="img-responsive" src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <img class="img-responsive" src="~/Imgs/artists.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
                         <span style="line-height: 50px">Artist</span>
                     </div>
                 </a>
@@ -128,7 +128,7 @@
 
                 <a onclick="setButtonClicked(8)">
                     <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT8" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <img src="~/Imgs/gallery.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
                         <span class="" style="line-height: 50px">Gallery</span>
                     </div>
                 </a>
@@ -136,7 +136,7 @@
                 <a onclick="setButtonClicked(1)">
                     <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT1" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
 
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <img src="~/Imgs/medians.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
                         <span class="" style="line-height: 50px">Medians</span>
 
                     </div>
@@ -145,7 +145,7 @@
 
                 <a onclick="setButtonClicked(2)">
                     <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT2" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <img src="~/Imgs/movements.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
                         <span style="line-height: 50px">Art Movements</span>
                     </div>
                 </a>
@@ -154,14 +154,14 @@
 
                 <a onclick="setButtonClicked(3)">
                     <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT3" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <img src="~/Imgs/locations.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
                         <span class="" style="line-height: 50px">Locations</span>
                     </div>
                 </a>
 
                 <a onclick="setButtonClicked(4)">
                     <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right  my-auto" id="TT4" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <img src="~/Imgs/colour.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
                         <span class="" style="line-height: 50px">Colour</span>
                     </div>
                 </a>
@@ -175,7 +175,7 @@
 
                 <a onclick="setButtonClicked(6)">
                     <div class="card themeTypeCard col-sm-3 align-middle border-left-0 rounded-right my-auto" id="TT6" style="border-width: 1px !important; border-color: darkgrey; margin-right: 10px; border-radius: 0;">
-                        <img src="~/Imgs/dropDown.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
+                        <img src="~/Imgs/other.jpg" width="50" height="50" style="float:left; margin-right:15px; margin-left: -16px" />
                         <span class="" style="line-height: 50px">Other</span>
                     </div>
                 </a>
@@ -223,7 +223,8 @@
                         @*<h5 class="card-title">@img.Artist</h5>*@
                         <p class="card-text" style="color: rgba(161,36,18, 0.9); font-size: 0.8em; margin-bottom:0; font-weight:600">@img.Name</p>
                         <p class="card-text" style="color: #202020; font-size: 1em;margin-bottom:0; font-weight:bold">@img.GalleryName</p>
-                        <p class="card-text" style="color: #838383; font-size: 0.8em; height: 20px; overflow: hidden; font-weight:600">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        @*<p class="card-text" style="color: #838383; font-size: 0.8em; height: 20px; overflow: hidden; font-weight:600">Some quick example text to build on the card title and make up the bulk of the card's content.</p>*@
+                        <p class="card-text" style="color: #838383; font-size: 0.8em; height: 20px; overflow: hidden; font-weight:600">@img.Description</p>
                         @*<a class="btn btn-secondary btn-sm" asp-controller="SearchGallery" asp-action="testImgId" asp-route-id="@img.ImgId" value="@img.ImgId">More Info</a>*@
                     </div>
 
