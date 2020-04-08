@@ -6,7 +6,8 @@
 }
 
     <div class="container-fluid">
-
+        @{int nid = Model.GalleryId;}
+        @{string id = nid.ToString();}
         @{
             if (ViewData["Image"] != null)
             {
@@ -40,8 +41,11 @@
                         <p>Medium: @Html.DisplayFor(model => model.Medium)</p>
                         <p>Dimensions: @Html.DisplayFor(model => model.PieceDimensions)</p>
                     </div>
+                    <div class="col-xs-2" style="margin:auto;">
+                        <a class="btn btn-outline-secondary " style="width: 150px;font-weight: bold;margin-bottom: 0px" asp-controller="Galleries" asp-action="Details" asp-route-id="@id">View Image Gallery</a>
+                    </div>
                 </div>
-                 <br />
+                <br />
 
                 <div class="border-top my-3" style="margin-top: 2%; margin-bottom: 2%; border-color: rgba(77, 77, 77, 0.6)!important;">
                     <div class="row">
