@@ -130,7 +130,7 @@ namespace Oeuvre.Helpers
                                  ,
                                  gl.GalleryName
 
-                             }).ToList();
+                             }).Distinct().ToList();
 
             List<CollectionsImg> imageList = new List<CollectionsImg>();
 
@@ -171,7 +171,7 @@ namespace Oeuvre.Helpers
                                  img.Name
                                  ,
                                  gl.GalleryName
-                             }).ToList();
+                             }).Distinct().ToList();
 
 
 
@@ -218,7 +218,7 @@ namespace Oeuvre.Helpers
                                  ,
                                  gl.GalleryName
 
-                             }).ToList();
+                             }).Distinct().ToList();
 
             List<CollectionsImg> imageList = new List<CollectionsImg>();
 
@@ -262,7 +262,7 @@ namespace Oeuvre.Helpers
                                  ,
                                  gl.GalleryName
 
-                             }).ToList();
+                             }).Distinct().ToList();
 
             List<CollectionsImg> imageList = new List<CollectionsImg>();
 
