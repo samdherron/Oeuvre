@@ -30,8 +30,7 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             securityClass = new SearchGallery();
         }
 
-        [BindProperty]
-        public ArtPieceGalleryInfoModel ArtPieceInfo { get; set; }
+        
 
 
         public enum themeTypeValues
@@ -44,6 +43,8 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             Other = 6
         }
 
+        [BindProperty]
+        public ArtPieceGalleryInfoModel ArtPieceInfo { get; set; }
         public class ArtPieceGalleryInfoModel
         {
             public Image imageDetails;
@@ -68,7 +69,7 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             public List<ArtPieceGalleryThemeModel> ArtPieceThemes;
         }
 
-        private async Task<IActionResult> OnPostAsync(IFormCollection form)
+        public async Task<IActionResult> OnPostAsync(IFormCollection form, string imgID)
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             string currentAuthID = currentUser.Id;
@@ -109,13 +110,18 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
 
                     enteredForm.Themes = themeList;
 
-                }
-                catch
+                    await updateDatabase(enteredForm, imgID);
+
+                 }
+                catch(Exception e)
                 {
-
+                    Console.WriteLine("YOU HAVE HIT AN ERROR");
+                    Console.WriteLine(e.ToString());
                 }
 
-            await updateDatabase(enteredForm);
+            var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+            await LoadAsync(user, imgID);
 
             return Page();
 
@@ -123,56 +129,180 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
 
         }
 
-        public async Task updateDatabase(FormDataModel enteredForm)
+        public async Task updateDatabase(FormDataModel enteredForm, string imgID)
         {
+          
+
             bool successfullySaved = false;
             string currentType = "";
             string currentValue = "";
 
-            var oldImageInfo = (from img in _context.Image
-                                where img.ImgId == imageID
-                                select new
-                                {
-                                    img.ImgLocation,
-                                    img.DateUploaded
-                                }).ToList();
+            //var oldImageInfo = (from img in _context.Image
+            //                    where img.ImgId == imageID
+            //                    select new
+            //                    {
+            //                        img.ImgLocation,
+            //                        img.DateUploaded
+            //                    }).ToList();
 
-            Image updatedImage = new Image();
-            updatedImage.Artist = enteredForm.ArtistName;
-            updatedImage.CollectionType = enteredForm.CollectionType;
-            updatedImage.CuratorName = enteredForm.CuratorName;
-            string dateString = oldImageInfo[0].ToString();
-            updatedImage.DateUploaded = DateTime.Parse(dateString);
-            updatedImage.Description = enteredForm.ImageDescription;
-            updatedImage.Gallery = gallery;
-            updatedImage.GalleryId = galleryID;
-            updatedImage.ImgId = imageID;
-            updatedImage.ImgLocation = imageURL;
-            updatedImage.Medium = enteredForm.Medium;
-            updatedImage.Name = enteredForm.ImageName;
-            updatedImage.PieceDimensions = enteredForm.PieceDimensions;
-            updatedImage.YearCreated = enteredForm.YearCreated;
-            updatedImage.ThemeId = "1";
+            //Image updatedImage = new Image();
+            //updatedImage.Artist = enteredForm.ArtistName;
+            //updatedImage.CollectionType = enteredForm.CollectionType;
+            //updatedImage.CuratorName = enteredForm.CuratorName;
+            //string dateString = oldImageInfo[0].ToString();
+            //updatedImage.DateUploaded = DateTime.Parse(dateString);
+            //updatedImage.Description = enteredForm.ImageDescription;
+            //updatedImage.Gallery = gallery;
+            //updatedImage.GalleryId = galleryID;
+            //updatedImage.ImgId = imageID;
+            //updatedImage.ImgLocation = imageURL;
+            //updatedImage.Medium = enteredForm.Medium;
+            //updatedImage.Name = enteredForm.ImageName;
+            //updatedImage.PieceDimensions = enteredForm.PieceDimensions;
+            //updatedImage.YearCreated = enteredForm.YearCreated;
+            //updatedImage.ThemeId = "1";
 
-            _context.Image.Add(updatedImage);
+            //_context.Image.Add(updatedImage);
 
-            try
+
+            //step 1 - update image information
+            Image oldImageInfo = (from img in _context.Image
+                                where img.ImgId == imgID
+                                  select img).SingleOrDefault();
+
+
+
+            oldImageInfo.Artist = enteredForm.ArtistName;
+            oldImageInfo.CollectionType = enteredForm.CollectionType;
+            oldImageInfo.CuratorName = enteredForm.CuratorName;
+            //string dateString = oldImageInfo.DateUploaded.ToString();
+            //oldImageInfo.DateUploaded = DateTime.Parse(dateString);
+            oldImageInfo.Description = enteredForm.ImageDescription;
+            //oldImageInfo.Gallery = gallery;
+            //oldImageInfo.GalleryId = galleryID;
+            //oldImageInfo.ImgId = imageID;
+            //oldImageInfo.ImgLocation = imageURL;
+            oldImageInfo.Medium = enteredForm.Medium;
+            oldImageInfo.Name = enteredForm.ImageName;
+            oldImageInfo.PieceDimensions = enteredForm.PieceDimensions;
+            oldImageInfo.YearCreated = enteredForm.YearCreated;
+            oldImageInfo.ThemeId = "1";
+
+            _context.SaveChanges();
+
+
+            //step 2 - get theme lookup id
+
+            ThemeLookup themeLookup = (from tl in _context.ThemeLookup
+                                       where tl.ImgId == imgID
+                                       select tl).SingleOrDefault();
+
+            int themeLookupId = themeLookup.ThemeLookupId;
+
+            //step 3 delete all imgthemes that have a the same themelookupid
+            _context.ImgThemes.RemoveRange(_context.ImgThemes.Where(x => x.ThemeLookupId == themeLookupId));
+            _context.SaveChanges();
+
+            //step 4 add themes to image
+
+            var number = (from i in _context.Image
+                          orderby i.ImgId + 0
+                          select i.ImgId).ToList();
+
+            List<int> numberList = new List<int>();
+
+            int highestNumber = 0;
+
+            if (number.Count == 0)
             {
-                await _context.SaveChangesAsync();
+                highestNumber = 1;
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine("THIS IS A SQL ERROR");
-                Console.WriteLine(e);
+                numberList = number.Select(s => int.Parse(s)).ToList();
+                highestNumber = numberList.Max() + 1;
             }
 
 
-            //Save new entry to ThemeLookup table
-            ThemeLookup newThemeLookupEntry = new ThemeLookup();
-            newThemeLookupEntry.ImgId = updatedImage.ImgId;
 
-            _context.ThemeLookup.Add(newThemeLookupEntry);
-            await _context.SaveChangesAsync();
+            for (int i = 0; i < enteredForm.Themes.Count; i++)
+            {
+                currentType = enteredForm.Themes.ElementAt(i).ThemeType;
+                currentValue = securityClass.removeSqlInjectionParams(enteredForm.Themes.ElementAt(i).ThemeValue);
+
+                //Check for null or empty strings inside of both values
+                if ((!string.IsNullOrEmpty(currentType)) && (!string.IsNullOrEmpty(currentValue)))
+                {
+
+                    int ThemeTypeID = (int)((themeTypeValues)Enum.Parse(typeof(themeTypeValues), currentType));
+
+                    var valueExists = (from theme in _context.Theme
+
+                                       where theme.ThemeName.Contains(currentValue) && theme.ThemeTypeId == ThemeTypeID.ToString()
+                                       select new
+                                       {
+                                           theme.ThemeName,
+                                           theme.ThemeId
+
+                                       }).ToList();
+
+                    //Check if the call returned with a valid type match
+                    if (valueExists.Count > 0)
+                    {
+                        string oldThemeValue = valueExists.ElementAt(0).ThemeId.Trim();
+                        await saveImgTheme(oldThemeValue, themeLookupId);
+
+                    }
+
+                    //If no match, add to theme table &
+                    else
+                    {
+                        Theme newThemeEntry = new Theme();
+
+                        number = (from a in _context.Theme
+                                  orderby a.ThemeId + 0
+                                  select a.ThemeId).ToList();
+
+                        numberList = number.Select(s => int.Parse(s)).ToList();
+
+                        highestNumber = numberList.Max() + 1;
+
+                        newThemeEntry.ThemeId = highestNumber.ToString();
+                        newThemeEntry.ThemeTypeId = ThemeTypeID.ToString();
+                        newThemeEntry.ThemeName = currentValue;
+
+                        _context.Theme.Add(newThemeEntry);
+                        await _context.SaveChangesAsync();
+
+
+                        string newThemeValue = newThemeEntry.ThemeId;
+                        await saveImgTheme(newThemeValue, themeLookupId);
+
+                        successfullySaved = true;
+
+                    }
+                }
+
+            }
+
+
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("THIS IS A SQL ERROR");
+            //    Console.WriteLine(e);
+            //}
+
+
+            ////Save new entry to ThemeLookup table
+            //ThemeLookup newThemeLookupEntry = new ThemeLookup();
+            //newThemeLookupEntry.ImgId = oldImageInfo.ImgId;
+
+            //_context.ThemeLookup.Add(newThemeLookupEntry);
+            //await _context.SaveChangesAsync();
 
             /*
                 //Returns newly created theme lookup ID from table
@@ -232,12 +362,14 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
                 }
 
            */
+            //await LoadAsync(user, imageID);
 
-            await LoadAsync(_userManager.GetUserAsync(), 
+            //return Page();
+            //await LoadAsync(_userManager.GetUserAsync(), 
         }
 
 
-        public async Task<bool> saveImgTheme(string ThemeId, int themeLookupID)
+public async Task<bool> saveImgTheme(string ThemeId, int themeLookupID)
 {
     bool retVal = true;
 
