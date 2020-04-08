@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model GalleryRequestModel
+
+
+<form style="margin-top: 15px;">
+    <h2 class="border-bottom">Request Gallery Form</h2>
+    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+         
+    <h6 style="color: #a12412; padding-top: 15px;">Gallery Information</h6>
+    <hr />
+
+    <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" name="galleryEmail" value="" asp-for="galleryEmail" required />
+
+        <span class="text-danger">@ViewData["errorEmail"]</span>
+    </div>
+
+    <br />
+
+    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+<div class="form-group">
+    <label>Gallery Name</label>
+    <input class="form-control" name="galleryName" asp-for="galleryName" required />
+    <span class="text-danger">@ViewData["errorName"]</span>
+</div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label>Gallery Type (Private or Public)</label>
+            <br />
+            <input class="form-control" name="galleryType" asp-for="galleryType" required />
+            <span class="text-danger">@ViewData["errorType"]</span>
+        </div>
+
+        <div class="col-md-6">
+            <label>Phone Number (please include dashes between the numbers: (555-555-5555)</label>
+            <br />
+            <input class="form-control" name="phoneNumber" asp-for="phoneNumber" required />
+            <span class="text-danger">@ViewData["errorPhone"]</span>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label>Address</label>
+            <br />
+            <input class="form-control" name="address" asp-for="address" required />
+            <span class="text-danger">@ViewData["errorAddress"]</span>
+        </div>
+
+        <div class="col-lg-6">
+            <label>Province</label>
+            <br />
+            <input class="form-control" name="province" asp-for="province" required />
+            <span class="text-danger">@ViewData["errorProvince"]</span>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label>City</label>
+            <br />
+            <input class="form-control" name="city" asp-for="city" required />
+            <span class="text-danger">@ViewData["errorCity"]</span>
+        </div>
+
+        <div class="col-lg-6">
+            <label>Postal Code</label>
+            <br />
+            <input class="form-control" name="postalCode" asp-for="postalCode" required />
+            <span class="text-danger">@ViewData["errorPostal"]</span>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label>Gallery Desc</label>
+        <textarea class="form-control" rows="10" name="galleryDesc" asp-for="galleryDesc"></textarea>
+        <span class="text-danger">@ViewData["errorGalDesc"]</span>
+    </div>
+
+    <br />
+
+    <button asp-controller="GalleryRequest" asp-action="requestGalleryMail" type="submit" class="btn btn-outline-danger">Submit</button>
+</form>
