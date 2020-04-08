@@ -21,7 +21,7 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
         private Gallery gallery;
         private int galleryID = 0;
         SearchGallery securityClass;
-               
+
 
         public EditGalleryArtPiece(dbo_OeuvreContext context, UserManager<IdentityUser> userManager)
         {
@@ -30,7 +30,7 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             securityClass = new SearchGallery();
         }
 
-        
+
 
 
         public enum themeTypeValues
@@ -55,7 +55,7 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
         public ArtPieceGalleryThemeModel ArtPieceGalleryTheme { get; set; }
         public class ArtPieceGalleryThemeModel
         {
-            public string imgThemeName { get; set;}
+            public string imgThemeName { get; set; }
             public string imgThemeId { get; set; }
             public string imgthemeTypeName { get; set; }
             public string imgThemeTypeId { get; set; }
@@ -81,43 +81,43 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
             FormDataModel enteredForm = new FormDataModel();
 
 
-                //Begin form data processing
-                try
+            //Begin form data processing
+            try
+            {
+                enteredForm.ImageName = form.ElementAt(0).Value.ToString();
+                enteredForm.ArtistName = form.ElementAt(1).Value.ToString();
+                enteredForm.CuratorName = form.ElementAt(2).Value.ToString();
+                enteredForm.YearCreated = form.ElementAt(3).Value.ToString();
+                enteredForm.Medium = form.ElementAt(4).Value.ToString();
+                enteredForm.CollectionType = form.ElementAt(5).Value.ToString();
+                enteredForm.PieceDimensions = form.ElementAt(6).Value.ToString();
+                enteredForm.ImageDescription = form.ElementAt(7).Value.ToString();
+
+                //Splits all of the theme types and theme values into two seperate string arrays
+                string[] themeTypeSplit = Request.Form.ElementAt(8).Value.ToString().Split(',');
+                string[] themeValueSplit = Request.Form.ElementAt(9).Value.ToString().Split(',');
+                int numberThemes = themeTypeSplit.Length;
+
+                //Generates a List of FormThemeModel objects
+                //Each list entry will have a FormThemeModel with a ThemeType and a ThemeValue
+                for (int i = 0; i < numberThemes; i++)
                 {
-                    enteredForm.ImageName = form.ElementAt(0).Value.ToString();
-                    enteredForm.ArtistName = form.ElementAt(1).Value.ToString();
-                    enteredForm.CuratorName = form.ElementAt(2).Value.ToString();
-                    enteredForm.YearCreated = form.ElementAt(3).Value.ToString();
-                    enteredForm.Medium = form.ElementAt(4).Value.ToString();
-                    enteredForm.CollectionType = form.ElementAt(5).Value.ToString();
-                    enteredForm.PieceDimensions = form.ElementAt(6).Value.ToString();
-                    enteredForm.ImageDescription = form.ElementAt(7).Value.ToString();
-
-                    //Splits all of the theme types and theme values into two seperate string arrays
-                    string[] themeTypeSplit = Request.Form.ElementAt(8).Value.ToString().Split(',');
-                    string[] themeValueSplit = Request.Form.ElementAt(9).Value.ToString().Split(',');
-                    int numberThemes = themeTypeSplit.Length;
-
-                    //Generates a List of FormThemeModel objects
-                    //Each list entry will have a FormThemeModel with a ThemeType and a ThemeValue
-                    for (int i = 0; i < numberThemes; i++)
-                    {
-                        FormThemeModel themes = new FormThemeModel();
-                        themes.ThemeType = themeTypeSplit[i];
-                        themes.ThemeValue = themeValueSplit[i];
-                        themeList.Add(themes);
-                    }
-
-                    enteredForm.Themes = themeList;
-
-                    await updateDatabase(enteredForm, imgID);
-
-                 }
-                catch(Exception e)
-                {
-                    Console.WriteLine("YOU HAVE HIT AN ERROR");
-                    Console.WriteLine(e.ToString());
+                    FormThemeModel themes = new FormThemeModel();
+                    themes.ThemeType = themeTypeSplit[i];
+                    themes.ThemeValue = themeValueSplit[i];
+                    themeList.Add(themes);
                 }
+
+                enteredForm.Themes = themeList;
+
+                await updateDatabase(enteredForm, imgID);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("YOU HAVE HIT AN ERROR");
+                Console.WriteLine(e.ToString());
+            }
 
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
@@ -131,7 +131,7 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
 
         public async Task updateDatabase(FormDataModel enteredForm, string imgID)
         {
-          
+
 
             bool successfullySaved = false;
             string currentType = "";
@@ -167,7 +167,7 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
 
             //step 1 - update image information
             Image oldImageInfo = (from img in _context.Image
-                                where img.ImgId == imgID
+                                  where img.ImgId == imgID
                                   select img).SingleOrDefault();
 
 
@@ -285,112 +285,34 @@ namespace Oeuvre.Areas.Identity.Pages.Account.Manage
 
             }
 
-
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("THIS IS A SQL ERROR");
-            //    Console.WriteLine(e);
-            //}
-
-
-            ////Save new entry to ThemeLookup table
-            //ThemeLookup newThemeLookupEntry = new ThemeLookup();
-            //newThemeLookupEntry.ImgId = oldImageInfo.ImgId;
-
-            //_context.ThemeLookup.Add(newThemeLookupEntry);
-            //await _context.SaveChangesAsync();
-
-            /*
-                //Returns newly created theme lookup ID from table
-                var themeLookupID = newThemeLookupEntry.ThemeLookupId;
-
-
-                for (int i = 0; i < enteredForm.Themes.Count; i++)
-                {
-                    currentType = enteredForm.Themes.ElementAt(i).ThemeType;
-                    currentValue = securityClass.removeSqlInjectionParams(enteredForm.Themes.ElementAt(i).ThemeValue);
-
-                    //Check for null or empty strings inside of both values
-                    if ((!string.IsNullOrEmpty(currentType)) && (!string.IsNullOrEmpty(currentValue)))
-                    {
-
-                        int ThemeTypeID = (int)((themeTypeValues)Enum.Parse(typeof(themeTypeValues), currentType));
-
-                        var  = (from theme in _context.Theme
-
-                                           where theme.ThemeName.Contains(currentValue) && theme.ThemeTypeId == ThemeTypeID.ToString()
-                                           select new
-                                           {
-                                               theme.ThemeName,
-                                               theme.ThemeId
-                                           }).ToList();
-
-
-
-                            Theme newThemeEntry = new Theme();
-
-                            number = (from a in _context.Theme
-                                      orderby a.ThemeId + 0
-                                      select a.ThemeId).ToList();
-
-                            numberList = number.Select(s => int.Parse(s)).ToList();
-
-                            highestNumber = numberList.Max() + 1;
-
-                            newThemeEntry.ThemeId = highestNumber.ToString();
-                            newThemeEntry.ThemeTypeId = ThemeTypeID.ToString();
-                            newThemeEntry.ThemeName = currentValue;
-
-                            _context.Theme.Add(newThemeEntry);
-                            await _context.SaveChangesAsync();
-
-
-                            string newThemeValue = newThemeEntry.ThemeId;
-                            await saveImgTheme(newThemeValue, themeLookupID);
-
-                            successfullySaved = true;
-
-                        }
-                    }
-
-
-
-                }
-
-           */
-
         }
 
 
-public async Task<bool> saveImgTheme(string ThemeId, int themeLookupID)
-{
-    bool retVal = true;
+        public async Task<bool> saveImgTheme(string ThemeId, int themeLookupID)
+        {
+            bool retVal = true;
 
-    try
-    {
-        ImgThemes newImgTheme = new ImgThemes();
-        newImgTheme.ThemeId = ThemeId;
-        newImgTheme.ThemeLookupId = themeLookupID;
+            try
+            {
+                ImgThemes newImgTheme = new ImgThemes();
+                newImgTheme.ThemeId = ThemeId;
+                newImgTheme.ThemeLookupId = themeLookupID;
 
-        _context.ImgThemes.Add(newImgTheme);
-        await _context.SaveChangesAsync();
+                _context.ImgThemes.Add(newImgTheme);
+                await _context.SaveChangesAsync();
 
-    }
-    catch
-    {
-        retVal = false;
+            }
+            catch
+            {
+                retVal = false;
 
-    }
+            }
 
-    return retVal;
-}
+            return retVal;
+        }
 
 
-private async Task LoadAsync(IdentityUser user, string id)
+        private async Task LoadAsync(IdentityUser user, string id)
         {
             var userName = await _userManager.GetUserNameAsync(user);
 
@@ -459,22 +381,23 @@ private async Task LoadAsync(IdentityUser user, string id)
                                   join tt in _context.ThemeType on t.ThemeTypeId equals tt.ThemeTypeId
                                   where img.ImgId == id
                                   select new
-                                      {
-                                        t.ThemeName
+                                  {
+                                      t.ThemeName
                                         ,
-                                        t.ThemeId
+                                      t.ThemeId
                                         ,
-                                        tt.ThemeTypeName
+                                      tt.ThemeTypeName
                                         ,
-                                        tt.ThemeTypeId
-                                      }
+                                      tt.ThemeTypeId
+                                  }
                                   ).Distinct().ToList();
 
-            
+
 
             List<ArtPieceGalleryThemeModel> themes = new List<ArtPieceGalleryThemeModel>();
 
-            for (var i = 0; i < artPieceThemes.Count; i++) {
+            for (var i = 0; i < artPieceThemes.Count; i++)
+            {
 
 
                 var themeName = cleanWords(artPieceThemes[i].ThemeName);
@@ -496,11 +419,11 @@ private async Task LoadAsync(IdentityUser user, string id)
             {
                 ArtPieceThemes = themes
             };
-                     
+
 
         }
 
-       
+
 
 
         public string cleanWords(string word)
@@ -512,10 +435,6 @@ private async Task LoadAsync(IdentityUser user, string id)
 
             word = word.Remove(0, 1);
             word = word.Insert(0, firstLetter.ToUpperInvariant());
-
-            //RegexOptions options = RegexOptions.None;
-            //Regex regex = new Regex("[ ]{2,}", options);
-            //word = regex.Replace(word, " ");
 
             return word;
         }
