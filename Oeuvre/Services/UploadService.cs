@@ -128,10 +128,6 @@ namespace Oeuvre.Services
                     numberList = number.Select(s => int.Parse(s)).ToList();
                     highestNumber = numberList.Max() + 1;
                 }
-
-                
-
-
                 
 
                 newDatabaseEntry.ImgId =  highestNumber.ToString();

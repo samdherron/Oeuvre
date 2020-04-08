@@ -22,6 +22,11 @@
         <h6 style="color: #a12412; padding-top: 15px;">Edit Art Piece</h6>
         <br />
 
+       
+
+        @*<form method="post" asp-controller="Upload" asp-action="SaveImage_GetData" enctype="multipart/form-data">*@
+    <form method="post" enctype="multipart/form-data">
+        
         <div class="row" style="margin-bottom: 20px;">
             <div class="col-xl-12" style="text-align: center;">
                 <label id="previewHeader" style="display: none;" for="imagePreview">Preview:</label>
@@ -30,9 +35,6 @@
                                        max-width: 700px;" />
             </div>
         </div>
-
-        @*<form method="post" asp-controller="Upload" asp-action="SaveImage_GetData" enctype="multipart/form-data">*@
-    <form method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-lg-6">
                 <label for="imageName">Piece Name</label>
@@ -76,22 +78,22 @@
                 <label for="collectionType">Current Or Permanent Collection</label>
                 <br />
                 @*<input name="collectionType" class="form-control" type="text" required />*@
-            <select class="form-control" name="collectionType" value="@Model.ArtPieceInfo.imageDetails.CollectionType">
-                <option value="">Select Collection Type</option>
+                <select class="form-control" name="collectionType" value="@Model.ArtPieceInfo.imageDetails.CollectionType">
+                    <option value="">Select Collection Type</option>
 
-                @if (Model.ArtPieceInfo.imageDetails.CollectionType == "Current")
-                {
-                    <option selected="selected" value="1">Current</option>
-                    <option value="2">Permanent</option>
-                }
-                else
-                {
-                    <option value="1">Current</option>
-                    <option selected="selected" value="2">Permanent</option>
-                }
+                    @if (Model.ArtPieceInfo.imageDetails.CollectionType == "Current")
+                    {
+                        <option selected="selected" value="1">Current</option>
+                        <option value="2">Permanent</option>
+                    }
+                    else
+                    {
+                        <option value="1">Current</option>
+                        <option selected="selected" value="2">Permanent</option>
+                    }
 
 
-            </select>
+                </select>
             </div>
         </div>
 
@@ -217,76 +219,76 @@
 
                         var divId = "dynamicTheme" + i;
 
-                    <div id=@divId class="dynamicThemeMember" style="margin-bottom: 2%;">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <select name="initialThemeCategory" class="form-control">
-                                    @switch (item.imgthemeTypeName)
-                                    {
-                                        case "Mediums":
-                                            <option selected>Mediums</option>
-                                            <option>Movements</option>
-                                            <option>Locations</option>
-                                            <option>Colour</option>
-                                            <option>Period</option>
-                                            <option>Other</option>
-                                            break;
-                                        case "Movements":
-                                            <option>Mediums</option>
-                                            <option selected>Movements</option>
-                                            <option>Locations</option>
-                                            <option>Colour</option>
-                                            <option>Period</option>
-                                            <option>Other</option>
-                                            break;
-                                        case "Locations":
-                                            <option>Mediums</option>
-                                            <option>Movements</option>
-                                            <option selected>Locations</option>
-                                            <option>Colour</option>
-                                            <option>Period</option>
-                                            <option>Other</option>
-                                            break;
-                                        case "Colour":
-                                            <option>Mediums</option>
-                                            <option>Movements</option>
-                                            <option>Locations</option>
-                                            <option selected>Colour</option>
-                                            <option>Period</option>
-                                            <option>Other</option>
-                                            break;
-                                        case "Period":
-                                            <option>Mediums</option>
-                                            <option>Movements</option>
-                                            <option>Locations</option>
-                                            <option>Colour</option>
-                                            <option selected>Period</option>
-                                            <option>Other</option>
-                                            break;
-                                        case "Other":
-                                            <option>Mediums</option>
-                                            <option>Movements</option>
-                                            <option>Locations</option>
-                                            <option>Colour</option>
-                                            <option>Period</option>
-                                            <option selected>Other</option>
-                                            break;
-                                    }
+                        <div id=@divId class="dynamicThemeMember" style="margin-bottom: 2%;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select name="initialThemeCategory" class="form-control">
+                                        @switch (item.imgthemeTypeName)
+                                        {
+                                            case "Mediums":
+                                                <option selected>Mediums</option>
+                                                <option>Movements</option>
+                                                <option>Locations</option>
+                                                <option>Colour</option>
+                                                <option>Period</option>
+                                                <option>Other</option>
+                                                break;
+                                            case "Movements":
+                                                <option>Mediums</option>
+                                                <option selected>Movements</option>
+                                                <option>Locations</option>
+                                                <option>Colour</option>
+                                                <option>Period</option>
+                                                <option>Other</option>
+                                                break;
+                                            case "Locations":
+                                                <option>Mediums</option>
+                                                <option>Movements</option>
+                                                <option selected>Locations</option>
+                                                <option>Colour</option>
+                                                <option>Period</option>
+                                                <option>Other</option>
+                                                break;
+                                            case "Colour":
+                                                <option>Mediums</option>
+                                                <option>Movements</option>
+                                                <option>Locations</option>
+                                                <option selected>Colour</option>
+                                                <option>Period</option>
+                                                <option>Other</option>
+                                                break;
+                                            case "Period":
+                                                <option>Mediums</option>
+                                                <option>Movements</option>
+                                                <option>Locations</option>
+                                                <option>Colour</option>
+                                                <option selected>Period</option>
+                                                <option>Other</option>
+                                                break;
+                                            case "Other":
+                                                <option>Mediums</option>
+                                                <option>Movements</option>
+                                                <option>Locations</option>
+                                                <option>Colour</option>
+                                                <option>Period</option>
+                                                <option selected>Other</option>
+                                                break;
+                                        }
 
-                                </select>
-                            </div>
+                                    </select>
+                                </div>
 
-                            <div class="col-md-6">
-                                <input name="initialThemeValue" class="form-control" type="text" value="@item.imgThemeName" required />
+                                <div class="col-md-6">
+                                    <input name="initialThemeValue" class="form-control" type="text" value="@item.imgThemeName" required />
+                                </div>
+                                <br />
                             </div>
-                            <br />
                         </div>
-                    </div>
 
                         i++;
                     }
                 }
-                }
+            }
 
 
             else
@@ -351,6 +353,7 @@
         </div>
 
         <br />*@
+        <input name="imgID" class="form-control" id="imgID" type="text" value="@Model.ArtPieceInfo.imageDetails.ImgId" hidden />    
 
         <div class="row">
             <div class="col-sm-3" style="margin-bottom: 20px;">
