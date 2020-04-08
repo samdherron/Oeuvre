@@ -6,11 +6,14 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Oeuvre.Helpers;
 
 namespace Oeuvre.Controllers
 {
     public class MailController : Controller
     {
+        private SearchGallery userSearch;
+
         public IActionResult Index()
         {
             return View();
@@ -19,8 +22,15 @@ namespace Oeuvre.Controllers
 
         public ActionResult SendEmail(string Email, string firstname, string lastname, bool subscribeCheckbox = false)
         {
+
+            userSearch = new SearchGallery();
             try
             {
+                Email = userSearch.removeSqlInjectionParams(Email);
+                firstname = userSearch.removeSqlInjectionParams(firstname);
+                lastname = userSearch.removeSqlInjectionParams(lastname);
+
+
                 //these will be used to access the SMTP
                 var mailCredentails = new NetworkCredential("oeuvreinf@gmail.com", "Oa9!@e6_$u");
 
