@@ -5,27 +5,22 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1>Oeuvre Login</h1>
+<h1>@ViewData["Title"]</h1>
 <div class="container">
-    
         <section>
             <form id="account" method="post">
-                <h5>Fill in your credentails to sign in!</h5>
+                <h4>Use a local account to log in.</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group w-50">
-
+                <div class="form-group">
                     <label asp-for="Input.Email"></label>
                     <input asp-for="Input.Email" class="form-control" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
-
                 </div>
-                <div class="form-group w-50">
-
+                <div class="form-group">
                     <label asp-for="Input.Password"></label>
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
-
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
@@ -34,19 +29,17 @@
                             @Html.DisplayNameFor(m => m.Input.RememberMe)
                         </label>
                         <p style="color: rgba(161,36,18, 0.9); font-size: 0.8em; margin-bottom:0; font-weight:600">
-                            If you have forgotten your password please reach out to us!
-                            @*<a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>*@
+                           If you have forgotten your password please reach out to us through our email!
                         </p>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <button type="submit" class="btn btn-outline-danger">Log in</button>
+                    <button type="submit" class="btn  btn-outline-danger">Log in</button>
                 </div>
 
             </form>
         </section>
-  
+
     @*<div class="col-md-6 col-md-offset-2">
         <section>
             <h4>Use another service to log in.</h4>
