@@ -3,13 +3,16 @@
 @{
     ViewData["Title"] = "Galleries";
 }
-<div class="row" style="border-top:solid;margin-top:30px;margin-bottom:20px;border-color:lightgray">
+
+
+
+<div class="row border-top" style="margin-top:30px;margin-bottom:20px;border-width:0.5px !important; border-bottom-color:black !important">
     <h1>Galleries</h1>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-2" style="margin-top:0px;margin-right:15px">
+        <div class="col-xs-2" style="margin-top: 0px; margin-right: 15px">
             <a class="btn btn-outline-secondary " style="width: 150px;font-weight: bold;margin-bottom: 0px" asp-action="Index">All Galleries</a>
         </div>
         <div class="col-xs-1"></div>
@@ -53,9 +56,7 @@
     </div>
 </div>
 
-<div style="        border-top: solid;
-        border-color: lightgray;
-        margin-bottom: 30px;margin-top:30px"></div>
+<div class="border-top" style="margin-bottom: 30px;margin-top:30px; border-bottom-color:black !important"></div>
 @{List<Image> item = Model.Images;}
 @{List<string> id = Model.GalleryId;}
 @{List<string> type = Model.Types;}
