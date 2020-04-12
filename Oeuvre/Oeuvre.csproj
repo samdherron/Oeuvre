@@ -51,4 +51,15 @@
     <Folder Include="Views\ProfileInformation\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <None Include="wwwroot\android-chrome-192x192.png" />
+    <None Include="wwwroot\android-chrome-512x512.png" />
+    <None Include="wwwroot\apple-touch-icon.png" />
+    <None Include="wwwroot\favicon-16x16.png" />
+    <None Include="wwwroot\favicon-32x32.png" />
+    <None Include="wwwroot\favicon_io\site.webmanifest" />
+    <None Include="wwwroot\site.webmanifest" />
+  </ItemGroup>
+
 </Project>
