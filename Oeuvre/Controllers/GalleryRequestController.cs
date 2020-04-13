@@ -41,7 +41,11 @@ namespace Oeuvre.Controllers
             string postalCode = userSearch.removeSqlInjectionParams(userRequest.postalCode);
             string galleryDesc = userSearch.removeSqlInjectionParams(userRequest.galleryDesc);
 
-            if(checkRegex(email, emailRegex) == false)
+            //galleryDesc = galleryDesc.Replace("/r/n", " ");
+            galleryDesc = Regex.Replace(galleryDesc, @"[^0-9a-zA-Z]+", " ");
+
+
+            if (checkRegex(email, emailRegex) == false)
             {
                 ViewData["errorEmail"] = "Please fill in a valid email address";
                 dataValid = false;
